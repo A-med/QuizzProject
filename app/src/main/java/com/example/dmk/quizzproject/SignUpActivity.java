@@ -29,7 +29,8 @@ public class SignUpActivity extends Activity implements View.OnClickListener {
 
     }
     private void backToSignIn(){
-        Intent i= new Intent(getApplicationContext(),MainActivity.class);
+        Intent i= new Intent(getApplicationContext(),AuthentificationActivity.class);
         startActivity(i);
+        finish();
     }
 }

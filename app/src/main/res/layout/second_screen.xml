@@ -2,31 +2,24 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root"
-    >
+    android:id="@+id/root">
 
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/authentification"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@color/white"
-            android:padding="10dp"
-            >
-
-
-
-
-
-        </LinearLayout>
+            android:padding="10dp">
+    </LinearLayout>
 
 
 
@@ -99,7 +92,8 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:background="@color/dots_color"
-            android:text="Create an account"/>
+            android:text="Create an account"
+            />
 
 
     </LinearLayout>

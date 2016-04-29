@@ -1,4 +1,6 @@
 package com.example.dmk.quizzproject;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -30,7 +32,7 @@ import java.util.HashMap;
 
 import static android.widget.Toast.makeText;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class AuthentificationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int NUM_PAGES = 3;
     private ViewPager mPager;
@@ -50,8 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private AnimatorSet mAnimatorSet;
 
-    private TextView mTitleText;
-    private TextView mDescText;
+
 
 
     private boolean mSecondPageSelected;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private float mPreviousPositionOffset;
     private boolean mViewPagerScrollingLeft;
     private int mPreviousPosition;
-    private BookView mBookView;
+
     // private FlatButton mFlatButton;
 
 
@@ -81,17 +82,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        //    btnSignUp = (Button)rootView.findViewById(R.id.btnSignUp);
-        //Log.v(btnSignUp.getRootView().toString(),"ppppppppppppppppppp");
-
-
-        // btnSignUp.setOnClickListener(this);
-
-        // btnSignIn=(Button)findViewById(R.id.btnSingIn);
-        //btnSignIn.setOnClickListener(this);
-
 
         setUpViews();
 
@@ -126,10 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setIndicatorLayout();
         setPageChangeListener(mPager);
         mPager.bringToFront();
-        //mPagerBackground.setAlpha(0);
-
-        //mPager.setOffscreenPageLimit(2);
-
 
     }
 
@@ -151,8 +137,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-        //mIndicatorView[0].setWidth(20);
-        //mIndicatorView[0].setHeight(20);
         mIndicatorView[0].setBackgroundResource(R.drawable.rounded_red);
         mIndicatorView[0].setGravity(Gravity.CENTER);
     }
@@ -237,11 +221,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    /* private void animateBookView() {
-
-         mBookView.fadeInTheLines();
-     }
- */
     private void setViewsInOriginalPosition() {
 
         mCenterBox.setX(mOriginalXValuesMap.get(mCenterBox));
@@ -315,17 +294,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 animateSecondScreen(position, pageWidth, 0);
             }
 
-            /*if (!mViewPagerScrollingLeft && page.findViewById(R.id.center_box_second) != null) {
-                animateSecondScreen(position, pageWidth, 1);
-            }*/
-
             if (position < -1) {
 
             } else if (position <= 1) {
 
-               /* if (!mSecondPageSelected && page.findViewById(R.id.center_box_second) != null) {
-                    moveTheSpheres(position, pageWidth);
-                }*/
 
                 if (!mShouldSpheresRotate && page.findViewById(R.id.center_box_third) != null) {
                     mRoundView.translateTheSpheres(position, pageWidth);
@@ -395,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public class ScreenSlideFragment extends Fragment {
 
-//branch Mahdi
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
