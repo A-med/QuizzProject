@@ -12,6 +12,12 @@
     <string name="third_desc">Connect to be player ... easy just clic</string>
     <string name="loginLabel">Login</string>
     <string name="passwordLabel">Password</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="createAccount">Create an account</string>
+    <string name="validate">Validate</string>
+    <string name="back_to_login">Back to Login</string>
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>

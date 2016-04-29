@@ -26,11 +26,6 @@
 
         />
 
-
-
-
-
-
         <ImageView
             android:id="@+id/center_box"
             android:layout_width="160dp"
