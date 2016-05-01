@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/button_toolbar"
             style="@style/ImageView.Hamburger"
-            android:src="@drawable/ic_arrow_forward_white_48px"
+            android:src="@drawable/ic_arrow_back_white_48px"
             android:clickable="true"/>
     </android.support.v7.widget.Toolbar>
 

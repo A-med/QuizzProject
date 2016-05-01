@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="ring"
+    android:layout_height="10dp" android:layout_width="10dp">
+    <solid android:color="@color/selected_item_color"
+
+        />
+    <corners android:bottomRightRadius="3dp"
+        android:bottomLeftRadius="3dp"
+        android:topRightRadius="3dp"
+        android:topLeftRadius="3dp"
+        />
+</shape>

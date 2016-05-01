@@ -5,10 +5,13 @@ import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.example.dmk.quizzproject.Fragment.Profil;
+import com.example.dmk.quizzproject.Fragment.SelectComplexity;
 import com.example.dmk.quizzproject.Fragment.SelectTheme;
+import com.example.dmk.quizzproject.Fragment.SelectTypeGame;
 import com.example.dmk.quizzproject.Fragment.Settings;
 import com.example.dmk.quizzproject.Fragment.guillotine;
 
@@ -16,7 +19,7 @@ import com.example.dmk.quizzproject.R;
 
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonPlayLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner ,SelectTypeGame.ClickButtonTypeGameLisner {
     private static final long RIPPLE_DURATION = 250;
 
     private Toolbar toolbar;
@@ -57,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out,
-                        R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out)
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out)
                 .add(R.id.content,fragmentguillotine)
                 .addToBackStack(null).commit();
 
@@ -71,20 +74,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out,
-                        R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out).replace(R.id.content, SelectTheme.newInstance(this)).commit();
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out).replace(R.id.content, SelectTheme.newInstance(this)).commit();
 
 
     }
 
     private void launchSettings() {
         getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out,
-                        R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out).replace(R.id.content, Settings.newInstance(this)).commit();
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out).replace(R.id.content, Settings.newInstance(this)).commit();
 
 
     }
@@ -93,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out,
-                        R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out).replace(R.id.content, Profil.newInstance(this)).commit();
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out).replace(R.id.content, Profil.newInstance(this)).commit();
 
 
     }
@@ -109,10 +112,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void exitGuillotine(Fragment fragment)
     {
         getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out,
-                        R.animator.card_flip_left_in,
-                        R.animator.card_flip_left_out)
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out)
                 .remove(fragment)
                 .addToBackStack(null).commit();
 
@@ -125,17 +128,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onFinishClickTollbarPlay() {
 
-            launchToolbar("play");
+        launchToolbar("play");
+    }
 
+    @Override
+    public void onFinishChoiceTheme(String theme) {
+        launchGameType();
 
+    }
 
+    void launchComplexity()
+    {
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out).add(R.id.content, SelectComplexity.newInstance(this)).commit();
+    }
 
+    void launchGameType()
+    {
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out).add(R.id.content, SelectTypeGame.newInstance(this)).commit();
     }
 
     @Override
     public void onFinishClickButtonProfile() {
 
-            launchToolbar("profil");
+        launchToolbar("profil");
 
 
 
@@ -144,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onFinishClickButtonSettings() {
 
-            launchToolbar("settings");
+        launchToolbar("settings");
 
 
 
@@ -179,4 +202,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    @Override
+    public void onFinishSelectTypeGame(String type,Fragment f) {
+
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out)
+                .remove(f).addToBackStack(null).commit();
+        Log.v("iit","complexity");
+        if(type.equals("mono"))
+            launchComplexity();
+
+    }
 }
