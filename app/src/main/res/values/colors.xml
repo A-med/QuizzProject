@@ -6,7 +6,10 @@
 
     <color name="dark_yellow">#FE9A2E</color>
     <color name="button_color">#055097</color>
-
+    <color name="background">#444153</color>
+    <color name="background_dark">#383547</color>
+    <color name="selected_item_color">#30d1d5</color>
+    <color name="text_select_theme">#ffff</color>
 
 
     <color name="blue_pressed">#ff0099cc</color>
