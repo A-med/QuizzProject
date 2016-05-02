@@ -26,5 +26,20 @@
 
     <color name="white">#ffffff</color>
 
+    <color name="colorPrimary">#444153</color>
+    <color name="colorPrimaryDark">#383547</color>
+    <color name="colorAccent">#15640d</color>
+    <color name="colorLogo">#30D1D5</color>
+    <color name="guillotine_background">#444153</color>
+    <color name="guillotine_background_dark">#383547</color>
+    <color name="accent">#40C4FF</color>
+    <color name="transparent">#00000000</color>
+    <color name="icon_disabled">#FF63727B</color>
+    <color name="question_color">#0097A7</color>
+    <color name="text_button_color">#01579B</color>
 
 </resources>
+
+
+
+
