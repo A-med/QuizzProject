@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.dmk.quizzproject.Activity.MainActivity ;
 
 import java.util.HashMap;
 
@@ -93,10 +94,10 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         Intent i = null;
         switch (v.getId()) {
-            // case R.id.btnSingIn: //Pour authentifier via parse back for app
-            ////  i = new Intent(getApplicationContext(),SignInActivity.class);
-            //  startActivity(i);
-            //   break;
+            case R.id.btnSingIn: //Pour authentifier via parse back for app
+             i = new Intent(getApplicationContext(),MainActivity.class);
+             startActivity(i);
+               break;
             case R.id.btnSignUp:
                 i = new Intent(getApplicationContext(), SignUpActivity.class);
                 startActivity(i);
