@@ -15,7 +15,8 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        >
 
         <ImageView android:src="@mipmap/quizz"
             android:layout_width="wrap_content"
@@ -28,12 +29,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:theme="@style/TextLabel"
+           >
             <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="@string/email" />
+                android:hint="@string/email"
+                android:textColor="@color/background_dark"
+                />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -41,12 +46,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:theme="@style/TextLabel">
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="@string/passwordLabel"/>
+                android:hint="@string/passwordLabel"
+                android:textColor="@color/background_dark"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
