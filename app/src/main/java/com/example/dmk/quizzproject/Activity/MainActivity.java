@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getFragmentManager().beginTransaction()
                 .setCustomAnimations(R.animator.card_float_left_in,
                         R.animator.card_float_left_out,
-                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_in
                         R.animator.card_float_left_out).replace(R.id.content, Profil.newInstance(this,mPersonsList)).commit();
 
 
