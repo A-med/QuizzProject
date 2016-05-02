@@ -7,7 +7,7 @@
     <color name="guillotine_background_dark">#383547</color>
     <color name="selected_item_color">#30d1d5</color>
     <color name="colorAccent">#FE2E64</color>
-    <color name="colorWhite">#FE2E64</color>
+    <color name="colorWhite">#ffff</color>
     <color name="colobleubackground">#FF4073FF</color>
     <color name="winerscolor">#fffc40</color>
 
@@ -35,8 +35,11 @@
     <color name="holo_red_light">#ffff4444</color>
     <color name="yellow">#FFFFF200</color>
 
-    <color name="white">#ffff4444</color>
 
+
+    <color name="colorlabel">#009688</color>
+
+    <color name="white">#ffffff</color>
 
 </resources>
 

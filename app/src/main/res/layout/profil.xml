@@ -43,6 +43,7 @@
 
 
 
+
+    <include layout="@layout/activity_profile" />
     </LinearLayout>
-    <include layout="@layout/content_enhanced" />
 </FrameLayout>
