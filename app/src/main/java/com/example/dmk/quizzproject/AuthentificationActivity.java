@@ -4,6 +4,7 @@ import com.facebook.FacebookSdk;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -366,8 +367,10 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
     }
 
 
+    @SuppressLint("ValidFragment")
     public class ScreenSlideFragment extends Fragment {
-
+        public ScreenSlideFragment() {
+        }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
