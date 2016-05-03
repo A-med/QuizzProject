@@ -20,7 +20,11 @@ import com.example.dmk.quizzproject.ProfileFragment;
 
 import com.example.dmk.quizzproject.R;
 import com.example.dmk.quizzproject.core.Person;
+
 import com.example.dmk.quizzproject.core.Question;
+
+
+
 
 import java.util.ArrayList;
 
@@ -29,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -236,12 +241,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void performPersonAdd(String name, int age) {
+
         Log.v("performPersonAdd() --->"," Called");
         Person person = new Person(name, age,0);
         mPersonsList.add(person);
 
 
-        getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();}
+        getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
+
+        Log.v("performPersonAdd() --->", " Called");
+
+        mPersonsList.add(person);
+
+
+        getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
+    }
 
 
     private String importFromFileJson(InputStream inputStream) {

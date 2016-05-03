@@ -7,9 +7,6 @@ import android.widget.TextView;
 import com.example.dmk.quizzproject.App;
 
 
-/**
- * Created by Dmytro Denysenko on 5/6/15.
- */
 public class CanaroTextView extends TextView {
     public CanaroTextView(Context context) {
         this(context, null);

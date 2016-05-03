@@ -60,6 +60,10 @@
     </style>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 15b0c36a625b33708037950d3d9aeb948afb14f7
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/colorlabel</item>
@@ -71,4 +75,8 @@
         <item name="colorControlActivated">@color/colorlabel</item>
     </style>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 15b0c36a625b33708037950d3d9aeb948afb14f7
 </resources>
