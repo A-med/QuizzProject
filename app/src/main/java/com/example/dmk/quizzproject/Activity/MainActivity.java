@@ -22,6 +22,8 @@ import com.example.dmk.quizzproject.R;
 import com.example.dmk.quizzproject.core.Person;
 
 
+import java.io.FileInputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -36,7 +38,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
@@ -262,31 +266,83 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     void readJson() {
+//        try {
+//            //String stringJson = importFromFileJson(getAssets().open("mathQuestion"));
+//            JSONParser parser = new JSONParser();
+//
+//
+//            AssetFileDescriptor descriptor = getAssets().openFd("Question.zip");
+//            Object obj = parser.parse(new FileReader(descriptor.getFileDescriptor()));
+//            Log.v("iit","ok");
+//            JSONObject jsonObject = (JSONObject) obj;
+//            JSONArray mathQuestions = (JSONArray) jsonObject.get("question");
+//            for (int i = 0; i < mathQuestions.length(); i++) {
+//                JSONObject mathQuestion = mathQuestions.getJSONObject(i);
+//                Log.v("iit",mathQuestion.getString("proposition1"));
+//
+//
+//            }
+//
+//        } catch (IOException io) {
+//            Log.v("iit", "erreur readJson");
+//            io.printStackTrace();
+//        } catch (JSONException e) {
+//
+//            e.printStackTrace();
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
         try {
-            //String stringJson = importFromFileJson(getAssets().open("mathQuestion"));
-            JSONParser parser = new JSONParser();
-            AssetFileDescriptor descriptor = getAssets().openFd("mathQuestion");
-            Object obj = parser.parse(new FileReader(descriptor.getFileDescriptor()));
-            Log.v("iit","ok");
-            JSONObject jsonObject = (JSONObject) obj;
-            JSONArray mathQuestions = (JSONArray) jsonObject.get("question");
-            for (int i = 0; i < mathQuestions.length(); i++) {
-                JSONObject mathQuestion = mathQuestions.getJSONObject(i);
-                Log.v("iit",mathQuestion.getString("proposition1"));
+            JSONObject obj = new JSONObject(loadJSONFromAsset());
+            JSONArray m_jArry = obj.getJSONArray("question");
+            ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> m_li;
 
+            for (int i = 0; i < m_jArry.length(); i++) {
+                JSONObject jo_inside = m_jArry.getJSONObject(i);
 
+                Log.d("Details-->", jo_inside.getString("text_question"));
+                String formula_value = jo_inside.getString("proposition1");
+                String url_value = jo_inside.getString("proposition2");
+
+                //Add your values in your `ArrayList` as below:
+                m_li = new HashMap<String, String>();
+                m_li.put("proposition1", formula_value);
+                m_li.put("proposition2", url_value);
+
+                formList.add(m_li);
             }
 
-        } catch (IOException io) {
-            Log.v("iit", "erreur readJson");
+
+
 
         } catch (JSONException e) {
-            Log.v("iit", "erreur JSONException");
-
-
-        } catch (ParseException e) {
             e.printStackTrace();
         }
 
     }
+
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("Question");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+
+
+
 }
+
