@@ -20,8 +20,11 @@
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2813a356666d8406848ebb4f273db86b9e6efacb
         </activity>
 
         <activity android:name=".SignInActivity">
@@ -50,7 +53,10 @@
             </intent-filter>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2813a356666d8406848ebb4f273db86b9e6efacb
         </activity>
 
 
