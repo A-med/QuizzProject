@@ -1,13 +1,17 @@
 package com.example.dmk.quizzproject.Activity;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.dmk.quizzproject.AuthentificationActivity;
 import com.example.dmk.quizzproject.Fragment.Profil;
 import com.example.dmk.quizzproject.Fragment.SelectComplexity;
 import com.example.dmk.quizzproject.Fragment.SelectTheme;
@@ -15,15 +19,18 @@ import com.example.dmk.quizzproject.Fragment.SelectTypeGame;
 import com.example.dmk.quizzproject.Fragment.Settings;
 import com.example.dmk.quizzproject.Fragment.guillotine;
 
-
+import com.example.dmk.quizzproject.PageFragment;
 import com.example.dmk.quizzproject.ProfileFragment;
 
+import com.example.dmk.quizzproject.QuestionActivity;
 import com.example.dmk.quizzproject.R;
 import com.example.dmk.quizzproject.core.Person;
 
+import com.example.dmk.quizzproject.core.Question;
 
-import java.io.FileInputStream;
-import java.lang.reflect.Array;
+
+
+
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -31,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,7 +48,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
@@ -49,6 +56,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Person> mPersonsList = new ArrayList<Person>();
     private static final String PERSONS_LIST_KEY = "persons_list_key";
     private Toolbar toolbar;
+
+    public static ArrayList<Question> questionList = new ArrayList<>();
+
+    public ArrayList<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(ArrayList<Question> questionList) {
+        this.questionList = questionList;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,11 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void launchPlay() {
 
 
-        getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.card_float_left_in,
-                        R.animator.card_float_left_out,
-                        R.animator.card_float_left_in,
-                        R.animator.card_float_left_out).replace(R.id.content, SelectTheme.newInstance(this)).commit();
+        getSupportFragmentManager().beginTransaction()
+               .replace(R.id.content, PageFragment.newInstance()).commit();
 
 
     }
@@ -115,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void launchProfile() {
 
-        readJson();
+       readJson();
 
 
         getFragmentManager().beginTransaction()
@@ -235,17 +249,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void launchAdd() {
         Log.v("launchAdd() --->"," Called");
-        getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, PageFragment.newInstance()).commit();
     }
 
     private void performPersonAdd(String name, int age) {
+
         Log.v("performPersonAdd() --->"," Called");
         Person person = new Person(name, age,0);
         mPersonsList.add(person);
-
-
-        getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit(); }
-
+     getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
+    }
 
 
     private String importFromFileJson(InputStream inputStream) {
@@ -265,70 +278,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    void readJson() {
-//        try {
-//            //String stringJson = importFromFileJson(getAssets().open("mathQuestion"));
-//            JSONParser parser = new JSONParser();
-//
-//
-//            AssetFileDescriptor descriptor = getAssets().openFd("Question.zip");
-//            Object obj = parser.parse(new FileReader(descriptor.getFileDescriptor()));
-//            Log.v("iit","ok");
-//            JSONObject jsonObject = (JSONObject) obj;
-//            JSONArray mathQuestions = (JSONArray) jsonObject.get("question");
-//            for (int i = 0; i < mathQuestions.length(); i++) {
-//                JSONObject mathQuestion = mathQuestions.getJSONObject(i);
-//                Log.v("iit",mathQuestion.getString("proposition1"));
-//
-//
-//            }
-//
-//        } catch (IOException io) {
-//            Log.v("iit", "erreur readJson");
-//            io.printStackTrace();
-//        } catch (JSONException e) {
-//
-//            e.printStackTrace();
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
-        try {
-            JSONObject obj = new JSONObject(loadJSONFromAsset());
-            JSONArray m_jArry = obj.getJSONArray("question");
-            ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> m_li;
-
-            for (int i = 0; i < m_jArry.length(); i++) {
-                JSONObject jo_inside = m_jArry.getJSONObject(i);
-
-                Log.d("Details-->", jo_inside.getString("text_question"));
-                String formula_value = jo_inside.getString("proposition1");
-                String url_value = jo_inside.getString("proposition2");
-
-                //Add your values in your `ArrayList` as below:
-                m_li = new HashMap<String, String>();
-                m_li.put("proposition1", formula_value);
-                m_li.put("proposition2", url_value);
-
-                formList.add(m_li);
-            }
-
-
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
     public String loadJSONFromAsset() {
         String json = null;
         try {
-            InputStream is = getAssets().open("Question");
+            InputStream is = getAssets().open("questionJson");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -341,8 +294,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return json;
     }
 
+    void readJson() {
 
+        try {
+
+            JSONObject obj = new JSONObject(loadJSONFromAsset());
+
+            JSONArray m_jArry = obj.getJSONArray("question");
+
+            ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> m_li;
+
+
+
+
+            for (int i = 0; i < m_jArry.length(); i++) {
+                JSONObject jo_inside = m_jArry.getJSONObject(i);
+                Question question = new Question();
+                Log.d("Details-->", jo_inside.getString("proposition1"));
+                String quest = jo_inside.getString("text_question");
+
+
+                String prop_1 = jo_inside.getString("proposition1");
+                String prop_2 = jo_inside.getString("proposition2");
+                String prop_3 = jo_inside.getString("proposition3");
+                String answer = jo_inside.getString("answer");
+
+                question.setText_question(quest);
+                question.setProposition1(prop_1);
+                question.setProposition2(prop_2);
+                question.setProposition3(prop_3);
+                question.setAnswer(answer);
+
+                questionList.add(question);
+
+                //Add your values in your `ArrayList` as below:
+                m_li = new HashMap<String, String>();
+                m_li.put("text_question", quest);
+                m_li.put("proposition1", prop_1);
+                m_li.put("proposition2", prop_2);
+                m_li.put("proposition3", prop_3);
+                m_li.put("answer", answer);
+
+                formList.add(m_li);
+            }
+            for(int i =0;i<formList.size();i++){
+
+                Log.v("Samir tarhouni ",formList.get(i).toString());
+            }
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
 }
-

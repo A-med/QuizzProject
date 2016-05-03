@@ -59,7 +59,6 @@
         <item name="android:layout_marginLeft">@dimen/large_margin</item>
     </style>
 
-
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/colorlabel</item>
@@ -70,5 +69,6 @@
         <item name="colorControlNormal">@color/colorlabel</item>
         <item name="colorControlActivated">@color/colorlabel</item>
     </style>
+
 
 </resources>

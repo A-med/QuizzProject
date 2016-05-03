@@ -33,12 +33,14 @@
             android:theme="@style/TextLabel"
             >
             <EditText android:id="@+id/input_email"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:inputType="textEmailAddress"
-                      android:hint="@string/email"
-                      android:textColor="@color/background_dark"
-                />
+
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/email"
+                android:textColor="@color/background_dark"
+                 />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->

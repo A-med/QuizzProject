@@ -44,4 +44,9 @@
     <dimen name="text_26">26sp</dimen>
     <dimen name="text_16">16sp</dimen>
 
+
+    <dimen name="question_item_text_size">20sp</dimen>
+
+
+
 </resources>

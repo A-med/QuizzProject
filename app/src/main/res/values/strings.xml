@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">QuizzProjet</string>
 
     <string name="hello_world">Hello world!</string>
@@ -22,6 +23,9 @@
     <string name="createAccount">Create an account</string>
     <string name="validate">Validate</string>
     <string name="back_to_login">Back to Login</string>
+    <string name="question">Question</string>
+    <string name="Fragment">This is a question from a specific theme dfbjh ihef  iohfeobuihefubio evoheobfb fvhofv oehvoiufb evnhfeiobn?</string>
+
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>
@@ -35,5 +39,9 @@
         <item name="android:shadowDx">1</item>
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
+
     </style>
+
+
+
 </resources>

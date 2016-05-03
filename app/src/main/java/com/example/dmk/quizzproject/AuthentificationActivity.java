@@ -372,6 +372,8 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         public ScreenSlideFragment() {
         }
 
+
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
