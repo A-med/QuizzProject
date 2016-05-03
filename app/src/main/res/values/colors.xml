@@ -6,11 +6,8 @@
     <color name="guillotine_background">#444153</color>
     <color name="guillotine_background_dark">#383547</color>
     <color name="selected_item_color">#30d1d5</color>
-<<<<<<< HEAD
-    <color name="colorAccent">#FE2E64</color>
-=======
 
->>>>>>> 15b0c36a625b33708037950d3d9aeb948afb14f7
+
     <color name="colorWhite">#ffff</color>
     <color name="colobleubackground">#FF4073FF</color>
     <color name="winerscolor">#fffc40</color>
@@ -45,12 +42,6 @@
 
     <color name="white">#ffffff</color>
 
-</resources>
-
-<<<<<<< HEAD
-=======
-
-
     <color name="colorAccent">#15640d</color>
     <color name="colorLogo">#30D1D5</color>
 
@@ -69,4 +60,4 @@
 
 
 
->>>>>>> 15b0c36a625b33708037950d3d9aeb948afb14f7
+

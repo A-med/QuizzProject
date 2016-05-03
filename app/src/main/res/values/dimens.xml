@@ -7,10 +7,6 @@
     <dimen name="guillotine_actionbar_background_view_height">35dp</dimen>
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 15b0c36a625b33708037950d3d9aeb948afb14f7
     <dimen name="small_margin">24dp</dimen>
     <dimen name="medium_margin">48dp</dimen>
     <dimen name="large_margin">100dp</dimen>
@@ -48,12 +44,9 @@
     <dimen name="text_26">26sp</dimen>
     <dimen name="text_16">16sp</dimen>
 
-<<<<<<< HEAD
-=======
 
     <dimen name="question_item_text_size">20sp</dimen>
 
 
 
->>>>>>> 15b0c36a625b33708037950d3d9aeb948afb14f7
 </resources>

@@ -31,33 +31,16 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:theme="@style/TextLabel"
-           >
+            >
             <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
-                android:inputType="textEmailAddress">
-
-            </EditText>
-
-        </android.support.design.widget.TextInputLayout>
-
-
-
-=======
                 android:inputType="textEmailAddress"
-
                 android:hint="@string/email"
                 android:textColor="@color/background_dark"
                 />
         </android.support.design.widget.TextInputLayout>
 
-
-        </EditText>
->>>>>>> 15b0c36a625b33708037950d3d9aeb948afb14f7
-
-
-    
         <!-- Password Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

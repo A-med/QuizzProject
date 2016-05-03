@@ -1,14 +1,17 @@
 package com.example.dmk.quizzproject.Activity;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.dmk.quizzproject.AuthentificationActivity;
 import com.example.dmk.quizzproject.Fragment.Profil;
 import com.example.dmk.quizzproject.Fragment.SelectComplexity;
 import com.example.dmk.quizzproject.Fragment.SelectTheme;
@@ -18,6 +21,7 @@ import com.example.dmk.quizzproject.Fragment.guillotine;
 
 import com.example.dmk.quizzproject.ProfileFragment;
 
+import com.example.dmk.quizzproject.QuestionActivity;
 import com.example.dmk.quizzproject.R;
 import com.example.dmk.quizzproject.core.Person;
 
@@ -51,6 +55,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Person> mPersonsList = new ArrayList<Person>();
     private static final String PERSONS_LIST_KEY = "persons_list_key";
     private Toolbar toolbar;
+
+   public static ArrayList<Question> questionList = new ArrayList<>();
+
+    public ArrayList<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(ArrayList<Question> questionList) {
+        this.questionList = questionList;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -305,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-            ArrayList<Question> questionList = new ArrayList<>();
+
             for (int i = 0; i < m_jArry.length(); i++) {
                 JSONObject jo_inside = m_jArry.getJSONObject(i);
                 Question question = new Question();

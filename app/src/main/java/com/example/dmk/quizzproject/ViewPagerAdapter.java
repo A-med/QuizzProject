@@ -1,8 +1,14 @@
 package com.example.dmk.quizzproject;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.widget.Button;
+
+import com.example.dmk.quizzproject.core.Person;
+
+import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -27,7 +33,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
             case 0:
                 PageFragment fragmenttab1 = new PageFragment();
-                //fragmenttab1.getActivity().findViewById(R.id.button);
+               // Button  b0=(Button) fragmenttab1.getActivity().findViewById(R.id.button);
+               // b0.setBackgroundColor(Color.CYAN);
                 return fragmenttab1;
 
 
