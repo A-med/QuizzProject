@@ -1,0 +1,74 @@
+{
+  "question": [
+    {
+      "text_question": "What is the next prime number after 7 ?",
+      "proposition1": "7",
+      "proposition2": "10",
+      "proposition3": "11",
+      "answer": "11"
+    },
+    {
+      "text_question": "65 – 43 = ?",
+      "proposition1": "22",
+      "proposition2": "21",
+      "proposition3": "23",
+      "answer": "22"
+    },
+    {
+      "text_question": "What does the square root of 144 equal ?",
+      "proposition1": "12",
+      "proposition2": "15",
+      "proposition3": "17",
+      "answer": "12"
+    },
+    {
+      "text_question": "What comes after a million ?",
+      "proposition1": "billion",
+      "proposition2": "trillion",
+      "proposition3": "quadrillion",
+      "answer": "billion"
+    },
+    {
+      "text_question": "52 divided by 4 equals what ?",
+      "proposition1": "13",
+      "proposition2": "14",
+      "proposition3": "12",
+      "answer": "13"
+    },
+    {
+      "text_question": "What is the bigger number ?",
+      "proposition1": "1",
+      "proposition2": "10",
+      "proposition3": "7",
+      "answer": "10"
+    },
+    {
+      "text_question": "What does 3 squared equal ?",
+      "proposition1": "6",
+      "proposition2": "9",
+      "proposition3": "3",
+      "answer": "9"
+    },
+    {
+      "text_question": "What is the next number in the Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ?",
+      "proposition1": "44",
+      "proposition2": "55",
+      "proposition3": "50",
+      "answer": "55"
+    },
+    {
+      "text_question": "5 to the power of 0 equals what ?",
+      "proposition1": "1",
+      "proposition2": "0",
+      "proposition3": "5",
+      "answer": "1"
+    },
+    {
+      "text_question": "87 + 56 = ?",
+      "proposition1": "143",
+      "proposition2": "144",
+      "proposition3": "142",
+      "answer": "143"
+    }
+  ]
+}

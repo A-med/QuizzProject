@@ -35,11 +35,14 @@
             <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="@string/email"
-                android:textColor="@color/background_dark"
-                />
+                android:inputType="textEmailAddress">
+
+            </EditText>
+
         </android.support.design.widget.TextInputLayout>
+
+
+
 
         <!-- Password Label -->
         <android.support.design.widget.TextInputLayout

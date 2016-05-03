@@ -369,10 +369,10 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     @SuppressLint("ValidFragment")
     public class ScreenSlideFragment extends Fragment {
-
-
         public ScreenSlideFragment() {
         }
+
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
