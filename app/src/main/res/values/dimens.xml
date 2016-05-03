@@ -3,6 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="activity_top_padding">50dp</dimen>
+    <dimen name="guillotine_actionbar_background_view_height">35dp</dimen>
+
+
 
     <dimen name="small_margin">24dp</dimen>
     <dimen name="medium_margin">48dp</dimen>
@@ -41,6 +45,9 @@
     <dimen name="text_26">26sp</dimen>
     <dimen name="text_16">16sp</dimen>
 
+
     <dimen name="question_item_text_size">20sp</dimen>
+
+
 
 </resources>

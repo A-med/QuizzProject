@@ -27,6 +27,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
             case 0:
                 PageFragment fragmenttab1 = new PageFragment();
+                //fragmenttab1.getActivity().findViewById(R.id.button);
                 return fragmenttab1;
 
 

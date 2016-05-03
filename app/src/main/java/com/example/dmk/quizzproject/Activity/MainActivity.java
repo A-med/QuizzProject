@@ -15,13 +15,18 @@ import com.example.dmk.quizzproject.Fragment.SelectTypeGame;
 import com.example.dmk.quizzproject.Fragment.Settings;
 import com.example.dmk.quizzproject.Fragment.guillotine;
 
+import com.example.dmk.quizzproject.ProfileFragment;
 import com.example.dmk.quizzproject.R;
+import com.example.dmk.quizzproject.core.Person;
 
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner ,SelectTypeGame.ClickButtonTypeGameLisner {
     private static final long RIPPLE_DURATION = 250;
-
+    ProfileFragment fragment ;
+    private ArrayList<Person> mPersonsList = new ArrayList<Person>();
+    private static final String PERSONS_LIST_KEY = "persons_list_key";
     private Toolbar toolbar;
 
     @Override
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setCustomAnimations(R.animator.card_float_left_in,
                         R.animator.card_float_left_out,
                         R.animator.card_float_left_in,
-                        R.animator.card_float_left_out).replace(R.id.content, Profil.newInstance(this)).commit();
+                        R.animator.card_float_left_out).replace(R.id.content, Profil.newInstance(this,mPersonsList)).commit();
 
 
     }
@@ -214,6 +219,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.v("iit","complexity");
         if(type.equals("mono"))
             launchComplexity();
+
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(PERSONS_LIST_KEY, mPersonsList);
+
+    }
+    private void launchAdd() {
+        Log.v("launchAdd() --->"," Called");
+        getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
+    }
+
+    private void performPersonAdd(String name, int age) {
+        Log.v("performPersonAdd() --->"," Called");
+        Person person = new Person(name, age,0);
+        mPersonsList.add(person);
+
+
+        getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
 
     }
 }

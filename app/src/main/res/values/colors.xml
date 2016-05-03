@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="guillotine_background">#444153</color>
+    <color name="guillotine_background_dark">#383547</color>
+    <color name="selected_item_color">#30d1d5</color>
+
+    <color name="colorWhite">#ffff</color>
+    <color name="colobleubackground">#FF4073FF</color>
+    <color name="winerscolor">#fffc40</color>
+
+
     <color name="dots_color">#FE2E64</color>
     <color name="darker_gray">#aaa</color>
 
@@ -8,8 +19,8 @@
     <color name="button_color">#055097</color>
     <color name="background">#444153</color>
     <color name="background_dark">#383547</color>
-    <color name="selected_item_color">#30d1d5</color>
-    <color name="text_select_theme">#ffff</color>
+
+    <color name="text_select_theme">#383547</color>
 
 
     <color name="blue_pressed">#ff0099cc</color>
@@ -24,14 +35,19 @@
     <color name="holo_red_light">#ffff4444</color>
     <color name="yellow">#FFFFF200</color>
 
+
+
+    <color name="colorlabel">#009688</color>
+
     <color name="white">#ffffff</color>
 
-    <color name="colorPrimary">#444153</color>
-    <color name="colorPrimaryDark">#383547</color>
+
+
+
     <color name="colorAccent">#15640d</color>
     <color name="colorLogo">#30D1D5</color>
-    <color name="guillotine_background">#444153</color>
-    <color name="guillotine_background_dark">#383547</color>
+
+    <color name="activity_question">#383547</color>
     <color name="accent">#40C4FF</color>
     <color name="transparent">#00000000</color>
     <color name="icon_disabled">#FF63727B</color>
@@ -39,6 +55,9 @@
     <color name="text_button_color">#01579B</color>
 
 </resources>
+
+
+
 
 
 
