@@ -4,11 +4,14 @@ import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 import android.widget.Button;
 
+import com.example.dmk.quizzproject.Activity.MainActivity;
 import com.example.dmk.quizzproject.core.Person;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -28,8 +31,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
 
+        switch (position) {
 
             case 0:
                 PageFragment fragmenttab1 = new PageFragment();

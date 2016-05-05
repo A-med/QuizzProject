@@ -352,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             for(int i =0;i<formList.size();i++){
 
-                Log.v("Samir tarhouni ",formList.get(i).toString());
+                Log.v("Json Question ",formList.get(i).toString());
             }
 
 
