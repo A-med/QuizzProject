@@ -21,6 +21,9 @@ import java.util.ArrayList;
 /**
  * Created by dmk on 29/04/16.
  */
+/**
+ * To commit content_fragment.xml
+ * **/
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static ArrayList<Person> mPersonsList = new ArrayList<Person>();
     ListView androidListView;
