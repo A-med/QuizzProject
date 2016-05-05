@@ -162,14 +162,15 @@ android:layout_below="@id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
+
         >
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/play"
-            style="?android:attr/buttonBarButtonStyle"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/list_view"
-
+            style="@style/text_view_style"
             android:clickable="true"
             android:gravity="center"
             android:text="Play"
@@ -178,7 +179,7 @@ android:layout_below="@id/linear_layout"
             android:textStyle="bold"
 
 
-            /></android.support.v7.widget.LinearLayoutCompat>
+            android:enabled="false"/></android.support.v7.widget.LinearLayoutCompat>
 
 
 </LinearLayout>
