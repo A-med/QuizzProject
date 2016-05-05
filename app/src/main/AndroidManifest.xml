@@ -15,7 +15,13 @@
         <activity android:name=".TestActivity"/>
 
 
-        <activity android:name=".AuthentificationActivity"></activity>
+        <activity android:name=".AuthentificationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
 
 
@@ -23,7 +29,11 @@
 
 
 
+        <activity android:name=".InviteFriends">
 
+
+
+        </activity>
 
         <activity android:name=".SignInActivity">
 
@@ -39,11 +49,7 @@
             android:name=".Activity.MainActivity">
 
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -60,3 +66,5 @@
     </application>
 
 </manifest>
+
+

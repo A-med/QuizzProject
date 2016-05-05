@@ -6,9 +6,9 @@
 </style> -->
 
 
-    <style name="AppTheme" parent="Theme.Guillotine"/>
-
-
+    <style name="AppTheme" parent="Theme.Guillotine">
+        <item name="colorAccent">@color/accent_material_light</item>
+    </style>
 
     <style name="Theme.Guillotine" parent="Theme.AppCompat.NoActionBar">
 
