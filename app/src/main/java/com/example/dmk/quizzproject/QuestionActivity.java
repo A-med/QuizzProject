@@ -50,7 +50,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_question);
         Resources res = getResources();
-
+        readJson();
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content,PageFragment.newInstance()).commit();
