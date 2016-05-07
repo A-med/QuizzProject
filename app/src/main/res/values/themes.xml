@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--<style name="CustomAccentOverlay" parent="ThemeOverlay.AppCompat">
+    <style name="CustomAccentOverlay" parent="ThemeOverlay.AppCompat">
     <item name="colorAccent">@color/colorWhite</item>
-</style> -->
+</style>
 
 
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
@@ -12,6 +12,8 @@
         <item name="android:textColorPrimary">@color/bright_foreground_material_dark</item>
         <item name="android:textColorPrimaryInverse">@color/abc_color_highlight_material</item>
         <item name="android:colorBackground">@color/background_material_dark</item>
+        <item name="colorButtonNormal">@android:color/transparent</item>
+
     </style>
 
 

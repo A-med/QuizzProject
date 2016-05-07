@@ -170,7 +170,7 @@ android:layout_below="@id/linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/list_view"
-            style="@style/text_view_style"
+
             android:clickable="true"
             android:gravity="center"
             android:text="Play"
@@ -179,7 +179,7 @@ android:layout_below="@id/linear_layout"
             android:textStyle="bold"
 
 
-            android:enabled="false"/></android.support.v7.widget.LinearLayoutCompat>
+            /></android.support.v7.widget.LinearLayoutCompat>
 
 
 </LinearLayout>

@@ -26,7 +26,7 @@
             style="@style/ImageView.QuizzItem"
             android:src="@drawable/ic_profile" />
 
-        <com.example.dmk.quizzproject.widget.CanaroTextView
+        <com.example.iit.quizzproject.widget.CanaroTextView
             android:id="@+id/profile"
             style="@style/TextView.QuizzItem"
             android:text="@string/profile"
@@ -42,7 +42,7 @@
             style="@style/ImageView.QuizzItem"
             android:src="@drawable/ic_feed" />
 
-        <com.example.dmk.quizzproject.widget.CanaroTextView
+        <com.example.iit.quizzproject.widget.CanaroTextView
             android:id="@+id/play"
             style="@style/TextView.QuizzItem"
             android:text="@string/play"
@@ -57,7 +57,7 @@
             style="@style/ImageView.QuizzItem"
             android:src="@drawable/ic_settings" />
 
-        <com.example.dmk.quizzproject.widget.CanaroTextView
+        <com.example.iit.quizzproject.widget.CanaroTextView
             android:id="@+id/settings"
             style="@style/TextView.QuizzItem"
             android:text="@string/settings"
