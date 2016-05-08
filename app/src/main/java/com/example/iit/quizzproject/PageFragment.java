@@ -64,53 +64,45 @@ public class PageFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    public void killButtons()
-    {    prop1.setClickable(false);
+    public void killButtons() {
+        prop1.setClickable(false);
         prop2.setClickable(false);
         prop3.setClickable(false);
     }
+
+    public void validateAnswer(Button b1, Button b2, Button b3) {
+
+        if (mQuestion.getAnswer().equals(b1.getText())) {
+            b1.setBackgroundColor(getResources().getColor(R.color.progress_color));
+        } else {
+            b1.setBackgroundColor(getResources().getColor(R.color.mistake_color));
+
+            if (mQuestion.getAnswer().equals(b2.getText())) {
+                b2.setBackgroundColor(getResources().getColor(R.color.progress_color));
+            } else {
+                b3.setBackgroundColor(getResources().getColor(R.color.progress_color));
+            }
+        }
+    }
+
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
             case (R.id.button):
-                    killButtons();
-                if (mQuestion.getAnswer().equals(prop1.getText())) {
-                    prop1.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                } else {
-                    prop1.setBackgroundColor(getResources().getColor(R.color.mistake_color));
-                    if (mQuestion.getAnswer().equals(prop2.getText())) {
-                        prop2.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                    } else {
-                        prop3.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                    }
-                }
-                break;
-            case (R.id.button2):
                 killButtons();
-                if (mQuestion.getAnswer().equals(prop2.getText())) {
-                    prop2.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                } else {
-                    prop2.setBackgroundColor(getResources().getColor(R.color.mistake_color));
-                    if (mQuestion.getAnswer().equals(prop1.getText())) {
-                        prop1.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                    } else {
-                        prop3.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                    }
-                }
+                validateAnswer(prop1, prop2, prop3);
                 break;
+
+            case (R.id.button2): {
+                killButtons();
+                validateAnswer(prop2, prop1, prop3);
+                break;
+
+            }
             case (R.id.button3):
                 killButtons();
-                if (mQuestion.getAnswer().equals(prop3.getText())) {
-                    prop3.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                } else {
-                    prop3.setBackgroundColor(getResources().getColor(R.color.mistake_color));
-                    if (mQuestion.getAnswer().equals(prop2.getText())) {
-                        prop2.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                    } else {
-                        prop1.setBackgroundColor(getResources().getColor(R.color.progress_color));
-                    }
-                }
+                validateAnswer(prop3, prop2, prop1);
                 break;
         }
 

@@ -1,13 +1,9 @@
 package com.example.iit.quizzproject;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.iit.quizzproject.core.Question;
 
@@ -16,9 +12,8 @@ import java.util.Vector;
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 10;
-
-    Context context;
     public Vector<Question> questionList = new Vector<>();
+    Context context;
     // Tab Titles
     private String tabtitles[] = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 

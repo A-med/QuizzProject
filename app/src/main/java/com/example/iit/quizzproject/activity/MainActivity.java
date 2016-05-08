@@ -7,28 +7,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.example.iit.quizzproject.ProfileFragment;
+import com.example.iit.quizzproject.R;
+import com.example.iit.quizzproject.core.Person;
+import com.example.iit.quizzproject.core.Question;
 import com.example.iit.quizzproject.fragment.Profil;
 import com.example.iit.quizzproject.fragment.SelectComplexity;
 import com.example.iit.quizzproject.fragment.SelectTheme;
 import com.example.iit.quizzproject.fragment.SelectTypeGame;
 import com.example.iit.quizzproject.fragment.Settings;
 import com.example.iit.quizzproject.fragment.guillotine;
-import com.example.iit.quizzproject.PageFragment;
-import com.example.iit.quizzproject.ProfileFragment;
-import com.example.iit.quizzproject.R;
-import com.example.iit.quizzproject.core.Person;
-import com.example.iit.quizzproject.core.Question;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
