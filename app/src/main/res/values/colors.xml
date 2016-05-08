@@ -36,7 +36,8 @@
     <color name="icon_disabled">#FF63727B</color>
     <color name="question_color">#0097A7</color>
     <color name="text_button_color">#01579B</color>
-
+    <color name="progress_color">#4CAF50</color>
+    <color name="mistake_color">#D32F2F</color>
 
 </resources>
 

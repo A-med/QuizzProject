@@ -1,77 +1,43 @@
-package com.example.iit.quizzproject.Activity;
+package com.example.iit.quizzproject.activity;
 
 import android.app.Fragment;
-import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-<<<<<<< HEAD:app/src/main/java/com/example/iit/quizzproject/Activity/MainActivity.java
-
-import com.example.iit.quizzproject.R;
-import com.example.iit.quizzproject.Fragment.Profil;
-import com.example.iit.quizzproject.Fragment.SelectComplexity;
-import com.example.iit.quizzproject.Fragment.SelectTheme;
-import com.example.iit.quizzproject.Fragment.SelectTypeGame;
-import com.example.iit.quizzproject.Fragment.Settings;
-import com.example.iit.quizzproject.Fragment.guillotine;
+import com.example.iit.quizzproject.fragment.Profil;
+import com.example.iit.quizzproject.fragment.SelectComplexity;
+import com.example.iit.quizzproject.fragment.SelectTheme;
+import com.example.iit.quizzproject.fragment.SelectTypeGame;
+import com.example.iit.quizzproject.fragment.Settings;
+import com.example.iit.quizzproject.fragment.guillotine;
+import com.example.iit.quizzproject.PageFragment;
 import com.example.iit.quizzproject.ProfileFragment;
-
+import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.Person;
-=======
-import com.example.dmk.quizzproject.AuthentificationActivity;
-import com.example.dmk.quizzproject.Fragment.Profil;
-import com.example.dmk.quizzproject.Fragment.SelectComplexity;
-import com.example.dmk.quizzproject.Fragment.SelectTheme;
-import com.example.dmk.quizzproject.Fragment.SelectTypeGame;
-import com.example.dmk.quizzproject.Fragment.Settings;
-import com.example.dmk.quizzproject.Fragment.guillotine;
-
-import com.example.dmk.quizzproject.PageFragment;
-import com.example.dmk.quizzproject.ProfileFragment;
-
-import com.example.dmk.quizzproject.QuestionActivity;
-import com.example.dmk.quizzproject.R;
-import com.example.dmk.quizzproject.core.Person;
->>>>>>> dev_test:app/src/main/java/com/example/dmk/quizzproject/Activity/MainActivity.java
-
-import com.example.dmk.quizzproject.core.Question;
-
-
-
-
-import java.util.ArrayList;
+import com.example.iit.quizzproject.core.Question;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
     private static final long RIPPLE_DURATION = 250;
-    ProfileFragment fragment ;
-    private ArrayList<Person> mPersonsList = new ArrayList<Person>();
     private static final String PERSONS_LIST_KEY = "persons_list_key";
-    private Toolbar toolbar;
-
     public static ArrayList<Question> questionList = new ArrayList<>();
+    ProfileFragment fragment;
+    private ArrayList<Person> mPersonsList = new ArrayList<Person>();
+    private Toolbar toolbar;
 
     public ArrayList<Question> getQuestionList() {
         return questionList;
@@ -125,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void launchPlay() {
 
 
-        getSupportFragmentManager().beginTransaction()
-               .replace(R.id.content, PageFragment.newInstance()).commit();
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.content, PageFragment.newInstance()).commit();
 
 
     }
@@ -143,14 +109,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void launchProfile() {
 
-       readJson();
+      //  readJson();
 
 
         getFragmentManager().beginTransaction()
                 .setCustomAnimations(R.animator.card_float_left_in,
                         R.animator.card_float_left_out,
                         R.animator.card_float_left_in,
-                        R.animator.card_float_left_out).replace(R.id.content, Profil.newInstance(this,mPersonsList)).commit();
+                        R.animator.card_float_left_out).replace(R.id.content, Profil.newInstance(this, mPersonsList)).commit();
 
 
     }
@@ -261,110 +227,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         outState.putSerializable(PERSONS_LIST_KEY, mPersonsList);
 
     }
+
     private void launchAdd() {
-        Log.v("launchAdd() --->"," Called");
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, PageFragment.newInstance()).commit();
+        Log.v("launchAdd() --->", " Called");
+     //   getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, PageFragment.newInstance()).commit();
     }
 
     private void performPersonAdd(String name, int age) {
 
-        Log.v("performPersonAdd() --->"," Called");
-        Person person = new Person(name, age,0);
+        Log.v("performPersonAdd() --->", " Called");
+        Person person = new Person(name, age, 0);
         mPersonsList.add(person);
-     getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
+        getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
     }
 
 
-    private String importFromFileJson(InputStream inputStream) {
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line = "";
-            String result = "";
-            while ((line = bufferedReader.readLine()) != null)
-                result += line;
-
-            inputStream.close();
-            return result;
-        } catch (IOException e) {
-            Log.v("iit", e.getMessage());
-            return null;
-        }
-
-    }
-
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("questionJson");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
-    void readJson() {
-
-        try {
-
-            JSONObject obj = new JSONObject(loadJSONFromAsset());
-
-            JSONArray m_jArry = obj.getJSONArray("question");
-
-            ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> m_li;
 
 
-
-
-            for (int i = 0; i < m_jArry.length(); i++) {
-                JSONObject jo_inside = m_jArry.getJSONObject(i);
-                Question question = new Question();
-                Log.d("Details-->", jo_inside.getString("proposition1"));
-                String quest = jo_inside.getString("text_question");
-
-
-                String prop_1 = jo_inside.getString("proposition1");
-                String prop_2 = jo_inside.getString("proposition2");
-                String prop_3 = jo_inside.getString("proposition3");
-                String answer = jo_inside.getString("answer");
-
-                question.setText_question(quest);
-                question.setProposition1(prop_1);
-                question.setProposition2(prop_2);
-                question.setProposition3(prop_3);
-                question.setAnswer(answer);
-
-                questionList.add(question);
-
-                //Add your values in your `ArrayList` as below:
-                m_li = new HashMap<String, String>();
-                m_li.put("text_question", quest);
-                m_li.put("proposition1", prop_1);
-                m_li.put("proposition2", prop_2);
-                m_li.put("proposition3", prop_3);
-                m_li.put("answer", answer);
-
-                formList.add(m_li);
-            }
-            for(int i =0;i<formList.size();i++){
-
-                Log.v("Samir tarhouni ",formList.get(i).toString());
-            }
-
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
 
 }

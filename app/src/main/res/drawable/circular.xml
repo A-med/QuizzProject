@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/secondaryProgress">
         <shape
             android:innerRadiusRatio="3"
             android:shape="ring"
-            android:useLevel="true"
-            android:thicknessRatio="14.0">
+            android:thicknessRatio="14.0"
+            android:useLevel="true">
 
             <gradient
-                android:startColor="#999999"
-                android:endColor="#999999"
                 android:centerColor="#999999"
-                android:type="sweep" />
+                android:endColor="#999999"
+                android:startColor="#999999"
+                android:type="sweep"/>
         </shape>
     </item>
     <item android:id="@android:id/progress">
@@ -19,22 +19,22 @@
             android:fromDegrees="270"
             android:pivotX="50%"
             android:pivotY="50%"
-            android:toDegrees="270" >
+            android:toDegrees="270">
             <shape
                 android:innerRadiusRatio="3"
                 android:shape="ring"
-                android:useLevel="true"
-                android:thicknessRatio="14.0">
+                android:thicknessRatio="14.0"
+                android:useLevel="true">
                 <rotate
                     android:fromDegrees="0"
-                    android:toDegrees="360"
                     android:pivotX="50%"
-                    android:pivotY="50%" />
+                    android:pivotY="50%"
+                    android:toDegrees="360"/>
                 <gradient
-                    android:startColor="#8BC34A"
-                    android:endColor="#D32F2F"
                     android:centerColor="#4CAF50"
-                    android:type="sweep" />
+                    android:endColor="#D32F2F"
+                    android:startColor="#8BC34A"
+                    android:type="sweep"/>
             </shape>
         </rotate>
     </item>

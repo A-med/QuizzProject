@@ -1,28 +1,16 @@
-package com.example.dmk.quizzproject;
+package com.example.iit.quizzproject;
 
 import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.example.dmk.quizzproject.core.Question;
+import com.example.iit.quizzproject.core.Question;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,38 +20,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Vector;
 
 public class QuestionActivity extends AppCompatActivity {
-   
 
 
+    public  Vector<Question> questionList = new Vector<>();
     Toolbar toolbar;
-
-    public static ArrayList<Question> questionList = new ArrayList<>();
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_question);
+        setContentView(com.example.iit.quizzproject.R.layout.activity_question);
         Resources res = getResources();
         readJson();
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content,PageFragment.newInstance()).commit();
-        ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
+
+        ProgressBar mProgress = (ProgressBar) findViewById(com.example.iit.quizzproject.R.id.circularProgressbar);
         ObjectAnimator animation = ObjectAnimator.ofInt(mProgress, "progress", 100);
         animation.setDuration(50000);
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
 
         // Locate the viewpager in activity_main.xml
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        ViewPager viewPager = (ViewPager) findViewById(com.example.iit.quizzproject.R.id.pager);
         // Set the ViewPagerAdapter into ViewPager
-        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),questionList));
 
     }
 
@@ -93,8 +76,6 @@ public class QuestionActivity extends AppCompatActivity {
 
             ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> m_li;
-
-
 
 
             for (int i = 0; i < m_jArry.length(); i++) {
@@ -127,11 +108,10 @@ public class QuestionActivity extends AppCompatActivity {
 
                 formList.add(m_li);
             }
-            for(int i =0;i<formList.size();i++){
+            for (int i = 0; i < formList.size(); i++) {
 
-                Log.v("Samir tarhouni ",formList.get(i).toString());
+                Log.v("Samir tarhouni ", formList.get(i).toString());
             }
-
 
 
         } catch (JSONException e) {
@@ -140,7 +120,6 @@ public class QuestionActivity extends AppCompatActivity {
 
 
     }
-
 
 
 }

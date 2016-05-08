@@ -1,16 +1,13 @@
-package com.example.dmk.quizzproject;
+package com.example.iit.quizzproject;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.view.LayoutInflater;
-
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.List;
 
 /**
  * Created by hamdy on 24/04/16.
@@ -43,9 +40,9 @@ public class AdapterUser extends ArrayAdapter<User> {
 
         View workingView = null;
 
-        if(null == convertView) {
+        if (null == convertView) {
             final Context context = getContext();
-            final LayoutInflater inflater = (LayoutInflater)context.getSystemService
+            final LayoutInflater inflater = (LayoutInflater) context.getSystemService
                     (Context.LAYOUT_INFLATER_SERVICE);
 
             workingView = inflater.inflate(newsItemLayoutResource, null);
@@ -62,13 +59,13 @@ public class AdapterUser extends ArrayAdapter<User> {
         ViewHolder viewHolder = null;
 
 
-        if(null == tag || !(tag instanceof ViewHolder)) {
+        if (null == tag || !(tag instanceof ViewHolder)) {
             viewHolder = new ViewHolder();
 
-            viewHolder.titleViewname = (TextView) workingView.findViewById(R.id.person_name);
-            viewHolder.titleViewage = (TextView) workingView.findViewById(R.id.person_age);
-            viewHolder.imageView = (ImageView) workingView.findViewById(R.id.person_photo);
-            viewHolder.checkBox = (CheckBox) workingView.findViewById(R.id.cbSelected);
+            viewHolder.titleViewname = (TextView) workingView.findViewById(com.example.iit.quizzproject.R.id.person_name);
+            viewHolder.titleViewage = (TextView) workingView.findViewById(com.example.iit.quizzproject.R.id.person_age);
+            viewHolder.imageView = (ImageView) workingView.findViewById(com.example.iit.quizzproject.R.id.person_photo);
+            viewHolder.checkBox = (CheckBox) workingView.findViewById(com.example.iit.quizzproject.R.id.cbSelected);
 
             workingView.setTag(viewHolder);
 
@@ -85,7 +82,6 @@ public class AdapterUser extends ArrayAdapter<User> {
         public ImageView imageView;
         public CheckBox checkBox;
     }
-
 
 
 }

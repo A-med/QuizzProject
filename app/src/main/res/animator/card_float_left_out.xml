@@ -6,4 +6,4 @@
     android:propertyName="x"
     android:valueFrom="0"
     android:valueTo="-1000"
-    android:valueType="floatType" />
+    android:valueType="floatType"/>

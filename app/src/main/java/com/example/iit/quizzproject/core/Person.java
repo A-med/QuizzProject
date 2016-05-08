@@ -7,21 +7,17 @@ package com.example.iit.quizzproject.core;
 import java.io.Serializable;
 
 
-
-
-
 public class Person implements Serializable {
     private String mName;
     private int mRank;
 
 
+    private int mImg;
 
-    private  int mImg ;
-
-    public Person(String name, int rank,int img) {
+    public Person(String name, int rank, int img) {
         mName = name;
         mRank = rank;
-        mImg =  img;
+        mImg = img;
     }
 
     public String getName() {

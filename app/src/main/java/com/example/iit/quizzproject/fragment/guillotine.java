@@ -1,10 +1,8 @@
-package com.example.iit.quizzproject.Fragment;
+package com.example.iit.quizzproject.fragment;
 
 
 import android.app.Fragment;
-import android.graphics.Color;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,27 +18,26 @@ import com.example.iit.quizzproject.widget.CanaroTextView;
 public class guillotine extends Fragment implements View.OnClickListener {
 
 
-    CanaroTextView profile ;
-    CanaroTextView play ;
-    CanaroTextView settings ;
-    ImageView image_toolbar;
-     static int  lastfragment;
+    static int lastfragment;
     private static ClickButtonGuillotineLisner mClickButtonGuillotineLisner;
+    CanaroTextView profile;
+    CanaroTextView play;
+    CanaroTextView settings;
+    ImageView image_toolbar;
 
-   public guillotine() {
+    public guillotine() {
 
 
         // Required empty public constructor
     }
-    public static Fragment newInstance(ClickButtonGuillotineLisner listener , int mlastfragment ){
 
-        guillotine fragment =  new guillotine();
-        mClickButtonGuillotineLisner =listener;
-        lastfragment=mlastfragment;
+    public static Fragment newInstance(ClickButtonGuillotineLisner listener, int mlastfragment) {
+
+        guillotine fragment = new guillotine();
+        mClickButtonGuillotineLisner = listener;
+        lastfragment = mlastfragment;
         return fragment;
     }
-
-
 
 
     @Override
@@ -54,15 +51,11 @@ public class guillotine extends Fragment implements View.OnClickListener {
         image_toolbar = (ImageView) view.findViewById(R.id.button_toolbar);
 
 
-        if(lastfragment==1)
-        {
+        if (lastfragment == 1) {
             profile.setTextColor(getResources().getColor(R.color.selected_item_color));
-        }
-        else if(lastfragment==2)
-        {
+        } else if (lastfragment == 2) {
             play.setTextColor(getResources().getColor(R.color.selected_item_color));
-        }else
-        {
+        } else {
             settings.setTextColor(getResources().getColor(R.color.selected_item_color));
         }
 
@@ -70,7 +63,7 @@ public class guillotine extends Fragment implements View.OnClickListener {
         play.setOnClickListener(this);
         settings.setOnClickListener(this);
         image_toolbar.setOnClickListener(this);
-        return view ;
+        return view;
     }
 
     @Override
@@ -93,23 +86,23 @@ public class guillotine extends Fragment implements View.OnClickListener {
         }
     }
 
-    void CloseGuillotine()
-    {
+    void CloseGuillotine() {
         mClickButtonGuillotineLisner.onFinishClickTollbarGuillotine(this);
     }
-    void openProfil(){
+
+    void openProfil() {
 
         mClickButtonGuillotineLisner.onFinishClickProfilGuillotine(this);
 
     }
 
 
-    void openPlay(){
+    void openPlay() {
         mClickButtonGuillotineLisner.onFinishClickPlayGuillotine(this);
 
     }
 
-    void openSettings(){
+    void openSettings() {
         mClickButtonGuillotineLisner.onFinishClickSettingGuillotine(this);
 
     }
@@ -117,8 +110,11 @@ public class guillotine extends Fragment implements View.OnClickListener {
     public interface ClickButtonGuillotineLisner {
 
         public void onFinishClickTollbarGuillotine(Fragment fragment);
+
         public void onFinishClickPlayGuillotine(Fragment fragment);
+
         public void onFinishClickSettingGuillotine(Fragment fragment);
+
         public void onFinishClickProfilGuillotine(Fragment fragment);
 
     }

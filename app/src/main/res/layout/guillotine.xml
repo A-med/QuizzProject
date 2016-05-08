@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background"
+              android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         style="@style/Toolbar"
@@ -13,8 +13,8 @@
         <ImageView
             android:id="@+id/button_toolbar"
             style="@style/ImageView.Hamburger"
-            android:src="@drawable/ic_arrow_back_white_48px"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:src="@drawable/ic_arrow_back_white_48px"/>
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
@@ -24,14 +24,14 @@
 
         <ImageView
             style="@style/ImageView.QuizzItem"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/ic_profile"/>
 
         <com.example.iit.quizzproject.widget.CanaroTextView
             android:id="@+id/profile"
             style="@style/TextView.QuizzItem"
-            android:text="@string/profile"
             android:clickable="true"
-             />
+            android:text="@string/profile"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -40,13 +40,13 @@
 
         <ImageView
             style="@style/ImageView.QuizzItem"
-            android:src="@drawable/ic_feed" />
+            android:src="@drawable/ic_feed"/>
 
         <com.example.iit.quizzproject.widget.CanaroTextView
             android:id="@+id/play"
             style="@style/TextView.QuizzItem"
-            android:text="@string/play"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:text="@string/play"/>
     </LinearLayout>
 
     <LinearLayout
@@ -55,12 +55,12 @@
 
         <ImageView
             style="@style/ImageView.QuizzItem"
-            android:src="@drawable/ic_settings" />
+            android:src="@drawable/ic_settings"/>
 
         <com.example.iit.quizzproject.widget.CanaroTextView
             android:id="@+id/settings"
             style="@style/TextView.QuizzItem"
-            android:text="@string/settings"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:text="@string/settings"/>
     </LinearLayout>
 </LinearLayout>

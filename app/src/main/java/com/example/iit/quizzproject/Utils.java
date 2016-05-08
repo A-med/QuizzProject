@@ -11,9 +11,7 @@ import android.graphics.RectF;
 
 public class Utils {
 
-    public static Bitmap getCircularBitmap(Bitmap bitmap){
-
-
+    public static Bitmap getCircularBitmap(Bitmap bitmap) {
 
 
         final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),

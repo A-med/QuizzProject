@@ -1,8 +1,6 @@
 package com.example.iit.quizzproject;
 
 
-import com.example.iit.quizzproject.Activity.MainActivity;
-
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -14,9 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.iit.quizzproject.activity.MainActivity;
 
 import java.util.HashMap;
 
@@ -54,8 +51,6 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
     private AnimatorSet mAnimatorSet;
 
 
-
-
     private boolean mSecondPageSelected;
     private HashMap<ImageView, Float> mOriginalXValuesMap = new HashMap<>();
     private int mSelectedPosition = -1;
@@ -72,10 +67,25 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
     // Third screen
     private boolean mShouldSpheresRotate = true;
     private ThirdScreenView mRoundView;
+    View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 
+            switch (v.getId()) {
+
+                case R.id.letsgo:
+
+                    mRoundView.startNextScreen();
+
+                    break;
+
+            }
+
+
+        }
+    };
     private boolean mThirdPageSelected;
     private Button mLetsGoButton;
-
     private Button btnSignUp;
     private Button btnSignIn;
 
@@ -89,15 +99,14 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     }
 
-
     @Override
     public void onClick(View v) {
         Intent i = null;
         switch (v.getId()) {
             case R.id.btnSingIn: //Pour authentifier via parse back for app
-             i = new Intent(getApplicationContext(),MainActivity.class);
-             startActivity(i);
-               break;
+                i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+                break;
             case R.id.btnSignUp:
                 i = new Intent(getApplicationContext(), SignUpActivity.class);
                 startActivity(i);
@@ -237,30 +246,6 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     }
 
-
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-
-            ScreenSlideFragment fragment = new ScreenSlideFragment();
-            Bundle args = new Bundle();
-            args.putInt("position", position);
-            fragment.setArguments(args);
-
-            return fragment;
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
-        }
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -281,35 +266,6 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    private class CustomTransformer implements ViewPager.PageTransformer {
-
-
-        @Override
-        public void transformPage(View page, float position) {
-
-            int pageWidth = page.getWidth();
-            if ((mViewPagerScrollingLeft && page.findViewById(R.id.center_box) != null)) {
-                animateSecondScreen(position, pageWidth, 0);
-            }
-
-            if (position < -1) {
-
-            } else if (position <= 1) {
-
-
-                if (!mShouldSpheresRotate && page.findViewById(R.id.center_box_third) != null) {
-                    mRoundView.translateTheSpheres(position, pageWidth);
-                }
-
-
-            } else {
-
-            }
-
-        }
     }
 
     private void moveTheSpheres(float position, int pageWidth) {
@@ -363,60 +319,6 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         } else {
             //   mAnimationView.animateSecondScreenAntiClock(position);
         }
-    }
-
-
-    @SuppressLint("ValidFragment")
-    public class ScreenSlideFragment extends Fragment {
-        public ScreenSlideFragment() {
-        }
-
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            Bundle args = getArguments();
-            int position = args.getInt("position");
-            int layoutId = getLayoutId(position);
-
-
-            ViewGroup rootView = (ViewGroup) inflater.inflate(layoutId, container, false);
-            if (position == 0) {
-
-                initFirstScreenViews(rootView, savedInstanceState);
-            }
-            if (position == 1) {
-
-                initSecondScreenViews(rootView, savedInstanceState);
-            }
-            if (position == 2) {
-
-                initThirdScreenViews(rootView, savedInstanceState);
-            }
-
-            return rootView;
-        }
-
-        private int getLayoutId(int position) {
-
-            int id = 0;
-            if (position == 0) {
-
-                id = R.layout.first_screen;
-
-            } else if (position == 1) {
-
-                id = R.layout.second_screen;
-            } else if (position == 2) {
-
-                id = R.layout.third_screen;
-            }
-            return id;
-        }
-
-
     }
 
     private void initFirstScreenViews(View rootView, final Bundle savedInstanceState) {
@@ -536,7 +438,6 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     }
 
-
     private void initThirdScreenViews(View rootView, Bundle savedInstanceState) {
 
         mRoundView = (ThirdScreenView) rootView.findViewById(R.id.round_view);
@@ -547,23 +448,107 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     }
 
-    View.OnClickListener clickListener = new View.OnClickListener() {
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
         @Override
-        public void onClick(View v) {
+        public Fragment getItem(int position) {
 
-            switch (v.getId()) {
+            ScreenSlideFragment fragment = new ScreenSlideFragment();
+            Bundle args = new Bundle();
+            args.putInt("position", position);
+            fragment.setArguments(args);
 
-                case R.id.letsgo:
+            return fragment;
+        }
 
-                    mRoundView.startNextScreen();
+        @Override
+        public int getCount() {
+            return NUM_PAGES;
+        }
+    }
 
-                    break;
+    private class CustomTransformer implements ViewPager.PageTransformer {
+
+
+        @Override
+        public void transformPage(View page, float position) {
+
+            int pageWidth = page.getWidth();
+            if ((mViewPagerScrollingLeft && page.findViewById(R.id.center_box) != null)) {
+                animateSecondScreen(position, pageWidth, 0);
+            }
+
+            if (position < -1) {
+
+            } else if (position <= 1) {
+
+
+                if (!mShouldSpheresRotate && page.findViewById(R.id.center_box_third) != null) {
+                    mRoundView.translateTheSpheres(position, pageWidth);
+                }
+
+
+            } else {
 
             }
 
-
         }
-    };
+    }
+
+    @SuppressLint("ValidFragment")
+    public class ScreenSlideFragment extends Fragment {
+        public ScreenSlideFragment() {
+        }
+
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            Bundle args = getArguments();
+            int position = args.getInt("position");
+            int layoutId = getLayoutId(position);
+
+
+            ViewGroup rootView = (ViewGroup) inflater.inflate(layoutId, container, false);
+            if (position == 0) {
+
+                initFirstScreenViews(rootView, savedInstanceState);
+            }
+            if (position == 1) {
+
+                initSecondScreenViews(rootView, savedInstanceState);
+            }
+            if (position == 2) {
+
+                initThirdScreenViews(rootView, savedInstanceState);
+            }
+
+            return rootView;
+        }
+
+        private int getLayoutId(int position) {
+
+            int id = 0;
+            if (position == 0) {
+
+                id = R.layout.first_screen;
+
+            } else if (position == 1) {
+
+                id = R.layout.second_screen;
+            } else if (position == 2) {
+
+                id = R.layout.third_screen;
+            }
+            return id;
+        }
+
+
+    }
 
 
 }

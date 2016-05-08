@@ -1,21 +1,23 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:drawable="@mipmap/quizz" />
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/quizz"/>
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="ring"
+               android:shape="ring"
             >
 
             <size
                 android:width="200dp"
-                android:height="200dp"> </size>
+                android:height="200dp"></size>
 
 
-            <corners android:bottomLeftRadius="0dp"
-                android:topLeftRadius="10dp"
+            <corners
+                android:bottomLeftRadius="0dp"
                 android:bottomRightRadius="15dp"
+                android:topLeftRadius="10dp"
 
 
-                android:topRightRadius="0dp" />
-        </shape> </item>
+                android:topRightRadius="0dp"/>
+        </shape>
+    </item>
 
 </layer-list>

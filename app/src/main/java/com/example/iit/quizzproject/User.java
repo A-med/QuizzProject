@@ -1,4 +1,4 @@
-package com.example.dmk.quizzproject;
+package com.example.iit.quizzproject;
 
 
 import java.io.Serializable;
@@ -6,13 +6,13 @@ import java.io.Serializable;
 /**
  * Created by hamdy on 23/04/16.
  */
-public class User implements Serializable{
+public class User implements Serializable {
     String name;
     String age;
     int photoId;
     private boolean selected;
 
-    public User(String name, String age, int photoId , boolean selected){
+    public User(String name, String age, int photoId, boolean selected) {
         this.name = name;
         this.age = age;
         this.photoId = photoId;
@@ -27,13 +27,14 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public String getAge(){
+    public String getAge() {
         return age;
     }
-    public void setAge(String age)
-    {
-        this.age=age;
+
+    public void setAge(String age) {
+        this.age = age;
     }
+
     public boolean isSelected() {
         return selected;
     }
@@ -50,10 +51,6 @@ public class User implements Serializable{
     public void setPhotoId(int photoId) {
         this.photoId = photoId;
     }
-
-
-
-
 
 
 }

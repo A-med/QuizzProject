@@ -1,4 +1,4 @@
-package com.example.iit.quizzproject.Fragment;
+package com.example.iit.quizzproject.fragment;
 
 
 import android.app.Fragment;
@@ -17,29 +17,28 @@ import com.example.iit.quizzproject.R;
 public class SelectComplexity extends Fragment implements View.OnClickListener {
 
 
-    ImageView play_Toolbar;
-
     private static ClickButtonComplexityLisner mClickButtonPlayLisner;
+    ImageView play_Toolbar;
 
     public SelectComplexity() {
         // Required empty public constructor
     }
-    public static Fragment newInstance(ClickButtonComplexityLisner listener ){
 
-        SelectComplexity fragment =  new SelectComplexity();
-        mClickButtonPlayLisner =listener;
+    public static Fragment newInstance(ClickButtonComplexityLisner listener) {
+
+        SelectComplexity fragment = new SelectComplexity();
+        mClickButtonPlayLisner = listener;
 
         return fragment;
     }
 
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.select_complexity, container, false);
 
-        return view ;
+        return view;
     }
 
     @Override
@@ -53,12 +52,11 @@ public class SelectComplexity extends Fragment implements View.OnClickListener {
         }
     }
 
-    void openToolbar(){
+    void openToolbar() {
 
         mClickButtonPlayLisner.onFinishClickTollbarPlay();
 
     }
-
 
 
     public interface ClickButtonComplexityLisner {

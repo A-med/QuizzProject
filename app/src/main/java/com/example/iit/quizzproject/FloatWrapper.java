@@ -5,10 +5,10 @@ package com.example.iit.quizzproject;
  */
 public class FloatWrapper {
 
+    public Float floatValue;
+
     FloatWrapper(Float floatVal) {
 
         this.floatValue = floatVal;
     }
-
-    public Float floatValue;
 }

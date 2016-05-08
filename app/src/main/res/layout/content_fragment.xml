@@ -139,8 +139,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout"
         android:layout_alignParentBottom="true"
+        android:layout_below="@id/linear_layout"
         >
 
 
@@ -156,25 +156,22 @@
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-
-        >
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/play"
-
-=======
-        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        >
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/play"
+
             style="@style/ButtonTransparant"
->>>>>>> dev_test
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+
+
+            android:layout_height="50dp"
+
+            android:layout_alignParentBottom="true"
+
             android:layout_below="@+id/list_view"
 
             android:gravity="center"

@@ -1,9 +1,8 @@
-package com.example.iit.quizzproject.Fragment;
+package com.example.iit.quizzproject.fragment;
 
 
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -132,8 +131,7 @@ public class SelectTheme extends Fragment implements View.OnClickListener {
         }
     }
 
-    void selectedTheme(AppCompatButton button)
-    {
+    void selectedTheme(AppCompatButton button) {
         button.setTextColor(getResources().getColor(R.color.selected_item_color));
         button.setBackgroundDrawable(getResources().getDrawable(R.drawable.selected_cercle));
     }
@@ -163,6 +161,7 @@ public class SelectTheme extends Fragment implements View.OnClickListener {
 
     public interface ClickButtonThemeLisner {
         public void onFinishClickTollbarPlay();
+
         public void onFinishChoiceTheme(String theme);
 
     }

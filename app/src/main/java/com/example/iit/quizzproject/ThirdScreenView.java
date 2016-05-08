@@ -19,32 +19,25 @@ import android.view.View;
 
 public class ThirdScreenView extends View {
 
+    float[] mPos;
+    float[] mTan;
+    Matrix matrix;
     private Paint mPaint;
     // Change this to increase the radius of the circle
     private float mRadius;
     private float mCircleX;
     private float mCircleY;
-
     private Bitmap mBitmap1, mBitmap2, mBitmap3, mBitmap4, mBitmap5, mBitmap6;
     private int bm_offsetX, bm_offsetY;
-
     private Path mAnimPath;
     private PathMeasure mPathMeasure;
     private float mPathLength;
-
     private float mStep;   //distance each step
     private float mDistance;  //distance moved
-
-    float[] mPos;
-    float[] mTan;
-
-    Matrix matrix;
-
     private boolean mShouldSpheresRotate = true;
     private float mPosition;
     private boolean mAllCirclesDrawn = false;
     private boolean mStartNextScreen = false;
-
 
 
     // For circle in-out animation
@@ -108,19 +101,19 @@ public class ThirdScreenView extends View {
         bm_offsetY = mBitmap4.getHeight() / 2;
 
         mAnimPath = new Path();
-        Display display = ((Activity)context).getWindowManager().getDefaultDisplay();
+        Display display = ((Activity) context).getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
 
         // change the x value of center of circle here
-        mCircleX=size.x/2;
+        mCircleX = size.x / 2;
         // change the y value of center of circle here
-        mCircleY=(float)(size.y/3.3);
+        mCircleY = (float) (size.y / 3.3);
         // change radius here
-        mRadius=(float)(2*1.0/9)*size.x;
+        mRadius = (float) (2 * 1.0 / 9) * size.x;
 
-        mTempDistanceX=(float)(1.0/14)*size.x;
-        mTempDistanceY=(float)(1.0/14)*size.x;
+        mTempDistanceX = (float) (1.0 / 14) * size.x;
+        mTempDistanceY = (float) (1.0 / 14) * size.x;
 
         RectF rectF = new RectF(mCircleX - mRadius, mCircleY - mRadius, mCircleX + mRadius, mCircleY + mRadius);
         mAnimPath.addArc(rectF, -90, 359);
@@ -209,7 +202,7 @@ public class ThirdScreenView extends View {
 
             if (isAnim1Completed && isAnim2Completed && isAnim3Completed && isAnim4Completed && isAnim5Completed && isAnim6Completed) {
 
-                ((Activity)mContext).finish();
+                ((Activity) mContext).finish();
                 return;
             }
 
@@ -384,8 +377,6 @@ public class ThirdScreenView extends View {
 
         mContext = context;
     }
-
-
 
 
 }

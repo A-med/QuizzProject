@@ -52,21 +52,21 @@ public class PersonAdapter extends BaseAdapter {
         long timestamp = Calendar.getInstance().getTimeInMillis();
         ItemViewHolder itemViewHolder;
         if (convertView == null) {
-            Log.v("iit", "getView: convert view = null:"+position);
+            Log.v("iit", "getView: convert view = null:" + position);
             convertView = mInflater.inflate(R.layout.listview_activity, null);
             itemViewHolder = new ItemViewHolder();
             itemViewHolder.mName = (TextView) convertView.findViewById(R.id.item_name);
             itemViewHolder.mAge = (TextView) convertView.findViewById(R.id.item_last_name);
-           // itemViewHolder.mImage = Integer.toString(convertView.findViewById(R.id.item_image));
+            // itemViewHolder.mImage = Integer.toString(convertView.findViewById(R.id.item_image));
             convertView.setTag(itemViewHolder);
         } else {
-            Log.v("iit", "getView: convert view != null:"+position);
+            Log.v("iit", "getView: convert view != null:" + position);
             itemViewHolder = (ItemViewHolder) convertView.getTag();
         }
         Person person = mPersonsList.get(position);
         itemViewHolder.mName.setText(person.getName());
         itemViewHolder.mAge.setText(String.valueOf(person.getRank()));
-        itemViewHolder.mImage=R.drawable.ic_account_box_black_24dp;
+        itemViewHolder.mImage = R.drawable.ic_account_box_black_24dp;
         Log.v("iit", "getView duration = " + (Calendar.getInstance().getTimeInMillis() - timestamp));
         return convertView;
 

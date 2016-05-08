@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fitsSystemWindows="true"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fitsSystemWindows="true"
     >
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:background="@color/white"
+        android:orientation="vertical"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:background="@color/white">
+        android:paddingTop="56dp">
 
 
-
-        <ImageView android:src="@mipmap/quizz"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="72dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
+            android:src="@mipmap/quizz"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:theme="@style/TextLabel">
-            <EditText android:id="@+id/input_first_name"
+
+            <EditText
+                android:id="@+id/input_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:hint="@string/first_name"
+                android:inputType="text"
                 android:textColor="@color/background_dark"
-               />
+                />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:theme="@style/TextLabel">
-            <EditText android:id="@+id/input_last_name"
+
+            <EditText
+                android:id="@+id/input_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:hint="@string/last_name"
+                android:inputType="text"
                 android:textColor="@color/background_dark"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -55,28 +60,32 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:theme="@style/TextLabel">
-            <EditText android:id="@+id/input_email"
+
+            <EditText
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:hint="@string/email"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/background_dark"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:theme="@style/TextLabel">
-            <EditText android:id="@+id/input_login"
+
+            <EditText
+                android:id="@+id/input_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:hint="@string/loginLabel"
+                android:inputType="text"
                 android:textColor="@color/background_dark"
                 />
         </android.support.design.widget.TextInputLayout>
@@ -84,28 +93,32 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:theme="@style/TextLabel">
-            <EditText android:id="@+id/input_password"
+
+            <EditText
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:hint="@string/passwordLabel"
+                android:inputType="textPassword"
                 android:textColor="@color/background_dark"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:theme="@style/TextLabel">
-            <EditText android:id="@+id/re_input_password"
+
+            <EditText
+                android:id="@+id/re_input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:hint="@string/passwordLabel"
+                android:inputType="textPassword"
                 android:textColor="@color/background_dark"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -113,19 +126,20 @@
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/holo_blue_bright"
             android:padding="12dp"
-            android:text="@string/validate"
-            android:background="@color/holo_blue_bright"/>
+            android:text="@string/validate"/>
+
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_back"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
+            android:background="@color/dots_color"
             android:padding="12dp"
-            android:text="@string/back_to_login"
-            android:background="@color/dots_color"/>
+            android:text="@string/back_to_login"/>
 
 
     </LinearLayout>
