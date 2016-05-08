@@ -4,6 +4,8 @@ import android.content.ContentResolver;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
+import com.example.iit.quizzproject.core.Question;
+
 /**
  * Created by Emna-Kallel on 08/05/2016.
  */
@@ -47,6 +49,7 @@ public class QuestionList  implements BaseColumns {
      */
     public static void onCreate(SQLiteDatabase database) {
         database.execSQL(CREATE_QUESTION_TABLE);
+
     }
 
     /**
@@ -61,5 +64,13 @@ public class QuestionList  implements BaseColumns {
         // TODO
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTIONS);
         onCreate(database);
+    }
+
+    public static void insertIntoQuestion(SQLiteDatabase database, Question question){
+      //  String sqlInsert ="INSERT or replace INTO"+ QuestionList.TABLE_QUESTIONS +"("+QuestionList.QUESTION+","+QuestionList.PROPOSITION1+","+QuestionList.PROPOSITION2+","+QuestionList.PROPOSITION3+","+QuestionList.ANSWER+") VALUES('Date de Fondation du club FCBARCELONA','29 novembre 1899','29 novembre 1900','29 novembre 1898','29 novembre 1899')";
+
+
+        String sqlInsert ="INSERT or replace INTO"+ QuestionList.TABLE_QUESTIONS +"("+QuestionList.QUESTION+","+QuestionList.PROPOSITION1+","+QuestionList.PROPOSITION2+","+QuestionList.PROPOSITION3+","+QuestionList.ANSWER+") VALUES('"+question.getText_question()+"','"+question.getProposition1()+"','"+question.getProposition2()+"','"+question.getProposition3()+"','"+question.getAnswer()+"')";
+        database.execSQL(sqlInsert);
     }
 }
