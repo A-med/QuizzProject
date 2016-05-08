@@ -55,6 +55,21 @@
 
 
 
+        <permission
+            android:name="com.example.iit.quizzproject.database.permission.READ_DATABASE"
+            android:protectionLevel="normal" />
+        <permission
+            android:name="com.example.iit.quizzproject.database.permission.WRITE_DATABASE"
+            android:protectionLevel="normal" />
+
+        <provider
+            android:name=".database.TestContentProvider"
+            android:authorities="com.example.iit.quizzproject.database.provider"
+            android:readPermission="com.example.iit.quizzproject.database.permission.READ_DATABASE"
+            android:writePermission="com.example.iit.quizzproject.database.permission.WRITE_DATABASE"
+            android:exported="true"
+            android:multiprocess="true" />
+
 
     </application>
 
