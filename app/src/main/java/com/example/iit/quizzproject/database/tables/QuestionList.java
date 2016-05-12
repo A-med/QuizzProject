@@ -66,11 +66,6 @@ public class QuestionList  implements BaseColumns {
         onCreate(database);
     }
 
-    public static void insertIntoQuestion(SQLiteDatabase database, Question question){
-      //  String sqlInsert ="INSERT or replace INTO"+ QuestionList.TABLE_QUESTIONS +"("+QuestionList.QUESTION+","+QuestionList.PROPOSITION1+","+QuestionList.PROPOSITION2+","+QuestionList.PROPOSITION3+","+QuestionList.ANSWER+") VALUES('Date de Fondation du club FCBARCELONA','29 novembre 1899','29 novembre 1900','29 novembre 1898','29 novembre 1899')";
 
 
-        String sqlInsert ="INSERT or replace INTO"+ QuestionList.TABLE_QUESTIONS +"("+QuestionList.QUESTION+","+QuestionList.PROPOSITION1+","+QuestionList.PROPOSITION2+","+QuestionList.PROPOSITION3+","+QuestionList.ANSWER+") VALUES('"+question.getText_question()+"','"+question.getProposition1()+"','"+question.getProposition2()+"','"+question.getProposition3()+"','"+question.getAnswer()+"')";
-        database.execSQL(sqlInsert);
-    }
 }

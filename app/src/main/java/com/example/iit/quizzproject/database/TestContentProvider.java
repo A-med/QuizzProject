@@ -100,6 +100,7 @@ public class TestContentProvider extends ContentProvider {
             case RECORDS_ALL:
 
                 id = database.insert(QuestionList.TABLE_QUESTIONS, null, values);
+                Log.v("id ---------------",""+id);
                 if (id > 0) {
                     // notify all listeners of changes and return itemUri:
                     itemUri = ContentUris.withAppendedId(uri, id);
@@ -202,6 +203,7 @@ public class TestContentProvider extends ContentProvider {
                     Arrays.asList(projection));
             HashSet<String> availableColumns = new HashSet<String>(
                     Arrays.asList(QuestionList.PROJECTION_ALL));
+            Log.v("SQL",availableColumns.toString());
             // Check if all columns which are requested are available
             if (!availableColumns.containsAll(requestedColumns)) {
                 throw new IllegalArgumentException(

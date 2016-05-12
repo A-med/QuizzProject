@@ -1,9 +1,18 @@
 package com.example.iit.quizzproject.Activity;
 
 import android.app.Fragment;
+import android.content.AsyncQueryHandler;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,8 +35,8 @@ import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.Person;
 
 import com.example.iit.quizzproject.core.Question;
-
-
+import com.example.iit.quizzproject.database.TestContentProvider;
+import com.example.iit.quizzproject.database.tables.QuestionList;
 
 
 import java.util.ArrayList;
@@ -51,12 +60,12 @@ import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
     private static final long RIPPLE_DURATION = 250;
-    ProfileFragment fragment ;
+    ProfileFragment fragment;
     private ArrayList<Person> mPersonsList = new ArrayList<Person>();
     private static final String PERSONS_LIST_KEY = "persons_list_key";
     private Toolbar toolbar;
 
-   public static ArrayList<Question> questionList = new ArrayList<>();
+    public static ArrayList<Question> questionList = new ArrayList<>();
 
     public ArrayList<Question> getQuestionList() {
         return questionList;
@@ -71,14 +80,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
         launchProfile();
+        checkDataBase();
+        //  queryContentProviderWithResolver();
+
+
+        insertDB();
+        select();
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setOnClickListener(this);
 
+        //SQLiteOpenHelper sql = new SQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version);
+
+        // Uri uri=getContentResolver().insert(  cprovider.tableuri, contentValues);
+    }
+
+
+    private boolean checkDataBase() {
+        SQLiteDatabase checkDB = null;
+        try {
+
+            checkDB = SQLiteDatabase.openDatabase("/data/data/com.example.iit.quizzproject/databases/quizz.db", null, SQLiteDatabase.OPEN_READONLY);
+           // Log.v("Base de donnee  ","TAble name"+SQLiteDatabase.findEditTable("questions"));
+            Log.v("Base de donnee","Base created Path="+checkDB.getPath()+"   Version = "+checkDB.getVersion());
+
+
+            checkDB.close();
+        } catch (SQLiteException e) {
+            // base de données n'existe pas.
+            Toast.makeText(MainActivity.this, "Base not created", Toast.LENGTH_SHORT).show();
+          //  Log.v("Record URI",TestContentProvider.RECORDS_CONTENT_URI.toString());
+        }
+        return checkDB != null ? true : false;
+    }
+    public void insertDB() {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(QuestionList.QUESTION, "What the ");
+        contentValues.put(QuestionList.PROPOSITION1, "prop 28");
+
+        Uri uri = getContentResolver().insert(
+                TestContentProvider.RECORDS_CONTENT_URI,
+                contentValues);
+        Log.v("URI PATH",uri.getPath().toString());
+    }
+    public  void select(){
+      Cursor mCursor =getContentResolver().query(TestContentProvider.RECORDS_CONTENT_URI,QuestionList.PROJECTION_ALL,null,null,null );
+
+        while (mCursor.moveToNext()) {
+
+            // Gets the value from the column.
+           Log.v("Cursor", mCursor.getString(0));
+
+            // Insert code here to process the retrieved word.
+
+
+            // end of while loop
+        }
 
     }
 
     @Override
     public void onClick(View v) {
+
 
     }
 
@@ -138,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setCustomAnimations(R.animator.card_float_left_in,
                         R.animator.card_float_left_out,
                         R.animator.card_float_left_in,
-                        R.animator.card_float_left_out).replace(R.id.content, Profil.newInstance(this,mPersonsList)).commit();
+                        R.animator.card_float_left_out).replace(R.id.content, Profil.newInstance(this, mPersonsList)).commit();
 
 
     }
@@ -249,15 +312,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         outState.putSerializable(PERSONS_LIST_KEY, mPersonsList);
 
     }
+
     private void launchAdd() {
-        Log.v("launchAdd() --->"," Called");
+        Log.v("launchAdd() --->", " Called");
         getFragmentManager().beginTransaction().replace(R.id.content_fragment, ProfileFragment.newInstance(mPersonsList)).commit();
     }
 
     private void performPersonAdd(String name, int age) {
 
-        Log.v("performPersonAdd() --->"," Called");
-        Person person = new Person(name, age,0);
+        Log.v("performPersonAdd() --->", " Called");
+        Person person = new Person(name, age, 0);
         mPersonsList.add(person);
 
 
@@ -318,8 +382,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             HashMap<String, String> m_li;
 
 
-
-
             for (int i = 0; i < m_jArry.length(); i++) {
                 JSONObject jo_inside = m_jArry.getJSONObject(i);
                 Question question = new Question();
@@ -350,11 +412,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 formList.add(m_li);
             }
-            for(int i =0;i<formList.size();i++){
+            for (int i = 0; i < formList.size(); i++) {
 
-                Log.v("Json Question ",formList.get(i).toString());
+                Log.v("Json Question ", formList.get(i).toString());
             }
-
 
 
         } catch (JSONException e) {
