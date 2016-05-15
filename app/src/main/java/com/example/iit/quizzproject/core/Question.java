@@ -1,9 +1,11 @@
 package com.example.iit.quizzproject.core;
 
+import java.io.Serializable;
+
 /**
  * Created by SAMSUNG on 02/05/2016.
  */
-public class Question {
+public class Question implements Serializable {
 
     private String text_question;
     private String proposition1;
@@ -11,7 +13,13 @@ public class Question {
     private String proposition3;
     private String answer;
 
-
+    public Question(String text_question, String proposition1, String proposition2, String proposition3, String answer) {
+        this.text_question = text_question;
+        this.proposition1 = proposition1;
+        this.proposition2 = proposition2;
+        this.proposition3 = proposition3;
+        this.answer = answer;
+    }
 
     public String getText_question() {
         return text_question;

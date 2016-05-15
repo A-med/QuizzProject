@@ -80,12 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
         launchProfile();
-        checkDataBase();
-        //  queryContentProviderWithResolver();
 
 
-        insertDB();
-        select();
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setOnClickListener(this);
 
@@ -95,72 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private boolean checkDataBase() {
-        SQLiteDatabase checkDB = null;
-        try {
-
-            checkDB = SQLiteDatabase.openDatabase("/data/data/com.example.iit.quizzproject/databases/quizz.db", null, SQLiteDatabase.OPEN_READWRITE);
-           // Log.v("Base de donnee  ","TAble name"+SQLiteDatabase.findEditTable("questions"));
-            Log.v("Base de donnee","Base created Path="+checkDB.getPath()+"   Version = "+checkDB.getVersion());
 
 
-            checkDB.close();
-        } catch (SQLiteException e) {
-            // base de données n'existe pas.
-            Toast.makeText(MainActivity.this, "Base not created", Toast.LENGTH_SHORT).show();
-          //  Log.v("Record URI",TestContentProvider.RECORDS_CONTENT_URI.toString());
-        }
-        return checkDB != null ? true : false;
-    }
-    public void insertDB() {
-        String line;
-        ContentValues contentValues = new ContentValues();
-        Uri uri;
-    try
-    {
-        InputStream is = getAssets().open("questionJson");
-        BufferedReader r = new BufferedReader(new InputStreamReader(is));
-
-        while((line=r.readLine())!=null)
-        {
-            Log.v("line",line);
-            contentValues.put(QuestionList.QUESTION, line);
-            r.readLine();
-            contentValues.put(QuestionList.PROPOSITION1, line);
-            r.readLine();
-            contentValues.put(QuestionList.PROPOSITION2, line);
-            r.readLine();
-            contentValues.put(QuestionList.PROPOSITION3, line);
-            r.readLine();
-            contentValues.put(QuestionList.ANSWER, line);
-            uri = getContentResolver().insert(
-                    TestContentProvider.RECORDS_CONTENT_URI,
-                    contentValues);
-            contentValues.clear();
-        }
-    }catch (IOException e)
-    {
-        e.printStackTrace();
-    }
-
-
-      //  Log.v("URI PATH",uri.getPath().toString());
-    }
-    public  void select(){
-      Cursor mCursor =getContentResolver().query(TestContentProvider.RECORDS_CONTENT_URI,QuestionList.PROJECTION_ALL,null,null,null );
-
-        while (mCursor.moveToNext()) {
-
-            // Gets the value from the column.
-           Log.v("Cursor", mCursor.getString(1));
-
-            // Insert code here to process the retrieved word.
-
-
-            // end of while loop
-        }
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -217,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void launchProfile() {
 
-        readJson();
+       // readJson();
 
 
         getFragmentManager().beginTransaction()
@@ -378,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    public String loadJSONFromAsset() {
+   /* public String loadJSONFromAsset() {
         String json = null;
         try {
             InputStream is = getAssets().open("questionJson");
@@ -447,5 +379,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-    }
+    }*/
 }
