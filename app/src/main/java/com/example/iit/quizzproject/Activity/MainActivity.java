@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SQLiteDatabase checkDB = null;
         try {
 
-            checkDB = SQLiteDatabase.openDatabase("/data/data/com.example.iit.quizzproject/databases/quizz.db", null, SQLiteDatabase.OPEN_READONLY);
+            checkDB = SQLiteDatabase.openDatabase("/data/data/com.example.iit.quizzproject/databases/quizz.db", null, SQLiteDatabase.OPEN_READWRITE);
            // Log.v("Base de donnee  ","TAble name"+SQLiteDatabase.findEditTable("questions"));
             Log.v("Base de donnee","Base created Path="+checkDB.getPath()+"   Version = "+checkDB.getVersion());
 
@@ -113,15 +113,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return checkDB != null ? true : false;
     }
     public void insertDB() {
-
+        String line;
         ContentValues contentValues = new ContentValues();
-        contentValues.put(QuestionList.QUESTION, "What the ");
-        contentValues.put(QuestionList.PROPOSITION1, "prop 28");
+        Uri uri;
+    try
+    {
+        InputStream is = getAssets().open("questionJson");
+        BufferedReader r = new BufferedReader(new InputStreamReader(is));
 
-        Uri uri = getContentResolver().insert(
-                TestContentProvider.RECORDS_CONTENT_URI,
-                contentValues);
-        Log.v("URI PATH",uri.getPath().toString());
+        while((line=r.readLine())!=null)
+        {
+            Log.v("line",line);
+            contentValues.put(QuestionList.QUESTION, line);
+            r.readLine();
+            contentValues.put(QuestionList.PROPOSITION1, line);
+            r.readLine();
+            contentValues.put(QuestionList.PROPOSITION2, line);
+            r.readLine();
+            contentValues.put(QuestionList.PROPOSITION3, line);
+            r.readLine();
+            contentValues.put(QuestionList.ANSWER, line);
+            uri = getContentResolver().insert(
+                    TestContentProvider.RECORDS_CONTENT_URI,
+                    contentValues);
+            contentValues.clear();
+        }
+    }catch (IOException e)
+    {
+        e.printStackTrace();
+    }
+
+
+      //  Log.v("URI PATH",uri.getPath().toString());
     }
     public  void select(){
       Cursor mCursor =getContentResolver().query(TestContentProvider.RECORDS_CONTENT_URI,QuestionList.PROJECTION_ALL,null,null,null );
@@ -129,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         while (mCursor.moveToNext()) {
 
             // Gets the value from the column.
-           Log.v("Cursor", mCursor.getString(0));
+           Log.v("Cursor", mCursor.getString(1));
 
             // Insert code here to process the retrieved word.
 
@@ -352,6 +375,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
 
 
     public String loadJSONFromAsset() {
