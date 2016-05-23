@@ -5,83 +5,98 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by hamdy on 24/04/16.
  */
-public class AdapterUser extends ArrayAdapter<User> {
+public class AdapterUser extends BaseAdapter {
+    ListView mListView;
 
-    private final int newsItemLayoutResource;
+    private ArrayList<FriendsListItemWarpper> mFriendsList;
+    private Context mContext;
+    private LayoutInflater mLayoutInflater;
 
-    public AdapterUser(final Context context, final int newsItemLayoutResource) {
-        super(context, 0);
-        this.newsItemLayoutResource = newsItemLayoutResource;
+    public AdapterUser(final Context context, ArrayList<FriendsListItemWarpper> list) {
+        mContext =  context;
+        mFriendsList = list;
+        mLayoutInflater = (LayoutInflater) mContext.getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
+    public int getCount() {
 
-        final View view = getWorkingView(convertView);
-        final ViewHolder viewHolder = getViewHolder(view);
-        final User entry = getItem(position);
-
-        viewHolder.titleViewname.setText(entry.getName());
-        viewHolder.titleViewage.setText(entry.getAge());
-        viewHolder.imageView.setImageResource(entry.getPhotoId());
-        viewHolder.checkBox.setTag(entry);
-        return view;
-    }
-
-
-    private View getWorkingView(final View convertView) {
-
-        View workingView = null;
-
-        if (null == convertView) {
-            final Context context = getContext();
-            final LayoutInflater inflater = (LayoutInflater) context.getSystemService
-                    (Context.LAYOUT_INFLATER_SERVICE);
-
-            workingView = inflater.inflate(newsItemLayoutResource, null);
-        } else {
-            workingView = convertView;
+        int count = 0;
+        if(mFriendsList!=null){
+            count = mFriendsList.size();
         }
-
-        return workingView;
+        return count;
     }
 
-    private ViewHolder getViewHolder(final View workingView) {
+    @Override
+    public Object getItem(int position) {
+        Object object = null;
 
-        final Object tag = workingView.getTag();
-        ViewHolder viewHolder = null;
+        if(mFriendsList!=null){
+            object = mFriendsList.get(position);
+        }
+        return object;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, final ViewGroup parent) {
 
 
-        if (null == tag || !(tag instanceof ViewHolder)) {
+        final ViewHolder viewHolder;
+
+        if(convertView==null){
             viewHolder = new ViewHolder();
+            convertView = mLayoutInflater.inflate(R.layout.list_item, null);
+            viewHolder.titleViewname = (TextView) convertView.findViewById(com.example.iit.quizzproject.R.id.person_name);
+            viewHolder.imageView = (ImageView) convertView.findViewById(com.example.iit.quizzproject.R.id.person_photo);
+            viewHolder.checkBox = (CheckBox) convertView.findViewById(com.example.iit.quizzproject.R.id.cbSelected);
+            final View finalConvertView = convertView;
+            mListView= (ListView) convertView.findViewById(R.id.list);
+            viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    mFriendsList.get(viewHolder.position).setChecked(isChecked);
 
-            viewHolder.titleViewname = (TextView) workingView.findViewById(com.example.iit.quizzproject.R.id.person_name);
-            viewHolder.titleViewage = (TextView) workingView.findViewById(com.example.iit.quizzproject.R.id.person_age);
-            viewHolder.imageView = (ImageView) workingView.findViewById(com.example.iit.quizzproject.R.id.person_photo);
-            viewHolder.checkBox = (CheckBox) workingView.findViewById(com.example.iit.quizzproject.R.id.cbSelected);
 
-            workingView.setTag(viewHolder);
-
-        } else {
-            viewHolder = (ViewHolder) tag;
+                }
+            });
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        return viewHolder;
+        final FriendsListItemWarpper entry = mFriendsList.get(position);
+
+        viewHolder.position = position;
+        viewHolder.titleViewname.setText(entry.getUser().getName());
+        viewHolder.imageView.setImageResource(entry.getUser().getPhotoId());
+        viewHolder.checkBox.setChecked(entry.isChecked());
+
+        return convertView;
     }
 
     private static class ViewHolder {
+        public int position;
         public TextView titleViewname;
-        public TextView titleViewage;
         public ImageView imageView;
         public CheckBox checkBox;
     }
-
-
 }
