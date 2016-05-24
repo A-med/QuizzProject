@@ -133,7 +133,7 @@ public class SelectTheme extends Fragment implements View.OnClickListener {
 
     void selectedTheme(AppCompatButton button) {
         button.setTextColor(getResources().getColor(R.color.selected_item_color));
-        button.setBackgroundDrawable(getResources().getDrawable(R.drawable.selected_cercle));
+        button.setBackgroundDrawable(getResources().getDrawable(R.drawable.selected_shape));
     }
 
     void openComplexity(String theme) {

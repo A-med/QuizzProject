@@ -3,7 +3,9 @@ package com.example.iit.quizzproject;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
@@ -11,71 +13,65 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class InviteFriends extends FragmentActivity {
+public class InviteFriends extends FragmentActivity implements AdapterView.OnItemClickListener {
 
 
-    ListView listView;
-    AdapterUser adapterUser;
-    CheckBox cbSelected;
-    ArrayList<String> selections = new ArrayList<String>();
-
-
+    private ListView listView;
+    private AdapterUser adapterUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.iit.quizzproject.R.layout.invite_friend);
-        cbSelected = (CheckBox) findViewById(com.example.iit.quizzproject.R.id.cbSelected);
         listView = (ListView) findViewById(com.example.iit.quizzproject.R.id.list);
-        adapterUser = new AdapterUser(this, com.example.iit.quizzproject.R.layout.list_item);
-
+        adapterUser = new AdapterUser(getApplicationContext(), getNewEntries());
         listView.setAdapter(adapterUser);
+        listView.setOnItemClickListener(this);
+        final View content = findViewById(android.R.id.content);
+        switch (content.getId()) {
+            case R.id.cbSelected:
+                if ( ((CheckBox) content).isChecked()) {
 
-        for (User entry : getNewsEntries()) {
-            adapterUser.add(entry);
-        }
-    }
 
+                    Snackbar.make(listView, "ddd", Snackbar.LENGTH_SHORT).show();
+                }
 
-    public void onCheckboxClicked(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
-        int pos = listView.getPositionForView(view);
-        User user = adapterUser.getItem(pos);
-        switch (view.getId()) {
-            case com.example.iit.quizzproject.R.id.cbSelected:
-                if (checked) {
-                    selections.add("user");
-                    Snackbar.make(listView, user.getName(), Snackbar.LENGTH_SHORT).show();
-                } else {
-                    selections.remove("user");
-                    Snackbar.make(listView, user.getName(), Snackbar.LENGTH_LONG).show();
+                else {
+
+                    Snackbar.make(listView, "ddd", Snackbar.LENGTH_LONG).show();
                 }
                 break;
         }
 
-        /*
-        for (int i = 0 ;i <selections.size();i++) {
-            Log.v("ll", selections.get(i));
-        }*/
+
     }
 
 
-    private List<User> getNewsEntries() {
-        boolean b = true;
-        final List<User> entries = new ArrayList<User>();
+
+    private ArrayList<FriendsListItemWarpper> getNewEntries() {
+        boolean b = false;
+        final ArrayList<FriendsListItemWarpper> entries = new ArrayList<FriendsListItemWarpper>();
 
         for (int i = 1; i < 50; i++) {
             entries.add(
-                    new User(
+                    new FriendsListItemWarpper(new User(
                             "Amin Ben Mahfoudh ",
                             "24 ans ",
 
 
                             i % 2 == 0 ? com.example.iit.quizzproject.R.drawable.lurecas : com.example.iit.quizzproject.R.drawable.elisa,
                             b
-                    )
+                    ), false)
             );
         }
+
         return entries;
     }
 
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.v("hamdi","clicked position = "+position);
+        CheckBox checkBox = (CheckBox) view.findViewById(R.id.cbSelected);
+        checkBox.toggle();
+    }
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.example.iit.quizzproject.PageFragment;
 import com.example.iit.quizzproject.ProfileFragment;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.Person;
@@ -81,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void launchPlay() {
 
 
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.content, PageFragment.newInstance()).commit();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content, SelectTheme.newInstance(this)).commit();
 
 
     }
