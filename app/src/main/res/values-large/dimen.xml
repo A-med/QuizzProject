@@ -2,5 +2,9 @@
 <resources>
     <dimen name="corner_radius">2dp</dimen>
     <dimen name="layer_padding">3dp</dimen>
+    <dimen name="sp_dix_huit">18sp</dimen>
+    <dimen name="dp_soixante">60dp</dimen>
+    <dimen name="dp_dix">18sp</dimen>
+    <dimen name="dp_quarante_six">18sp</dimen>
 
 </resources>
