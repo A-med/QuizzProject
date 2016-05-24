@@ -2,6 +2,9 @@ package com.example.iit.quizzproject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +25,15 @@ public class PageFragment extends Fragment implements View.OnClickListener {
     Button prop1;
     Button prop2;
     Button prop3;
+    Button next;
+ ViewPager viewPager;
+    int position;
 
 
-    public static PageFragment newInstance(Question q) {
+    public static PageFragment newInstance(Question q,int position) {
         PageFragment fragment = new PageFragment();
         Bundle args = new Bundle();
-
+        args.putInt("position",position);
         args.putSerializable("question", q);
         fragment.setArguments(args);
         return fragment;
@@ -37,6 +43,7 @@ public class PageFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mQuestion = (Question) getArguments().getSerializable("question");
+        position= (int) getArguments().getInt("position");
 
     }
 
@@ -52,6 +59,7 @@ public class PageFragment extends Fragment implements View.OnClickListener {
 
         prop2 = (Button) view.findViewById(com.example.iit.quizzproject.R.id.button2);
         prop3 = (Button) view.findViewById(com.example.iit.quizzproject.R.id.button3);
+        next = (Button) view.findViewById(com.example.iit.quizzproject.R.id.button4);
         prop1.setOnClickListener(this);
         prop2.setOnClickListener(this);
         prop3.setOnClickListener(this);
@@ -60,6 +68,24 @@ public class PageFragment extends Fragment implements View.OnClickListener {
         prop2.setText(mQuestion.getProposition2());
         prop3.setText(mQuestion.getProposition3());
 
+        if(position==9)
+        {
+            //next.setText("Terminate");
+            //next.setEnabled(false);
+            next.setVisibility(view.GONE);
+        }
+
+        next.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                viewPager = (ViewPager)getActivity().findViewById(R.id.pager);
+                viewPager.setCurrentItem(viewPager.getCurrentItem()+1, true);
+
+             //   Log.v("I== ", i+"");
+
+                Log.v("Samir tarhouni ", viewPager.getCurrentItem()+"");
+
+            }
+        });
         return view;
     }
 
@@ -104,6 +130,8 @@ public class PageFragment extends Fragment implements View.OnClickListener {
                 killButtons();
                 validateAnswer(prop3, prop2, prop1);
                 break;
+
+
         }
 
 

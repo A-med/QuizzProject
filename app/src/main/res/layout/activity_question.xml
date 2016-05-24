@@ -22,6 +22,23 @@
             android:textSize="@dimen/question_item_text_size"/>
     </android.support.v7.widget.Toolbar>
 
+    <ToggleButton
+        android:id="@+id/toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="10dp"
+        android:textOn="ENG"
+        android:textOff="FR"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_centerVertical="true"
+        android:textColor="@color/progress_color"
+
+
+        />
+
     <ProgressBar
         android:id="@+id/circularProgressbar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -34,6 +51,8 @@
         android:progress="0"
         android:progressDrawable="@drawable/circular"/>
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,23 +60,22 @@
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        <com.example.iit.quizzproject.NonSwipeableViewPager
                                            android:id="@+id/pager"
                                            android:layout_width="match_parent"
                                            android:layout_height="match_parent">
-
-
-            <android.support.v4.view.PagerTabStrip
+        <com.example.iit.quizzproject.NonSwipeablePagerTabStrip
                 android:id="@+id/pagerstrip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:textColor="#569845"/>
+                android:textColor="#569845"
+                android:clickable="false"/>
 
 
-        </android.support.v4.view.ViewPager>
+        </com.example.iit.quizzproject.NonSwipeableViewPager>
 
 
     </LinearLayout>

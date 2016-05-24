@@ -4,12 +4,14 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
 import com.example.iit.quizzproject.core.Question;
 
 import java.util.Vector;
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     final int PAGE_COUNT = 10;
     public Vector<Question> questionList = new Vector<>();
@@ -24,16 +26,18 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public int getCount() {
+    public  int getCount() {
         return PAGE_COUNT;
     }
 
+
+
     @Override
-    public Fragment getItem(int position) {
+        public Fragment getItem(int position) {
 
 
 
-        return PageFragment.newInstance(questionList.elementAt(position));
+            return PageFragment.newInstance(questionList.elementAt(position),position);
 //        switch (position) {
 //
 //

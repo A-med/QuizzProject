@@ -7,7 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.example.iit.quizzproject.core.Question;
@@ -22,12 +24,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuestionActivity extends AppCompatActivity  {
 
 
     public  Vector<Question> questionList = new Vector<>();
     Toolbar toolbar;
-
+    public ViewPager viewPager;
+    Button next;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +45,8 @@ public class QuestionActivity extends AppCompatActivity {
         animation.setDuration(50000);
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
-
         // Locate the viewpager in activity_main.xml
-        ViewPager viewPager = (ViewPager) findViewById(com.example.iit.quizzproject.R.id.pager);
+       viewPager = (ViewPager) findViewById(com.example.iit.quizzproject.R.id.pager);
         // Set the ViewPagerAdapter into ViewPager
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),questionList));
 
