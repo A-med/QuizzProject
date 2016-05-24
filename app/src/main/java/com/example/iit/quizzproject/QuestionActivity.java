@@ -1,13 +1,18 @@
 package com.example.iit.quizzproject;
 
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.content.res.Resources;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.example.iit.quizzproject.core.Question;
@@ -22,9 +27,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    Button btnStart;
+    MediaPlayer mp;
+    int compteurPressed=1;
     public  Vector<Question> questionList = new Vector<>();
     Toolbar toolbar;
 
@@ -47,6 +54,9 @@ public class QuestionActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(com.example.iit.quizzproject.R.id.pager);
         // Set the ViewPagerAdapter into ViewPager
         viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(),questionList));
+
+        btnStart = (Button) findViewById(R.id.button1);
+        btnStart.setOnClickListener(this );
 
     }
 
@@ -122,6 +132,40 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onClick(View v) {
+        compteurPressed++;
+        switch (v.getId()) {
+            case R.id.button1:
+                if(compteurPressed%2==0)
+                {
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.soundtrack);
+                    mp.start();
+                    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mp.release();
+                            mp = null;
+                            btnStart.setEnabled(false); // en boucle
+                        }
+                    });
+                    btnStart.setBackground(getDrawable(R.drawable.ic_volume_off_black_24dp));
+
+
+                }
+                else {
+                    mp.stop();
+                    btnStart.setBackground(getDrawable(R.drawable.ic_volume_up_black_24dp));
+
+
+                }
+
+                break;
+
+        }
+
+    }
 }
 
 
