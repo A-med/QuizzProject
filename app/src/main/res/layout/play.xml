@@ -59,15 +59,15 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="0"
-            android:layout_marginLeft="10px"
-            android:layout_marginTop="20px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
             android:layout_row="0"
             android:background="@drawable/cercle"
             android:text="RANDOM"
 
 
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.5dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -75,14 +75,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="0"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="1"
             android:background="@drawable/cercle"
             android:text="SPORT"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.50dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -90,14 +90,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="1"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="1"
             android:background="@drawable/cercle"
             android:text="MATH"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.5dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -105,14 +105,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="2"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="1"
             android:background="@drawable/cercle"
             android:text="REFLECTION"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.50dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -120,14 +120,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="0"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="2"
             android:background="@drawable/cercle"
             android:text="DATA     PROCESSING"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.50dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -135,14 +135,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="1"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="2"
             android:background="@drawable/cercle"
             android:text="HISTORY"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.5dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -150,14 +150,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="2"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="2"
             android:background="@drawable/cercle"
             android:text="GENERAL CULTURE"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.50dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -165,14 +165,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="0"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="3"
             android:background="@drawable/cercle"
             android:text="HEALTH"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.50dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -180,14 +180,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="1"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="3"
             android:background="@drawable/cercle"
             android:text="CINEMA"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.5dp"
             android:textStyle="bold"/>
 
         <android.support.v7.widget.AppCompatButton
@@ -195,14 +195,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_column="2"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
-            android:layout_marginTop="10px"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:layout_row="3"
             android:background="@drawable/cercle"
             android:text="POLICY"
             android:textColor="@color/text_select_theme"
-            android:textSize="27px"
+            android:textSize="13.50dp"
             android:textStyle="bold"/>
 
     </GridLayout>

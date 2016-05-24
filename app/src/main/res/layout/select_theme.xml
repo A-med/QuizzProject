@@ -7,12 +7,6 @@
              android:background="@color/background_dark"
              android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_background_view_height"
-        android:layout_gravity="top"
-        android:background="@color/background"
-        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +57,7 @@
 
 
                 android:textColor="@color/text_select_theme"
-                android:textSize="30px"
+                android:textSize="13.50dp"
                 android:textStyle="bold"/>
 
             <android.support.v7.widget.AppCompatButton
@@ -153,7 +147,7 @@
                 android:background="@drawable/shape"
                 android:text="GENERAL CULTURE"
                 android:textColor="@color/text_select_theme"
-                android:textSize="30px"
+                android:textSize="15dp"
                 android:textStyle="bold"/>
 
             <android.support.v7.widget.AppCompatButton

@@ -34,25 +34,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="30pt"
+            android:layout_marginTop="66.67sp"
             android:layout_toRightOf="@+id/circle"
             android:gravity="center"
             android:text="Ahmed"
             android:textColor="@color/colorWhite"
-            android:textSize="10pt"
+            android:textSize="22.22sp"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/last_name_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5pt"
-            android:layout_marginTop="30pt"
+            android:layout_marginLeft="11.11sp"
+            android:layout_marginTop="66.67sp"
             android:layout_toRightOf="@+id/name_text"
             android:gravity="center"
             android:text="Damak"
             android:textColor="@color/colorWhite"
-            android:textSize="10pt"
+            android:textSize="22.22sp"
             android:textStyle="bold"/>
 
         <TextView
@@ -61,12 +61,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/name_text"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="10pt"
+            android:layout_marginTop="22.22sp"
             android:layout_toRightOf="@+id/circle"
             android:gravity="center"
             android:text="Level : 1"
             android:textColor="@color/colorWhite"
-            android:textSize="40px"
+            android:textSize="20dp"
             android:textStyle="bold"/>
     </RelativeLayout>
 
@@ -85,16 +85,16 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/wins"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="50pt"
-            android:layout_height="35pt"
+            android:layout_width="111.11sp"
+            android:layout_height="77.78sp"
             android:layout_below="@+id/relative_child"
-            android:layout_marginLeft="2pt"
+            android:layout_marginLeft="4.44sp"
 
-            android:layout_marginTop="5pt"
+            android:layout_marginTop="11.11sp"
 
             android:text="Win : 100"
             android:textColor="@color/colorWhite"
-            android:textSize="7pt"
+            android:textSize="15.56sp"
             android:textStyle="bold"/>
 
         <!--  android:theme=”CustomAccentOverlay”-->
@@ -102,35 +102,35 @@
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/freinds"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="70pt"
-            android:layout_height="35pt"
+            android:layout_width="155.56sp"
+            android:layout_height="77.78sp"
             android:layout_below="@id/relative_child"
-            android:layout_marginLeft="2pt"
+            android:layout_marginLeft="4.44sp"
 
-            android:layout_marginTop="5pt"
+            android:layout_marginTop="11.11sp"
             android:layout_toRightOf="@+id/wins"
 
             android:text="Freinds : 100"
             android:textColor="@color/colorWhite"
-            android:textSize="7pt"
+            android:textSize="15.56sp"
             android:textStyle="bold"/>
 
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/rank"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="50pt"
-            android:layout_height="35pt"
+            android:layout_width="111.11sp"
+            android:layout_height="77.78sp"
             android:layout_below="@+id/relative_child"
-            android:layout_marginLeft="2pt"
-            android:layout_marginRight="2pt"
-            android:layout_marginTop="5pt"
+            android:layout_marginLeft="4.44sp"
+            android:layout_marginRight="4.44sp"
+            android:layout_marginTop="11.11sp"
             android:layout_toRightOf="@+id/freinds"
 
             android:clickable="true"
             android:text="Rank : 500"
             android:textColor="@color/colorWhite"
-            android:textSize="7pt"
+            android:textSize="15.56sp"
             android:textStyle="bold"
 
             />

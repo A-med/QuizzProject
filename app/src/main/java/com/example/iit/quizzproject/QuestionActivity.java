@@ -2,10 +2,12 @@ package com.example.iit.quizzproject;
 
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,6 +34,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     Button btnStart;
     MediaPlayer mp;
     int compteurPressed=1;
+    Vibrator v;
     public  Vector<Question> questionList = new Vector<>();
     Toolbar toolbar;
 
@@ -151,8 +154,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                         }
                     });
                     btnStart.setBackground(getDrawable(R.drawable.ic_volume_off_black_24dp));
-
-
+                    Vibrator vibrator = (Vibrator) this.getApplication().getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);                 //   v.vibrate(500);Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(500);
                 }
                 else {
                     mp.stop();
