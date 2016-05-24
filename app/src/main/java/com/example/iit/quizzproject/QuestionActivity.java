@@ -169,6 +169,12 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mp.stop();
+    }
 }
 
 

@@ -16,6 +16,7 @@
 
         <activity android:name=".AuthentificationActivity">
 
+
         </activity>
 
 
@@ -37,6 +38,7 @@
 
         <activity
             android:name=".activity.MainActivity">
+
         </activity>
 
         <activity android:name=".QuestionActivity">
@@ -45,6 +47,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
 
 
