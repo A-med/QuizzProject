@@ -15,7 +15,13 @@
         <activity android:name=".SignUpActivity" />
         <activity
             android:name=".Activity.MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
         <permission
             android:name="com.example.iit.quizzproject.database.permission.READ_DATABASE"
@@ -35,11 +41,7 @@
             android:writePermission="com.example.iit.quizzproject.database.permission.WRITE_DATABASE" />
 
         <activity android:name=".Activity.QuestionActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
 
         </activity>
