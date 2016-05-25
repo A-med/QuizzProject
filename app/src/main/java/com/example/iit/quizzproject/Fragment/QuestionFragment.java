@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.iit.quizzproject.Activity.QuestionActivityKh;
+import com.example.iit.quizzproject.Activity.QuestionActivity;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.QuestionSqlite;
 
@@ -73,7 +73,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
 
 
 
-        onChangeLangue(QuestionActivityKh.idLangue);
+        onChangeLangue(QuestionActivity.idLangue);
 
 
 
@@ -85,7 +85,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         prop1.setClickable(false);
         prop2.setClickable(false);
         prop3.setClickable(false);
-        if(QuestionActivityKh.indexQuestion!=9)
+        if(QuestionActivity.indexQuestion!=9)
         nextQuestion.setVisibility(view.VISIBLE);
 
     }

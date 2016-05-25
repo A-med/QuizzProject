@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.Switch;
-import android.widget.ToggleButton;
 
 import com.example.iit.quizzproject.Fragment.QuestionFragment;
 import com.example.iit.quizzproject.R;
@@ -29,7 +28,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class QuestionActivityKh extends AppCompatActivity implements QuestionFragment.ClickButtonLisner, View.OnClickListener {
+public class QuestionActivity extends AppCompatActivity implements QuestionFragment.ClickButtonLisner, View.OnClickListener {
 
     ArrayList<QuestionSqlite> arrayQuestion;
     ArrayList<AppCompatButton> arrayCompatButton=new ArrayList<AppCompatButton>();
@@ -41,7 +40,7 @@ public class QuestionActivityKh extends AppCompatActivity implements QuestionFra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_activity_kh);
+        setContentView(R.layout.activity_question_activity);
 
         toggleButton = (Switch) findViewById(R.id.langue);
         toggleButton.setOnClickListener(this);

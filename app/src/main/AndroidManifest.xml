@@ -34,7 +34,7 @@
             android:readPermission="com.example.iit.quizzproject.database.permission.READ_DATABASE"
             android:writePermission="com.example.iit.quizzproject.database.permission.WRITE_DATABASE" />
 
-        <activity android:name=".Activity.QuestionActivityKh">
+        <activity android:name=".Activity.QuestionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
