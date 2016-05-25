@@ -1,6 +1,9 @@
 package com.example.iit.quizzproject;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +25,8 @@ public class PageFragment extends Fragment implements View.OnClickListener {
     Button prop1;
     Button prop2;
     Button prop3;
-
+    Vibrator vibrator;
+    MediaPlayer mediaPlayer;
 
     public static PageFragment newInstance(Question q) {
         PageFragment fragment = new PageFragment();
@@ -74,8 +78,33 @@ public class PageFragment extends Fragment implements View.OnClickListener {
 
         if (mQuestion.getAnswer().equals(b1.getText())) {
             b1.setBackgroundColor(getResources().getColor(R.color.progress_color));
+            mediaPlayer = MediaPlayer.create(getActivity(), R.raw.win);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                    mp = null;
+
+                }
+            });
+
+
         } else {
             b1.setBackgroundColor(getResources().getColor(R.color.mistake_color));
+
+            vibrator = (Vibrator) this.getContext().getSystemService(Context.VIBRATOR_SERVICE);                 //   v.vibrate(500);Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vibrator.vibrate(500);
+            mediaPlayer = MediaPlayer.create(getActivity(), R.raw.wrong);
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                    mp = null;
+
+                }
+            });
 
             if (mQuestion.getAnswer().equals(b2.getText())) {
                 b2.setBackgroundColor(getResources().getColor(R.color.progress_color));
