@@ -84,9 +84,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.wins)
-        {    Intent i= new Intent(getActivity().getApplicationContext(),QuestionActivity.class);
+        {   /* Intent i= new Intent(getActivity().getApplicationContext(),QuestionActivity.class);
             Toast.makeText(getActivity(), "aaaaaaa", Toast.LENGTH_SHORT).show();
-            startActivity(i);
+            startActivity(i);*/
 
 
         }

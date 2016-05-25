@@ -32,6 +32,17 @@
         android:progressDrawable="@drawable/circular"
         android:layout_below="@+id/AppTheme"
         android:layout_centerHorizontal="true" />
+    <ToggleButton
+        android:id="@+id/langue"
+        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_below="@id/AppTheme"
+        android:layout_alignLeft="@id/circularProgressbar"
+        android:layout_alignParentRight="true"
+        android:textOn="FR"
+        android:textOff="AN"
+        />
+
 
     <LinearLayout
         android:orientation="vertical"

@@ -1,61 +1,35 @@
-package com.example.iit.quizzproject.Activity;
+package com.example.iit.quizzproject.activity;
 
 import android.app.Fragment;
-import android.content.AsyncQueryHandler;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.BaseColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.iit.quizzproject.AuthentificationActivity;
-import com.example.iit.quizzproject.Fragment.Profil;
-import com.example.iit.quizzproject.Fragment.SelectComplexity;
-import com.example.iit.quizzproject.Fragment.SelectTheme;
-import com.example.iit.quizzproject.Fragment.SelectTypeGame;
-import com.example.iit.quizzproject.Fragment.Settings;
-import com.example.iit.quizzproject.Fragment.guillotine;
+import com.example.iit.quizzproject.fragment.Profil;
+import com.example.iit.quizzproject.fragment.SelectComplexity;
+import com.example.iit.quizzproject.fragment.SelectTheme;
+import com.example.iit.quizzproject.fragment.SelectTypeGame;
+import com.example.iit.quizzproject.fragment.Settings;
+import com.example.iit.quizzproject.fragment.guillotine;
 
 import com.example.iit.quizzproject.ProfileFragment;
 
-import com.example.iit.quizzproject.QuestionActivity;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.Person;
 
 import com.example.iit.quizzproject.core.Question;
-import com.example.iit.quizzproject.database.TestContentProvider;
-import com.example.iit.quizzproject.database.tables.QuestionList;
 
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
@@ -63,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProfileFragment fragment;
     private ArrayList<Person> mPersonsList = new ArrayList<Person>();
     private static final String PERSONS_LIST_KEY = "persons_list_key";
+    public static final String EXTRA_MESSAGE = "";
     private Toolbar toolbar;
 
     public static ArrayList<Question> questionList = new ArrayList<>();
@@ -80,12 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
         launchProfile();
-        checkDataBase();
-        //  queryContentProviderWithResolver();
 
 
-        insertDB();
-        select();
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setOnClickListener(this);
 
@@ -95,49 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private boolean checkDataBase() {
-        SQLiteDatabase checkDB = null;
-        try {
-
-            checkDB = SQLiteDatabase.openDatabase("/data/data/com.example.iit.quizzproject/databases/quizz.db", null, SQLiteDatabase.OPEN_READONLY);
-           // Log.v("Base de donnee  ","TAble name"+SQLiteDatabase.findEditTable("questions"));
-            Log.v("Base de donnee","Base created Path="+checkDB.getPath()+"   Version = "+checkDB.getVersion());
 
 
-            checkDB.close();
-        } catch (SQLiteException e) {
-            // base de données n'existe pas.
-            Toast.makeText(MainActivity.this, "Base not created", Toast.LENGTH_SHORT).show();
-          //  Log.v("Record URI",TestContentProvider.RECORDS_CONTENT_URI.toString());
-        }
-        return checkDB != null ? true : false;
-    }
-    public void insertDB() {
-
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(QuestionList.QUESTION, "What the ");
-        contentValues.put(QuestionList.PROPOSITION1, "prop 28");
-
-        Uri uri = getContentResolver().insert(
-                TestContentProvider.RECORDS_CONTENT_URI,
-                contentValues);
-        Log.v("URI PATH",uri.getPath().toString());
-    }
-    public  void select(){
-      Cursor mCursor =getContentResolver().query(TestContentProvider.RECORDS_CONTENT_URI,QuestionList.PROJECTION_ALL,null,null,null );
-
-        while (mCursor.moveToNext()) {
-
-            // Gets the value from the column.
-           Log.v("Cursor", mCursor.getString(0));
-
-            // Insert code here to process the retrieved word.
-
-
-            // end of while loop
-        }
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -194,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void launchProfile() {
 
-        readJson();
+       // readJson();
 
 
         getFragmentManager().beginTransaction()
@@ -354,7 +284,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public String loadJSONFromAsset() {
+
+   /* public String loadJSONFromAsset() {
         String json = null;
         try {
             InputStream is = getAssets().open("questionJson");
@@ -423,5 +354,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
+    }*/
+
+    @Override
+    public void onFinishClickEasyComplexity(String comp, Fragment f) {
+        Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, comp);
+        startActivity(intent);
+    }
+    @Override
+    public void onFinishClickMediumComplexity(String comp, Fragment f) {
+        Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, comp);
+        startActivity(intent);
+    }
+    @Override
+    public void onFinishClickHardComplexity(String comp, Fragment f) {
+        Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, comp);
+        startActivity(intent);
     }
 }

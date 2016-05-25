@@ -1,4 +1,4 @@
-package com.example.iit.quizzproject.Fragment;
+package com.example.iit.quizzproject.fragment;
 
 
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.iit.quizzproject.R;
-import com.example.iit.quizzproject.widget.CanaroTextView;
 
 /**
  * A simple {@link Fragment} subclass.

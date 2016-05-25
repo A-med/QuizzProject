@@ -1,7 +1,6 @@
-package com.example.iit.quizzproject.Fragment;
+package com.example.iit.quizzproject.fragment;
 
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.iit.quizzproject.R;
-import com.example.iit.quizzproject.widget.CanaroTextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -135,7 +133,7 @@ public class SelectTheme extends Fragment implements View.OnClickListener {
     void selectedTheme(AppCompatButton button)
     {
         button.setTextColor(getResources().getColor(R.color.selected_item_color));
-        button.setBackgroundDrawable(getResources().getDrawable(R.drawable.selected_cercle));
+        button.setBackgroundDrawable(getResources().getDrawable(R.drawable.selected_shape));
     }
 
     void openComplexity(String theme) {

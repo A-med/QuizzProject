@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_partie"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_question"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/AppTheme"
+        app:contentInsetStart="0dp"
+        style="@style/Toolbar">
+
+        <com.example.iit.quizzproject.widget.CanaroTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/question"
+            android:textSize="@dimen/question_item_text_size" />
+    </android.support.v7.widget.Toolbar>
+
+    <ProgressBar
+        android:id="@+id/circularProgressbar"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="false"
+        android:progress="0"
+        android:max="100"
+        android:progressDrawable="@drawable/circular"
+        android:layout_below="@+id/AppTheme"
+        android:layout_centerHorizontal="true" />
+    <Switch
+        android:id="@+id/langue"
+        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_below="@id/AppTheme"
+        android:layout_alignLeft="@id/circularProgressbar"
+        android:layout_alignParentRight="true"
+        android:textOn="FR"
+        android:textOff="AN"
+        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/circularProgressbar"
+        android:layout_centerHorizontal="true">
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:rowCount="1"
+        android:columnCount="10">
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question1"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="0" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="1" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question3"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="2" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question4"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="3" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question5"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="4" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question6"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="5" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question7"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="6" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question8"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="7" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question9"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_row="0"
+            android:layout_column="8" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/question10"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+
+            android:background="@drawable/circle_question"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="5dp"
+            android:layout_row="0"
+            android:layout_column="9" />
+    </GridLayout>
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+</LinearLayout>
+</RelativeLayout>

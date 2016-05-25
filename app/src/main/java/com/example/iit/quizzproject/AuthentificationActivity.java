@@ -1,6 +1,4 @@
 package com.example.iit.quizzproject;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -15,7 +13,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,8 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.example.iit.quizzproject.Activity.*;
+
+import com.example.iit.quizzproject.activity.*;
 
 import java.util.HashMap;
 

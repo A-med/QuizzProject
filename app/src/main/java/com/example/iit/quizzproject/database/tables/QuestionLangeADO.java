@@ -1,13 +1,13 @@
-package com.example.iit.quizzproject.core;
+package com.example.iit.quizzproject.database.tables;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.iit.quizzproject.database.tables.QuestionList;
+import com.example.iit.quizzproject.core.Question;
 
 /**
  * Created by Emna-Kallel on 08/05/2016.
  */
-public class QuestionADO {
+public class QuestionLangeADO {
 
     public static void insert(SQLiteDatabase database, Question question){
 

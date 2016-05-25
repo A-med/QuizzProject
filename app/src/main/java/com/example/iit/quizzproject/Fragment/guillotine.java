@@ -1,8 +1,7 @@
-package com.example.iit.quizzproject.Fragment;
+package com.example.iit.quizzproject.fragment;
 
 
 import android.app.Fragment;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
