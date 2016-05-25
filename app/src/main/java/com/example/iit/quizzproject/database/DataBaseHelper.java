@@ -1,10 +1,14 @@
 package com.example.iit.quizzproject.database;
 
 import android.content.Context;
+import android.content.Loader;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.example.iit.quizzproject.database.tables.QuestionLangage;
 import com.example.iit.quizzproject.database.tables.QuestionList;
+import com.example.iit.quizzproject.database.tables.QuestionListSqlite;
 
 /**
  * Created by Emna-Kallel on 08/05/2016.
@@ -40,9 +44,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        QuestionList.onCreate(db);
+        QuestionLangage.onCreate(db);
+        QuestionListSqlite.onCreate(db);
+
+
+        Log.v("iit","base de donner creer");
 
     }
+
+
+
+
 
     @Override
     public void onOpen(SQLiteDatabase db) {
@@ -54,7 +66,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        QuestionList.onUpgrade(db, oldVersion, newVersion);
+        QuestionListSqlite.onUpgrade(db, oldVersion, newVersion);
+        QuestionLangage.onUpgrade(db, oldVersion, newVersion);
 
     }
 }

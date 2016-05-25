@@ -1,26 +1,12 @@
 package com.example.iit.quizzproject.Activity;
 
 import android.app.Fragment;
-import android.content.AsyncQueryHandler;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.BaseColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.iit.quizzproject.AuthentificationActivity;
 import com.example.iit.quizzproject.Fragment.Profil;
 import com.example.iit.quizzproject.Fragment.SelectComplexity;
 import com.example.iit.quizzproject.Fragment.SelectTheme;
@@ -30,32 +16,19 @@ import com.example.iit.quizzproject.Fragment.guillotine;
 
 import com.example.iit.quizzproject.ProfileFragment;
 
-import com.example.iit.quizzproject.QuestionActivity;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.Person;
 
 import com.example.iit.quizzproject.core.Question;
-import com.example.iit.quizzproject.database.TestContentProvider;
-import com.example.iit.quizzproject.database.tables.QuestionList;
 
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
