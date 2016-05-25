@@ -1,4 +1,4 @@
-package com.example.iit.quizzproject.Activity;
+package com.example.iit.quizzproject.activity;
 
 import android.animation.ObjectAnimator;
 import android.content.ContentValues;
@@ -15,7 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 
-import com.example.iit.quizzproject.Fragment.QuestionFragment;
+import com.example.iit.quizzproject.fragment.QuestionFragment;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.QuestionSqlite;
 import com.example.iit.quizzproject.database.TestContentProvider;
@@ -62,9 +62,22 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         arrayCompatButton.add((AppCompatButton)findViewById(R.id.question10));
 
 
+
+
         ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
         ObjectAnimator animation = ObjectAnimator.ofInt(mProgress, "progress", 100);
-        animation.setDuration(50000);
+        String ComplexityMode = getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE);
+        Log.v("ComplexityMode : ", ComplexityMode);
+        if(ComplexityMode.equals("Easy")) {
+            animation.setDuration(180000);
+        }
+        if(ComplexityMode.equals("Medium")){
+            animation.setDuration(120000);
+        }
+        if(ComplexityMode.equals("Hard")){
+            animation.setDuration(60000);
+        }
+
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
 

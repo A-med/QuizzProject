@@ -1,4 +1,4 @@
-package com.example.iit.quizzproject.Fragment;
+package com.example.iit.quizzproject.fragment;
 
 
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.Person;
 import com.example.iit.quizzproject.ui.PersonAdapter;
-import com.example.iit.quizzproject.widget.CanaroTextView;
 
 import java.util.ArrayList;
 

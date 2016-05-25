@@ -1,4 +1,4 @@
-package com.example.iit.quizzproject.Fragment;
+package com.example.iit.quizzproject.fragment;
 
 
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.iit.quizzproject.Activity.QuestionActivity;
+import com.example.iit.quizzproject.activity.QuestionActivity;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.QuestionSqlite;
 

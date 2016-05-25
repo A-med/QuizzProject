@@ -1,18 +1,19 @@
-package com.example.iit.quizzproject.Activity;
+package com.example.iit.quizzproject.activity;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
-import com.example.iit.quizzproject.Fragment.Profil;
-import com.example.iit.quizzproject.Fragment.SelectComplexity;
-import com.example.iit.quizzproject.Fragment.SelectTheme;
-import com.example.iit.quizzproject.Fragment.SelectTypeGame;
-import com.example.iit.quizzproject.Fragment.Settings;
-import com.example.iit.quizzproject.Fragment.guillotine;
+import com.example.iit.quizzproject.fragment.Profil;
+import com.example.iit.quizzproject.fragment.SelectComplexity;
+import com.example.iit.quizzproject.fragment.SelectTheme;
+import com.example.iit.quizzproject.fragment.SelectTypeGame;
+import com.example.iit.quizzproject.fragment.Settings;
+import com.example.iit.quizzproject.fragment.guillotine;
 
 import com.example.iit.quizzproject.ProfileFragment;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProfileFragment fragment;
     private ArrayList<Person> mPersonsList = new ArrayList<Person>();
     private static final String PERSONS_LIST_KEY = "persons_list_key";
+    public static final String EXTRA_MESSAGE = "";
     private Toolbar toolbar;
 
     public static ArrayList<Question> questionList = new ArrayList<>();
@@ -353,4 +355,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }*/
+
+    @Override
+    public void onFinishClickEasyComplexity(String comp, Fragment f) {
+        Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, comp);
+        startActivity(intent);
+    }
+    @Override
+    public void onFinishClickMediumComplexity(String comp, Fragment f) {
+        Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, comp);
+        startActivity(intent);
+    }
+    @Override
+    public void onFinishClickHardComplexity(String comp, Fragment f) {
+        Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, comp);
+        startActivity(intent);
+    }
 }
