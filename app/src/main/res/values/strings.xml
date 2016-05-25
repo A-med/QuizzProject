@@ -25,7 +25,8 @@
     <string name="back_to_login">Back to Login</string>
     <string name="question">Question</string>
     <string name="Fragment">This is a question from a specific theme dfbjh ihef  iohfeobuihefubio evoheobfb fvhofv oehvoiufb evnhfeiobn?</string>
-
+    <string name="complexity_text">Complexity</string>
+    <string name="type_game_text">Type Game</string>
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>

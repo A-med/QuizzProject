@@ -1,50 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="450dp"
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/buttonEasy"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:background="@drawable/border_complexity"
+        android:orientation="vertical">
 
-        android:text="EASY"
-        android:textColor="@color/text_select_theme"
-        android:textSize="70px"
+        <TextView
+            android:id="@+id/complexity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/complexity_text"
+            android:textColor="@color/colorWhite"
+            android:textSize="40dp"
+            android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/buttonEasy"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
 
-        android:layout_marginTop="500px"
-        />
+            android:layout_marginTop="70dp"
+            android:text="EASY"
+            android:textColor="@color/text_select_theme"
 
-        <android.support.v7.widget.AppCompatButton
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <Button
             android:id="@+id/buttonMeduim"
             android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
             android:text="MEDUIM"
             android:textColor="@color/text_select_theme"
-            android:textSize="70px"
 
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
-            android:layout_marginTop="50px"
-            />
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/buttonHard"
             android:layout_width="300dp"
-            android:layout_gravity="center_horizontal"
             android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
             android:text="Hard"
             android:textColor="@color/text_select_theme"
-            android:textSize="70px"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+
+            android:textSize="20dp" />
 
 
-            android:layout_marginTop="50px"/>
-
-
-
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
