@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:text="@string/Fragment"
+            android:layout_marginRight="28dp"
             android:textColor="@color/question_color"
             android:textSize="20dp"/>
 

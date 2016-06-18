@@ -41,7 +41,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_activity);
-
+        indexQuestion=0;
         toggleButton = (Switch) findViewById(R.id.langue);
         toggleButton.setOnClickListener(this);
 

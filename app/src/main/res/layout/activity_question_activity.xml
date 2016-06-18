@@ -49,7 +49,7 @@
         android:layout_below="@+id/circularProgressbar"
         android:layout_centerHorizontal="true">
     <GridLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:rowCount="1"
@@ -60,7 +60,8 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="28dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="0" />
@@ -71,7 +72,8 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="1" />
@@ -82,7 +84,8 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="2" />
@@ -93,7 +96,8 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="3" />
@@ -103,7 +107,8 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="4" />
@@ -113,7 +118,8 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="5" />
@@ -123,7 +129,8 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="6" />
@@ -133,7 +140,8 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="7" />
@@ -143,7 +151,9 @@
             android:layout_height="18dp"
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
             android:layout_row="0"
             android:layout_column="8" />
         <android.support.v7.widget.AppCompatButton
@@ -153,7 +163,9 @@
 
             android:background="@drawable/circle_question"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="28dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:layout_row="0"
             android:layout_column="9" />

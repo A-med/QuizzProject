@@ -69,6 +69,17 @@
         <item name="colorControlNormal">@color/colorlabel</item>
         <item name="colorControlActivated">@color/colorlabel</item>
     </style>
+    <style name="ButtonTransparant" parent="Widget.AppCompat.ActionButton.Overflow">
+
+        <item name="colorAccent">@color/transparent</item>
+
+
+    </style>
+
+    <style name="WhiteRippleButton" parent="AppTheme">
+        <item name="colorControlHighlight">@color/background</item>
+        <item name="colorButtonNormal">@color/white</item>
+    </style>
 
 
 </resources>

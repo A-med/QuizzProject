@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:background="@color/guillotine_background_dark"
         android:orientation="vertical"
-        tools:context=".TestActivity"
+
     >
 
     <include layout="@layout/content_fragment" android:id="@+id/content_fragment" />
