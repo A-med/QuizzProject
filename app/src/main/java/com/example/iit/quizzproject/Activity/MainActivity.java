@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Person> mPersonsList = new ArrayList<Person>();
     private static final String PERSONS_LIST_KEY = "persons_list_key";
     public static final String EXTRA_MESSAGE = "";
+    Fragment themeFragment;
     private Toolbar toolbar;
+    String theme;
 
     public static ArrayList<Question> questionList = new ArrayList<>();
 
@@ -102,12 +104,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void launchPlay() {
 
-
+        themeFragment = SelectTheme.newInstance(this);
         getFragmentManager().beginTransaction()
                 .setCustomAnimations(R.animator.card_float_left_in,
                         R.animator.card_float_left_out,
                         R.animator.card_float_left_in,
-                        R.animator.card_float_left_out).replace(R.id.content, SelectTheme.newInstance(this)).commit();
+                        R.animator.card_float_left_out).replace(R.id.content,themeFragment).commit();
 
 
     }
@@ -157,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onFinishChoiceTheme(String theme) {
+        this.theme=theme;
         launchGameType();
 
     }
@@ -235,6 +238,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (type.equals("mono"))
             launchComplexity();
 
+    }
+
+    @Override
+    public void onClickCloseTypeGame(Fragment f) {
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out)
+                .remove(f).addToBackStack(null).commit();
+        ((SelectTheme)themeFragment).openListner(theme);
     }
 
     @Override
@@ -373,5 +387,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
         intent.putExtra(EXTRA_MESSAGE, comp);
         startActivity(intent);
+    }
+
+    @Override
+    public void onFinishClickCloseComplexity(Fragment f) {
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.animator.card_float_left_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_left_in,
+                        R.animator.card_float_left_out)
+                .remove(f).addToBackStack(null).commit();
+        launchGameType();
+
+
     }
 }

@@ -7,6 +7,8 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.iit.quizzproject.R;
 
@@ -17,8 +19,9 @@ import com.example.iit.quizzproject.R;
 public class SelectTypeGame extends Fragment implements View.OnClickListener {
 
 
-    AppCompatButton monoPlayer;
-    AppCompatButton multiPlayer;
+    Button monoPlayer;
+    Button multiPlayer;
+    ImageView close;
 
     private static ClickButtonTypeGameLisner mClickButtonTypeGameLisner;
 
@@ -39,8 +42,10 @@ public class SelectTypeGame extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.select_type_game, container, false);
-        monoPlayer = (AppCompatButton) view.findViewById(R.id.buttonMonoPlayer);
-        multiPlayer = (AppCompatButton) view.findViewById(R.id.buttonMultiPlayer);
+        monoPlayer = (Button) view.findViewById(R.id.buttonMonoPlayer);
+        multiPlayer = (Button) view.findViewById(R.id.buttonMultiPlayer);
+        close =(ImageView)view.findViewById(R.id.button_close);
+        close.setOnClickListener(this);
         monoPlayer.setOnClickListener(this);
         multiPlayer.setOnClickListener(this);
 
@@ -58,9 +63,17 @@ public class SelectTypeGame extends Fragment implements View.OnClickListener {
                 case R.id.buttonMultiPlayer:
                     openComplexity("multi");
                     break;
+                case R.id.button_close:
+                    closeTypeGame();
+                    break;
 
 
         }
+    }
+
+    private void closeTypeGame() {
+        mClickButtonTypeGameLisner.onClickCloseTypeGame(this);
+
     }
 
     void openComplexity(String type){
@@ -73,6 +86,7 @@ public class SelectTypeGame extends Fragment implements View.OnClickListener {
 
     public interface ClickButtonTypeGameLisner {
         public void onFinishSelectTypeGame(String type, Fragment f);
+        public void onClickCloseTypeGame(Fragment f);
 
     }
 }

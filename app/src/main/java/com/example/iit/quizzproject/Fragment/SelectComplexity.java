@@ -16,6 +16,7 @@ public class SelectComplexity extends Fragment implements View.OnClickListener {
     Button btnEasy;
     private static ClickButtonComplexityLisner mClickButtonPlayLisner;
     ImageView play_Toolbar;
+    ImageView close;
     public SelectComplexity() {
         // Required empty public constructor
     }
@@ -31,6 +32,8 @@ public class SelectComplexity extends Fragment implements View.OnClickListener {
         btnHard = (Button) view.findViewById(R.id.buttonHard);
         btnMeduim = (Button) view.findViewById(R.id.buttonMeduim);
         btnEasy = (Button) view.findViewById(R.id.buttonEasy);
+        close =(ImageView)view.findViewById(R.id.button_close);
+        close.setOnClickListener(this);
         btnHard.setOnClickListener(this);
         btnMeduim.setOnClickListener(this);
         btnEasy.setOnClickListener(this);
@@ -51,8 +54,16 @@ public class SelectComplexity extends Fragment implements View.OnClickListener {
             case R.id.buttonHard:
                 openHardComplexity("Hard");
                 break;
+            case R.id.button_close:
+                closeTypeGame();
+                break;
         }
     }
+
+    private void closeTypeGame() {
+        mClickButtonPlayLisner.onFinishClickCloseComplexity(this);
+    }
+
     void openToolbar() {
         mClickButtonPlayLisner.onFinishClickTollbarPlay();
     }
@@ -70,5 +81,7 @@ public class SelectComplexity extends Fragment implements View.OnClickListener {
         public void onFinishClickEasyComplexity(String comp,Fragment f);
         public void onFinishClickMediumComplexity(String comp,Fragment f);
         public void onFinishClickHardComplexity(String comp,Fragment f);
+        public void onFinishClickCloseComplexity(Fragment f);
+
     }
 }

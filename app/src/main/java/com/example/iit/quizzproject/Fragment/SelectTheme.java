@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 import com.example.iit.quizzproject.R;
 
@@ -136,6 +137,12 @@ public class SelectTheme extends Fragment implements View.OnClickListener {
         button.setBackgroundDrawable(getResources().getDrawable(R.drawable.selected_shape));
     }
 
+    void resetColor(AppCompatButton button)
+    {
+        button.setTextColor(getResources().getColor(R.color.text_select_theme));
+        button.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape));
+    }
+
     void openComplexity(String theme) {
         play_Toolbar.setOnClickListener(null);
         randomButton.setOnClickListener(null);
@@ -149,6 +156,64 @@ public class SelectTheme extends Fragment implements View.OnClickListener {
         cinemaButton.setOnClickListener(null);
         policyButton.setOnClickListener(null);
         mClickButtonThemeLisner.onFinishChoiceTheme(theme);
+
+    }
+
+    public void openListner(String theme)
+    {
+        play_Toolbar.setOnClickListener(this);
+        randomButton.setOnClickListener(this);
+        sportButton.setOnClickListener(this);
+        matimaticalButton.setOnClickListener(this);
+        reflexionButton.setOnClickListener(this);
+        algorithmicButton.setOnClickListener(this);
+        historyButton.setOnClickListener(this);
+        generalCultureButton.setOnClickListener(this);
+        healthButton.setOnClickListener(this);
+        cinemaButton.setOnClickListener(this);
+        policyButton.setOnClickListener(this);
+        resetThemeSelected(theme);
+    }
+
+    private void resetThemeSelected(String theme) {
+
+        switch(theme) {
+            case ("random"):
+                resetColor(randomButton);
+                break;
+            case ("sport"):
+                resetColor(sportButton);
+                break;
+            case ("math"):
+                resetColor(matimaticalButton);
+                break;
+            case ("reflexion"):
+                resetColor(reflexionButton);
+                break;
+            case ("alogorithmique"):
+                resetColor(algorithmicButton);
+                break;
+            case ("history"):
+                resetColor(historyButton);
+                break;
+            case ("genetalculture"):
+                resetColor(generalCultureButton);
+                break;
+            case ("health"):
+                resetColor(healthButton);
+                break;
+            case ("cinema"):
+                resetColor(cinemaButton);
+                break;
+            case ("policy"):
+                resetColor(policyButton);
+                break;
+
+
+
+
+        }
+
 
     }
 
