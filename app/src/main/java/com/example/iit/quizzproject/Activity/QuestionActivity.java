@@ -1,5 +1,6 @@
 package com.example.iit.quizzproject.activity;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.Switch;
@@ -21,6 +23,7 @@ import com.example.iit.quizzproject.core.QuestionSqlite;
 import com.example.iit.quizzproject.database.TestContentProvider;
 import com.example.iit.quizzproject.database.tables.QuestionLangage;
 import com.example.iit.quizzproject.database.tables.QuestionListSqlite;
+import com.example.iit.quizzproject.fragment.Score;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,7 +31,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class QuestionActivity extends AppCompatActivity implements QuestionFragment.ClickButtonLisner, View.OnClickListener {
+
+public class QuestionActivity extends AppCompatActivity implements  QuestionFragment.ClickButtonLisner, Score.ClickButtonLisner ,View.OnClickListener {
 
     ArrayList<QuestionSqlite> arrayQuestion;
     ArrayList<AppCompatButton> arrayCompatButton=new ArrayList<AppCompatButton>();
@@ -36,6 +40,9 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
     Switch toggleButton;
     QuestionFragment mQuestionFragment;
     public static int idLangue=0;
+    String ComplexityMode;
+    int point=0;
+    ObjectAnimator animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +72,36 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
 
         ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
-        ObjectAnimator animation = ObjectAnimator.ofInt(mProgress, "progress", 100);
-        String ComplexityMode = getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE);
+        animation = ObjectAnimator.ofInt(mProgress, "progress", 100);
+        animation.addListener(new Animator.AnimatorListener() {
+
+                                  @Override
+                                  public void onAnimationStart(Animator animation) {
+
+                                  }
+
+                                  @Override
+                                  public void onAnimationEnd(Animator animation) {
+
+                                      launchScoreFragment(false);
+
+                                  }
+
+                                  @Override
+                                  public void onAnimationCancel(Animator animation) {
+
+                                  }
+
+                                  @Override
+                                  public void onAnimationRepeat(Animator animation) {
+
+                                  }
+
+                              });
+        ComplexityMode = getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE);
         Log.v("ComplexityMode : ", ComplexityMode);
         if(ComplexityMode.equals("Easy")) {
-            animation.setDuration(180000);
+            animation.setDuration(20000);
         }
         if(ComplexityMode.equals("Medium")){
             animation.setDuration(120000);
@@ -80,6 +112,8 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
+
+
 
         lanchQuestionFragment();
 
@@ -264,9 +298,23 @@ public void lanchQuestionFragment()
     public void onClickButtonChoiceRepance(Boolean reponce) {
         if(reponce==true)
         {
+            addScore();
             arrayCompatButton.get(indexQuestion).setBackgroundDrawable(getResources().getDrawable(R.drawable.cercle_question_green));
+
         }else{
             arrayCompatButton.get(indexQuestion).setBackgroundDrawable(getResources().getDrawable(R.drawable.cercle_question_red));
+        }
+    }
+
+    private void addScore() {
+        if(ComplexityMode.equals("Easy")) {
+            point+=10;
+        }
+        if(ComplexityMode.equals("Medium")){
+            point+=15;
+        }
+        if(ComplexityMode.equals("Hard")){
+            point+=20;
         }
     }
 
@@ -274,6 +322,22 @@ public void lanchQuestionFragment()
     public void onClickNextQuestion() {
         indexQuestion++;
         lanchQuestionFragment();
+
+    }
+
+    @Override
+    public void endQuestion() {
+
+        animation.end();
+        launchScoreFragment(true);
+
+
+
+    }
+
+    public void launchScoreFragment(boolean b){
+        getFragmentManager().beginTransaction()
+                .replace(R.id.activity_partie, Score.newInstance(this,point,b)).commit();
 
     }
 
@@ -302,5 +366,7 @@ public void lanchQuestionFragment()
                 break;
         }
     }
+
+
 }
 

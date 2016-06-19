@@ -27,6 +27,12 @@
     <string name="Fragment">This is a question from a specific theme dfbjh ihef  iohfeobuihefubio evoheobfb fvhofv oehvoiufb evnhfeiobn?</string>
     <string name="complexity_text">Complexity</string>
     <string name="type_game_text">Type Game</string>
+    <string name="Game_over">Game Over !</string>
+    <string name="Text_score">Your Score is :</string>
+    <string name="score">50 pts</string>
+    <string name="button_share">Share on Facebook</string>
+    <string name="button_replay">Replay</string>
+    <string name="button_return">Close</string>
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>

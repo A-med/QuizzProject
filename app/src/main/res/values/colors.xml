@@ -39,6 +39,7 @@
     <color name="progress_color">#4CAF50</color>
     <color name="mistake_color">#D32F2F</color>
     <color name="btn_prop">#FFBCB2EF</color>
+    <color name="gameover">#F44336</color>
 
 </resources>
 

@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+        <TextView
+            android:id="@+id/finish_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/Game_over"
+            android:textColor="@color/gameover"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/finish_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/Text_score"
+            android:textColor="@color/colorWhite"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/score_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/score"
+            android:textColor="@color/colorWhite"
+            android:textSize="45dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_share"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/score"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="@string/button_share"
+            android:background="@drawable/circle_button_score"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/facebook"
+            android:padding="16dp"/>
+
+        <Button
+            android:id="@+id/button_replay"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/score"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="@string/button_replay"
+            android:background="@drawable/circle_button_score"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_replay_white_24px"
+            android:padding="16dp"/>
+
+        <Button
+            android:id="@+id/button_close"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/score"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="@string/button_return"
+            android:background="@drawable/circle_button_score"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_close_white_24px"
+            android:padding="16dp"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

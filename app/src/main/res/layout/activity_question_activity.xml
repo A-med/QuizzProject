@@ -7,7 +7,6 @@
     android:background="@color/activity_question"
     android:orientation="vertical">
 
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/AppTheme"
         app:contentInsetStart="0dp"
@@ -178,3 +177,4 @@
             />
 </LinearLayout>
 </RelativeLayout>
+

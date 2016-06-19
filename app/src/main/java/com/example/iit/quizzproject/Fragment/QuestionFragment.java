@@ -86,7 +86,11 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         prop2.setClickable(false);
         prop3.setClickable(false);
         if(QuestionActivity.indexQuestion!=9)
-        nextQuestion.setVisibility(view.VISIBLE);
+            nextQuestion.setVisibility(view.VISIBLE);
+        else
+            mClickButtonLisner.endQuestion();
+
+
 
     }
 
@@ -114,20 +118,23 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
             case (R.id.button):
-                killButtons();
+
                 validateAnswer(prop1, prop2, prop3);
+                killButtons();
 
                 break;
 
             case (R.id.button2):
-                killButtons();
+
                 validateAnswer(prop2, prop1, prop3);
+                killButtons();
                 break;
 
 
             case (R.id.button3):
-                killButtons();
+
                 validateAnswer(prop3, prop2, prop1);
+                killButtons();
                 break;
             case (R.id.Next):
                 mClickButtonLisner.onClickNextQuestion();
@@ -158,8 +165,9 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     }
 
     public interface ClickButtonLisner {
-        public void onClickButtonChoiceRepance(Boolean reponce );
+        public void onClickButtonChoiceRepance(Boolean rep );
         public void onClickNextQuestion();
+        public void endQuestion();
 
     }
 
