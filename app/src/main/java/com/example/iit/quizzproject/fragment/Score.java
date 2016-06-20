@@ -35,10 +35,9 @@ public class Score extends Fragment  implements View.OnClickListener {
 
     public static Fragment newInstance(ClickButtonLisner listener, int p, boolean b){
         Score fragment =  new Score();
-       point=p;
+        point=p;
         etat=b;
         mClickButtonLisner =listener;
-
         return fragment;
     }
 
@@ -69,10 +68,35 @@ public class Score extends Fragment  implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_share:
+                shareInFacebook();
+                break;
+            case R.id.button_replay:
+                replayGame();
+                break;
+            case R.id.button_close:
+                closeGame();
+                break;
+            
+        }
 
     }
 
+    private void closeGame() {
+        mClickButtonLisner.closeGame();
+    }
+
+    private void replayGame() {
+        mClickButtonLisner.replayGame();
+    }
+
+    private void shareInFacebook() {
+    }
+
     public interface ClickButtonLisner {
+        public void closeGame();
+        public void replayGame();
 
 
     }

@@ -3,6 +3,7 @@ package com.example.iit.quizzproject.activity;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -43,6 +44,14 @@ public class QuestionActivity extends AppCompatActivity implements  QuestionFrag
     String ComplexityMode;
     int point=0;
     ObjectAnimator animation;
+    public static final String EXTRA_MESSAGE = "";
+
+    @Override
+    public void onBackPressed() {
+        Log.v("finish","activity finished");
+
+        animation.cancel();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,8 +181,6 @@ public void lanchQuestionFragment()
             e.printStackTrace();
         }
 
-
-        //  Log.v("URI PATH",uri.getPath().toString());
     }
 
 
@@ -368,5 +375,22 @@ public void lanchQuestionFragment()
     }
 
 
+    @Override
+    public void closeGame() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+
+
+    }
+
+    @Override
+    public void replayGame() {
+        finish();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("replay", "replay");
+        startActivity(intent);
+
+    }
 }
 
