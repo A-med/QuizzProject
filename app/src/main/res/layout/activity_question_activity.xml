@@ -38,6 +38,7 @@
         android:layout_height="40dp"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="70dp"
+        android:text="ENG"
         android:background="@drawable/circle_button_next"
         android:textColor="@color/white" />
 
@@ -48,6 +49,7 @@
         android:layout_below="@+id/circularProgressbar"
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
+
 
         <GridLayout
             android:layout_width="match_parent"
