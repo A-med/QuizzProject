@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 
@@ -38,7 +39,7 @@ public class QuestionActivity extends AppCompatActivity implements  QuestionFrag
     ArrayList<QuestionSqlite> arrayQuestion;
     ArrayList<AppCompatButton> arrayCompatButton=new ArrayList<AppCompatButton>();
     public static int indexQuestion=0;
-    Switch toggleButton;
+    Button buttonLangue;
     QuestionFragment mQuestionFragment;
     public static int idLangue=0;
     String ComplexityMode;
@@ -50,8 +51,8 @@ public class QuestionActivity extends AppCompatActivity implements  QuestionFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_activity);
         indexQuestion=0;
-        toggleButton = (Switch) findViewById(R.id.langue);
-        toggleButton.setOnClickListener(this);
+        buttonLangue = (Button) findViewById(R.id.langue);
+        buttonLangue.setOnClickListener(this);
 
         checkDataBase();
         insertDBLangage();
@@ -345,12 +346,13 @@ public void lanchQuestionFragment()
         if(idLangue==0) {
             idLangue=1;
             mQuestionFragment.onChangeLangue(idLangue);
-
+            buttonLangue.setText("ENG");
         }
         else
         {
             idLangue=0;
             mQuestionFragment.onChangeLangue(idLangue);
+            buttonLangue.setText("FR");
         }
     }
 
