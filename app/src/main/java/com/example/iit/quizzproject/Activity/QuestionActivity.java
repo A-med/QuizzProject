@@ -45,6 +45,14 @@ public class QuestionActivity extends AppCompatActivity implements  QuestionFrag
     String ComplexityMode;
     int point=0;
     ObjectAnimator animation;
+    public static final String EXTRA_MESSAGE = "";
+
+    @Override
+    public void onBackPressed() {
+        Log.v("finish","activity finished");
+
+        animation.cancel();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -375,13 +383,14 @@ public void lanchQuestionFragment()
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
 
+
     }
 
     @Override
     public void replayGame() {
         finish();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
+        intent.putExtra("replay", "replay");
         startActivity(intent);
 
     }

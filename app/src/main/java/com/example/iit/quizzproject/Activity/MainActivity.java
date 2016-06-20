@@ -56,7 +56,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity);
-        launchProfile();
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("replay")!=null)
+        {
+            launchPlay();
+        }
+        else {
+
+
+            launchProfile();
+        }
 
 
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -369,24 +379,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }*/
-
-    @Override
-    public void onFinishClickEasyComplexity(String comp, Fragment f) {
+    public void startQuestionActivity(String comp)
+    {
         Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
         intent.putExtra(EXTRA_MESSAGE, comp);
         startActivity(intent);
+        finish();
+    }
+    @Override
+    public void onFinishClickEasyComplexity(String comp, Fragment f) {
+        startQuestionActivity(comp);
     }
     @Override
     public void onFinishClickMediumComplexity(String comp, Fragment f) {
-        Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, comp);
-        startActivity(intent);
+        startQuestionActivity(comp);
     }
     @Override
     public void onFinishClickHardComplexity(String comp, Fragment f) {
-        Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, comp);
-        startActivity(intent);
+        startQuestionActivity(comp);
     }
 
     @Override
