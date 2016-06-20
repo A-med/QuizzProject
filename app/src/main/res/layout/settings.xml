@@ -6,31 +6,23 @@
     android:layout_height="match_parent"
     android:background="@color/background_dark"
     android:orientation="vertical">
-    <View
-        android:layout_gravity="top"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/actionbar_background_view_height"
-        android:background="@color/background"
-        />
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            app:contentInsetStart="0dp"
+            style="@style/Toolbar"
             android:clickable="true"
-            style="@style/Toolbar">
+            app:contentInsetStart="0dp">
 
             <ImageView
                 android:id="@+id/settings_Toolbar"
                 style="@style/ImageView.Hamburger"
                 android:src="@drawable/ic_menu" />
-
-
-
 
             <com.example.iit.quizzproject.widget.CanaroTextView
 
@@ -45,5 +37,75 @@
 
 
     </LinearLayout>
+
     <include layout="@layout/content_enhanced" />
+
+    <GridLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_dark"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:layout_marginTop="50dp"
+        >
+        <ImageView
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/ic_music_note_white_24px" />
+
+        <TextView
+            android:id="@+id/music_text"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:textColor="@color/text_select_theme"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="15dp"
+            android:text="Music"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
+
+        <Switch
+            android:id="@+id/music"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="70dp"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:textOff="Off"
+            android:textOn="On" />
+
+        <ImageView
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/ic_vibration_white_24px" />
+        <TextView
+            android:id="@+id/vibration_text"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="15dp"
+            android:text="Vibration"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:textColor="@color/text_select_theme"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="25sp" />
+
+        <Switch
+            android:id="@+id/vibration"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:textOff="Off"
+            android:textOn="On" />
+
+    </GridLayout>
+
 </FrameLayout>

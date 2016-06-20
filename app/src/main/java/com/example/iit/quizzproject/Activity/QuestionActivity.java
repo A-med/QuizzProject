@@ -2,7 +2,9 @@ package com.example.iit.quizzproject.activity;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -45,12 +47,47 @@ public class QuestionActivity extends AppCompatActivity implements  QuestionFrag
     int point=0;
     ObjectAnimator animation;
     public static final String EXTRA_MESSAGE = "";
+    boolean verifLanchingScore = false;
 
     @Override
     public void onBackPressed() {
         Log.v("finish","activity finished");
+        if(verifLanchingScore==false) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        animation.cancel();
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure to exit game ?");
+
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do nothing but close the dialog
+                    animation.cancel();
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // Do nothing
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
+
+        }else
+        {
+            gameClosed();
+        }
+
+
+
     }
 
     @Override
@@ -93,6 +130,7 @@ public class QuestionActivity extends AppCompatActivity implements  QuestionFrag
                                   public void onAnimationEnd(Animator animation) {
 
                                       launchScoreFragment(false);
+                                      verifLanchingScore=true;
 
                                   }
 
@@ -337,13 +375,17 @@ public void lanchQuestionFragment()
 
         animation.end();
         launchScoreFragment(true);
+        verifLanchingScore=true;
 
 
 
     }
 
     public void launchScoreFragment(boolean b){
-        getFragmentManager().beginTransaction()
+        getFragmentManager().beginTransaction().setCustomAnimations(R.animator.animation_flot_y_in,
+                R.animator.animation_flot_y_out,
+                R.animator.animation_flot_y_in,
+                R.animator.animation_flot_y_out)
                 .replace(R.id.activity_partie, Score.newInstance(this,point,b)).commit();
 
     }
@@ -374,12 +416,15 @@ public void lanchQuestionFragment()
         }
     }
 
-
-    @Override
-    public void closeGame() {
+    public void gameClosed()
+    {
         finish();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
+    }
+    @Override
+    public void closeGame() {
+        gameClosed();
 
 
     }
