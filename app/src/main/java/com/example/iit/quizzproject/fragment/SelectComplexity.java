@@ -1,4 +1,5 @@
 package com.example.iit.quizzproject.fragment;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
 import com.example.iit.quizzproject.R;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -78,9 +81,9 @@ public class SelectComplexity extends Fragment implements View.OnClickListener {
     }
     public interface ClickButtonComplexityLisner {
         public void onFinishClickTollbarPlay();
-        public void onFinishClickEasyComplexity(String comp,Fragment f);
-        public void onFinishClickMediumComplexity(String comp,Fragment f);
-        public void onFinishClickHardComplexity(String comp,Fragment f);
+        public void onFinishClickEasyComplexity(String comp, Fragment f);
+        public void onFinishClickMediumComplexity(String comp, Fragment f);
+        public void onFinishClickHardComplexity(String comp, Fragment f);
         public void onFinishClickCloseComplexity(Fragment f);
 
     }

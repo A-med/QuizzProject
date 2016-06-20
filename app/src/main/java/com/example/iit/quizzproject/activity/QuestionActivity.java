@@ -79,9 +79,8 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
     public void onBackPressed() {
 
 
-
-        Log.v("finish","activity finished");
-        if(verifLanchingScore==false) {
+        Log.v("finish", "activity finished");
+        if (verifLanchingScore == false) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             builder.setTitle("Confirm");
@@ -110,44 +109,44 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
             alert.show();
 
 
-        }else
-        {
+        } else {
             gameClosed();
         }
 
 
-
-
     }
 
 
-    /*khedmet sdiri*/
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mp.stop();
-    }
+       @Override
+       protected void onPause() {
+           super.onPause();
+           if (mp!=null)
+           {
+
+               mp.stop();
+           }
+       }
 
 
-    public void settingVibrator() {
-        if (state == on) {
-            Log.i("off", "stateon " + state);
-            switchon = on;
-            switchoff = off;
-            Log.i("off", "switchon " + switchon);
-            state = off;
-            buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_vibration_white_24dp));
-            //Log.i("off","off"+state);
-        } else if (state == off) {
-            Log.i("off", "stateoff " + state);
-            switchoff = on;
-            switchon = off;
-            Log.i("off", "switchoff " + switchoff);
-            state = on;
-            buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_smartphone_white_24dp));
-            //  Log.i("off","on"+state);
-        }
-    }
+       public void settingVibrator() {
+           if (state == on) {
+               Log.i("off", "stateon " + state);
+               switchon = on;
+               switchoff = off;
+               Log.i("off", "switchon " + switchon);
+               state = off;
+               buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_vibration_white_24dp));
+               //Log.i("off","off"+state);
+           } else if (state == off) {
+               Log.i("off", "stateoff " + state);
+               switchoff = on;
+               switchon = off;
+               Log.i("off", "switchoff " + switchoff);
+               state = on;
+               buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_smartphone_white_24dp));
+               //  Log.i("off","on"+state);
+           }
+       }
 
     public void playsetVibrator(long time) {
         android.os.Vibrator vibrator = (android.os.Vibrator) this.getApplication().getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);                 //   v.vibrate(500);Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -194,9 +193,12 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
 
 
-
-                                      launchScoreFragment(false);
-                                      verifLanchingScore=true;
+                launchScoreFragment(false);
+                verifLanchingScore = true;
+                if (mp!=null)
+                {
+                    mp.stop();
+                }
 
 
             }
@@ -420,6 +422,12 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
         } else {
             arrayCompatButton.get(indexQuestion).setBackgroundDrawable(getResources().getDrawable(R.drawable.cercle_question_red));
+            if (switchoff == 0 && switchon == 1) {
+                Log.i("off", "switchoff if=0  " + switchoff);
+                Log.i("off", "switchoff if=1  " + switchon);
+
+                playsetVibrator(500);
+            }
         }
     }
 
@@ -448,18 +456,18 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         animation.end();
         buttonLangue.setVisibility(View.INVISIBLE);
         launchScoreFragment(true);
-        verifLanchingScore=true;
+        verifLanchingScore = true;
 
 
     }
 
 
-    public void launchScoreFragment(boolean b){
+    public void launchScoreFragment(boolean b) {
         getFragmentManager().beginTransaction().setCustomAnimations(R.animator.animation_flot_y_in,
                 R.animator.animation_flot_y_out,
                 R.animator.animation_flot_y_in,
                 R.animator.animation_flot_y_out)
-                .replace(R.id.activity_partie, Score.newInstance(this,point,b)).commit();
+                .replace(R.id.activity_partie, Score.newInstance(this, point, b)).commit();
 
 
     }
@@ -486,26 +494,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
                 break;
             case R.id.buttonplay:
-                Log.i("TAG", "button play selected");
-                if (btnVolumePressed % 2 == 0) {
-                    Log.i("btn", "volume_up");
-                    buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_up));
-                    mp.stop();
-                } else {
-                    Log.i("TAG", "volume_off");
-                    buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_off));
-                    // mp.stop();
-                    mp = MediaPlayer.create(getApplicationContext(), R.raw.soundtrack);
-                    mp.start();
-                    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            mp.release();
-                            mp = null;
-                            buttonPlay.setEnabled(false);
-                        }
-                    });
-                }
+                editMusic();
                 break;
             case R.id.buttonvibrator:
                 Log.i("TAG", "button vibrator selected");
@@ -519,12 +508,35 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         }
     }
 
-    public void gameClosed()
-    {
+    public void editMusic() {
+
+        if (btnVolumePressed % 2 == 0) {
+
+            buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_up));
+            mp.stop();
+        } else {
+            Log.i("TAG", "volume_off");
+            buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_off));
+
+            mp = MediaPlayer.create(getApplicationContext(), R.raw.soundtrack);
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                    mp = null;
+                  //  buttonPlay.setEnabled(false);
+                }
+            });
+        }
+    }
+
+    public void gameClosed() {
         finish();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }
+
     @Override
     public void closeGame() {
         gameClosed();
