@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -38,32 +39,76 @@
     </LinearLayout>
 
     <include layout="@layout/content_enhanced" />
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="2"
 
-        android:rowCount="1">
+
+
+    <GridLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_dark"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:layout_marginTop="50dp"
+        >
+        <ImageView
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/ic_music_note_white_24px" />
 
         <TextView
             android:id="@+id/music_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_column="0"
-            android:layout_marginRight="28dp"
-            android:layout_marginTop="8dp"
+            android:layout_column="1"
             android:layout_row="0"
             android:textColor="@color/text_select_theme"
-            android:textSize="30dp" />
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="15dp"
+            android:text="Music"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
 
         <Switch
             android:id="@+id/music"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="70dp"
+            android:layout_column="2"
             android:layout_row="0"
             android:textOff="Off"
             android:textOn="On" />
+
+        <ImageView
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/ic_vibration_white_24px" />
+        <TextView
+            android:id="@+id/vibration_text"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="15dp"
+            android:text="Vibration"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:textColor="@color/text_select_theme"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="25sp" />
+
+        <Switch
+            android:id="@+id/vibration"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:textOff="Off"
+            android:textOn="On" />
+
     </GridLayout>
+
+
 </FrameLayout>
