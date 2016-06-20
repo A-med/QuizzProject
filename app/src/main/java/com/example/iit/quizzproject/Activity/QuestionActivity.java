@@ -3,11 +3,14 @@ package com.example.iit.quizzproject.activity;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -26,6 +29,7 @@ import com.example.iit.quizzproject.database.TestContentProvider;
 import com.example.iit.quizzproject.database.tables.QuestionLangage;
 import com.example.iit.quizzproject.database.tables.QuestionListSqlite;
 import com.example.iit.quizzproject.fragment.Score;
+import com.michaldrabik.tapbarmenulib.TapBarMenu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,112 +38,171 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
-public class QuestionActivity extends AppCompatActivity implements  QuestionFragment.ClickButtonLisner, Score.ClickButtonLisner ,View.OnClickListener {
+public class QuestionActivity extends AppCompatActivity implements QuestionFragment.ClickButtonLisner, Score.ClickButtonLisner, View.OnClickListener {
 
     ArrayList<QuestionSqlite> arrayQuestion;
-    ArrayList<AppCompatButton> arrayCompatButton=new ArrayList<AppCompatButton>();
-    public static int indexQuestion=0;
+    ArrayList<AppCompatButton> arrayCompatButton = new ArrayList<AppCompatButton>();
+    public static int indexQuestion = 0;
     Button buttonLangue;
     QuestionFragment mQuestionFragment;
-    public static int idLangue=0;
+    public static int idLangue = 0;
     String ComplexityMode;
-    int point=0;
+    int point = 0;
     ObjectAnimator animation;
     public static final String EXTRA_MESSAGE = "";
 
+
+    /*khedmet sdiri*/
+    TapBarMenu tapBarMenu;
+    int btnVolumePressed = 1;
+    int btnVibratorPressed = 1;
+    int state = 0;
+    Button buttonPlay;
+    Button buttonVibrator;
+    MediaPlayer mp;
+    Vibrator v;
+
+    int switchoff;
+    int switchon;
+    int off = 0;
+    int on = 1;
+    /*fin khedmet sdiri*/
+
+
     @Override
     public void onBackPressed() {
-        Log.v("finish","activity finished");
+        Log.v("finish", "activity finished");
 
         animation.cancel();
     }
 
+
+    /*khedmet sdiri*/
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mp.stop();
+    }
+
+
+    public void settingVibrator() {
+        if (state == on) {
+            Log.i("off", "stateon " + state);
+            switchon = on;
+            switchoff = off;
+            Log.i("off", "switchon " + switchon);
+            state = off;
+            buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_vibration_white_24dp));
+            //Log.i("off","off"+state);
+        } else if (state == off) {
+            Log.i("off", "stateoff " + state);
+            switchoff = on;
+            switchon = off;
+            Log.i("off", "switchoff " + switchoff);
+            state = on;
+            buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_smartphone_white_24dp));
+            //  Log.i("off","on"+state);
+        }
+    }
+
+    public void playsetVibrator(long time) {
+        android.os.Vibrator vibrator = (android.os.Vibrator) this.getApplication().getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);                 //   v.vibrate(500);Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(time);
+    }
+
+    /*fin khedmet sdiri*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_activity);
-        indexQuestion=0;
+        indexQuestion = 0;
         buttonLangue = (Button) findViewById(R.id.langue);
         buttonLangue.setOnClickListener(this);
-
+        buttonLangue.setText("ENG");
         checkDataBase();
         insertDBLangage();
         insertDBQuestion();
         selectQuestionRandom();
 
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question1));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question2));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question3));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question4));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question5));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question6));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question7));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question8));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question9));
-        arrayCompatButton.add((AppCompatButton)findViewById(R.id.question10));
-
-
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question1));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question2));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question3));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question4));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question5));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question6));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question7));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question8));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question9));
+        arrayCompatButton.add((AppCompatButton) findViewById(R.id.question10));
 
 
         ProgressBar mProgress = (ProgressBar) findViewById(R.id.circularProgressbar);
         animation = ObjectAnimator.ofInt(mProgress, "progress", 100);
         animation.addListener(new Animator.AnimatorListener() {
 
-                                  @Override
-                                  public void onAnimationStart(Animator animation) {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
-                                  }
+            }
 
-                                  @Override
-                                  public void onAnimationEnd(Animator animation) {
+            @Override
+            public void onAnimationEnd(Animator animation) {
 
-                                      launchScoreFragment(false);
+                launchScoreFragment(false);
 
-                                  }
+            }
 
-                                  @Override
-                                  public void onAnimationCancel(Animator animation) {
+            @Override
+            public void onAnimationCancel(Animator animation) {
 
-                                  }
+            }
 
-                                  @Override
-                                  public void onAnimationRepeat(Animator animation) {
+            @Override
+            public void onAnimationRepeat(Animator animation) {
 
-                                  }
+            }
 
-                              });
+        });
         ComplexityMode = getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE);
         Log.v("ComplexityMode : ", ComplexityMode);
-        if(ComplexityMode.equals("Easy")) {
+        if (ComplexityMode.equals("Easy")) {
             animation.setDuration(20000);
         }
-        if(ComplexityMode.equals("Medium")){
+        if (ComplexityMode.equals("Medium")) {
             animation.setDuration(120000);
         }
-        if(ComplexityMode.equals("Hard")){
+        if (ComplexityMode.equals("Hard")) {
             animation.setDuration(60000);
         }
 
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
 
+        /*khdemdet Sdiri*/
 
+        tapBarMenu = (TapBarMenu) findViewById(R.id.tapBarMenu);
+        tapBarMenu.setOnClickListener(this);
+        buttonPlay = (Button) findViewById(R.id.buttonplay);
+        buttonPlay.setOnClickListener(this);
+        buttonVibrator = (Button) findViewById(R.id.buttonvibrator);
+        buttonVibrator.setOnClickListener(this);
+
+
+        /*fin khedmet sdiri*/
 
         lanchQuestionFragment();
 
 
     }
 
-public void lanchQuestionFragment()
-{
-    mQuestionFragment = QuestionFragment.newInstance(this,arrayQuestion.get(indexQuestion));
-    getFragmentManager().beginTransaction()
-            .setCustomAnimations(R.animator.card_float_right_in,
-                    R.animator.card_float_left_out,
-                    R.animator.card_float_right_in,
-                    R.animator.card_float_left_out).replace(R.id.content, mQuestionFragment).commit();
-}
-
+    public void lanchQuestionFragment() {
+        mQuestionFragment = QuestionFragment.newInstance(this, arrayQuestion.get(indexQuestion));
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.animator.card_float_right_in,
+                        R.animator.card_float_left_out,
+                        R.animator.card_float_right_in,
+                        R.animator.card_float_left_out).replace(R.id.content, mQuestionFragment).commit();
+    }
 
 
     private boolean checkDataBase() {
@@ -154,7 +217,7 @@ public void lanchQuestionFragment()
             checkDB.close();
         } catch (SQLiteException e) {
             // base de données n'existe pas.
-           ;
+            ;
             //  Log.v("Record URI",TestContentProvider.RECORDS_CONTENT_URI.toString());
         }
         return checkDB != null ? true : false;
@@ -170,9 +233,10 @@ public void lanchQuestionFragment()
 
             while ((line = r.readLine()) != null) {
 
-                contentValues.put(QuestionLangage.FRANCAIS, line);
-                line = r.readLine();
                 contentValues.put(QuestionLangage.ANGLAIS, line);
+                line = r.readLine();
+
+                contentValues.put(QuestionLangage.FRANCAIS, line);
                 uri = getContentResolver().insert(
                         TestContentProvider.RECORDS_CONTENT_URI_LANGAGE,
                         contentValues);
@@ -250,13 +314,10 @@ public void lanchQuestionFragment()
 
             arrayQuestion.add(objQuestion);
         }
-        for(int i=0; i<arrayQuestion.size();i++)
-        {
-            Log.v("arrayQuestion",arrayQuestion.get(i).getTextQuestionAn());
-            Log.v("arrayQuestion",arrayQuestion.get(i).getTextQuestionFr());
+        for (int i = 0; i < arrayQuestion.size(); i++) {
+            Log.v("arrayQuestion", arrayQuestion.get(i).getTextQuestionAn());
+            Log.v("arrayQuestion", arrayQuestion.get(i).getTextQuestionFr());
         }
-
-
 
 
     }
@@ -294,7 +355,7 @@ public void lanchQuestionFragment()
             tabQuestion[3] = mCursor.getInt(4);
             tabQuestion[4] = mCursor.getInt(5);
 
-           // Log.v("id_Question",mCursor.getString(1)+" "+mCursor.getInt(2)+" "+mCursor.getString(3)+" "+mCursor.getInt(4)+" "+mCursor.getInt(5));
+            // Log.v("id_Question",mCursor.getString(1)+" "+mCursor.getInt(2)+" "+mCursor.getString(3)+" "+mCursor.getInt(4)+" "+mCursor.getInt(5));
 
 
         }
@@ -304,25 +365,24 @@ public void lanchQuestionFragment()
 
     @Override
     public void onClickButtonChoiceRepance(Boolean reponce) {
-        if(reponce==true)
-        {
+        if (reponce == true) {
             addScore();
             arrayCompatButton.get(indexQuestion).setBackgroundDrawable(getResources().getDrawable(R.drawable.cercle_question_green));
 
-        }else{
+        } else {
             arrayCompatButton.get(indexQuestion).setBackgroundDrawable(getResources().getDrawable(R.drawable.cercle_question_red));
         }
     }
 
     private void addScore() {
-        if(ComplexityMode.equals("Easy")) {
-            point+=10;
+        if (ComplexityMode.equals("Easy")) {
+            point += 10;
         }
-        if(ComplexityMode.equals("Medium")){
-            point+=15;
+        if (ComplexityMode.equals("Medium")) {
+            point += 15;
         }
-        if(ComplexityMode.equals("Hard")){
-            point+=20;
+        if (ComplexityMode.equals("Hard")) {
+            point += 20;
         }
     }
 
@@ -337,42 +397,70 @@ public void lanchQuestionFragment()
     public void endQuestion() {
 
         animation.end();
+        buttonLangue.setVisibility(View.INVISIBLE);
         launchScoreFragment(true);
 
 
-
     }
 
-    public void launchScoreFragment(boolean b){
+    public void launchScoreFragment(boolean b) {
         getFragmentManager().beginTransaction()
-                .replace(R.id.activity_partie, Score.newInstance(this,point,b)).commit();
+                .replace(R.id.activity_partie, Score.newInstance(this, point, b)).commit();
 
     }
 
-    public void changeLangue()
-    {
-        if(idLangue==0) {
-            idLangue=1;
+    public void changeLangue() {
+        if (idLangue == 0) {
+            idLangue = 1;
             mQuestionFragment.onChangeLangue(idLangue);
             buttonLangue.setText("ENG");
-        }
-        else
-        {
-            idLangue=0;
+        } else {
+            idLangue = 0;
             mQuestionFragment.onChangeLangue(idLangue);
             buttonLangue.setText("FR");
         }
     }
 
 
-
     @Override
     public void onClick(View v) {
+        btnVolumePressed++;
         switch (v.getId()) {
             case (R.id.langue):
                 changeLangue();
 
                 break;
+            case R.id.buttonplay:
+                Log.i("TAG", "button play selected");
+                if (btnVolumePressed % 2 == 0) {
+                    Log.i("btn", "volume_up");
+                    buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_up));
+                    mp.stop();
+                } else {
+                    Log.i("TAG", "volume_off");
+                    buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_off));
+                    // mp.stop();
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.soundtrack);
+                    mp.start();
+                    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mp.release();
+                            mp = null;
+                            buttonPlay.setEnabled(false);
+                        }
+                    });
+                }
+                break;
+            case R.id.buttonvibrator:
+                Log.i("TAG", "button vibrator selected");
+                settingVibrator();
+                break;
+            case R.id.tapBarMenu:
+                Log.i("tap", "Tap bar menu selected");
+                tapBarMenu.toggle();
+                break;
+
         }
     }
 

@@ -38,7 +38,7 @@
         android:layout_height="40dp"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="70dp"
-        android:text="ENG"
+
         android:background="@drawable/circle_button_next"
         android:textColor="@color/white" />
 
@@ -49,7 +49,6 @@
         android:layout_below="@+id/circularProgressbar"
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
-
 
         <GridLayout
             android:layout_width="match_parent"
@@ -181,11 +180,53 @@
                 android:background="@drawable/circle_question" />
         </GridLayout>
 
+
+
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.michaldrabik.tapbarmenulib.TapBarMenu
+            android:id="@+id/tapBarMenu"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom"
+
+            app:tbm_backgroundColor="@color/red"
+            app:tbm_menuAnchor="bottom"
+            >
+            <Button
+                android:id="@+id/buttonplay"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/volume_up"
+                android:paddingTop="10dp"
+                android:layout_marginLeft="80dp"
+                />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <Button
+                android:id="@+id/buttonvibrator"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_vibration_white_24dp"
+                android:paddingTop="10dp"
+                android:layout_marginRight="80dp"
+                />
+        </com.michaldrabik.tapbarmenulib.TapBarMenu>
+    </FrameLayout>
 </RelativeLayout>
 

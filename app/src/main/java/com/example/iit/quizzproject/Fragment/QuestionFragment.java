@@ -1,8 +1,14 @@
 package com.example.iit.quizzproject.fragment;
 
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +18,13 @@ import android.widget.TextView;
 import com.example.iit.quizzproject.activity.QuestionActivity;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.QuestionSqlite;
+import com.michaldrabik.tapbarmenulib.TapBarMenu;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class QuestionFragment extends Fragment implements View.OnClickListener {
+
 
 
     static QuestionSqlite mQuestion;
@@ -26,8 +34,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     Button prop2;
     Button prop3;
     Button nextQuestion;
-
-    View view ;
+    View view;
 
 
     private static ClickButtonLisner mClickButtonLisner;
@@ -94,14 +101,17 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     public void validateAnswer(Button b1, Button b2, Button b3) {
 
        if (mQuestion.getAnswerFr().equals(b1.getText())) {
             b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_true));
            mClickButtonLisner.onClickButtonChoiceRepance(true);
+
         } else {
             b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_false));
            mClickButtonLisner.onClickButtonChoiceRepance(false);
+
             if (mQuestion.getAnswerFr().equals(b2.getText())) {
                 b2.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_true));
 
@@ -170,5 +180,6 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         public void endQuestion();
 
     }
+
 
 }
