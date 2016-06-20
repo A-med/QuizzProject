@@ -97,16 +97,16 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     public void validateAnswer(Button b1, Button b2, Button b3) {
 
        if (mQuestion.getAnswerFr().equals(b1.getText())) {
-            b1.setBackgroundColor(getResources().getColor(R.color.progress_color));
+            b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_true));
            mClickButtonLisner.onClickButtonChoiceRepance(true);
         } else {
-            b1.setBackgroundColor(getResources().getColor(R.color.mistake_color));
+            b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_false));
            mClickButtonLisner.onClickButtonChoiceRepance(false);
             if (mQuestion.getAnswerFr().equals(b2.getText())) {
-                b2.setBackgroundColor(getResources().getColor(R.color.progress_color));
+                b2.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_true));
 
             } else {
-                b3.setBackgroundColor(getResources().getColor(R.color.progress_color));
+                b3.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_true));
 
             }
         }
