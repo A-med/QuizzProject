@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class Profil extends Fragment implements View.OnClickListener {
     private static ArrayList<Person> mPersonsList = new ArrayList<Person>();
     ListView androidListView;
     ImageView profil_Toolbar;
+    Button play;
 
     private ListView mListView;
     private PersonAdapter mPersonAdapter;
@@ -63,7 +65,8 @@ public class Profil extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.profil, container, false);
         profil_Toolbar = (ImageView) view.findViewById(R.id.profil_Toolbar);
         profil_Toolbar.setOnClickListener(this);
-
+        play=(Button) view.findViewById(R.id.play_g);
+        play.setOnClickListener(this);
         mListView = (ListView) view.findViewById(R.id.list_view);
         // textAnim = (TextView) view.findViewById(R.id.anim);
         //textAnim.startAnimation(AnimationUtils.loadAnimation(getActivity(),android.R.anim.fade_out));
@@ -90,8 +93,14 @@ public class Profil extends Fragment implements View.OnClickListener {
                 Log.v("---->","Toolbar pressed --");
                 openToolbar();
                 break;
+            case R.id.play_g:
+                launchPlay();
 
         }
+    }
+
+    private void launchPlay() {
+        mClickButtonLisner.playFromProfil();
     }
 
     void openToolbar(){
@@ -102,6 +111,7 @@ public class Profil extends Fragment implements View.OnClickListener {
 
     public interface ClickButtonLisner {
         public void onFinishClickButtonProfile();
+        public void playFromProfil();
 
     }
 

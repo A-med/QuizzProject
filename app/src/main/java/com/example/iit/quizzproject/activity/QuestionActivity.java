@@ -60,18 +60,19 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
     /*khedmet sdiri*/
     TapBarMenu tapBarMenu;
-    int btnVolumePressed = 1;
-    int btnVibratorPressed = 1;
+    int stateMusique=0;
+
+    ;
     int state = 0;
     Button buttonPlay;
     Button buttonVibrator;
     MediaPlayer mp;
+    MediaPlayer mpLost;
+    MediaPlayer mpWin;
     Vibrator v;
 
-    int switchoff;
-    int switchon;
-    int off = 0;
-    int on = 1;
+    int etat_v=1;
+
     /*fin khedmet sdiri*/
 
 
@@ -117,43 +118,39 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
     }
 
 
-       @Override
-       protected void onPause() {
-           super.onPause();
-           if (mp!=null)
-           {
+    @Override
+    protected void onPause() {
+        super.onPause();
 
-               mp.stop();
-           }
-       }
+        if(stateMusique==1) {
+            mp.stop();
+        }
+
+    }
 
 
-       public void settingVibrator() {
-           if (state == on) {
-               Log.i("off", "stateon " + state);
-               switchon = on;
-               switchoff = off;
-               Log.i("off", "switchon " + switchon);
-               state = off;
-               buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_vibration_white_24dp));
-               //Log.i("off","off"+state);
-           } else if (state == off) {
-               Log.i("off", "stateoff " + state);
-               switchoff = on;
-               switchon = off;
-               Log.i("off", "switchoff " + switchoff);
-               state = on;
-               buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_smartphone_white_24dp));
-               //  Log.i("off","on"+state);
-           }
-       }
+    public void settingVibrator() {
+        if (etat_v == 0) {
+
+
+            etat_v=1;
+
+            buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_vibration_white_24dp));
+            //Log.i("off","off"+state);
+        } else if (etat_v == 1) {
+
+            etat_v=0;
+            buttonVibrator.setBackground(getResources().getDrawable(R.drawable.ic_smartphone_white_24dp));
+
+        }
+    }
 
     public void playsetVibrator(long time) {
         android.os.Vibrator vibrator = (android.os.Vibrator) this.getApplication().getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);                 //   v.vibrate(500);Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(time);
     }
 
-    /*fin khedmet sdiri*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -195,10 +192,10 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
                 buttonLangue.setVisibility(View.INVISIBLE);
                 launchScoreFragment(false);
                 verifLanchingScore = true;
-                if (mp!=null)
-                {
+                if(stateMusique==1) {
                     mp.stop();
                 }
+
 
 
             }
@@ -217,7 +214,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         ComplexityMode = getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE);
         Log.v("ComplexityMode : ", ComplexityMode);
         if (ComplexityMode.equals("Easy")) {
-            animation.setDuration(20000);
+            animation.setDuration(180000);
         }
         if (ComplexityMode.equals("Medium")) {
             animation.setDuration(120000);
@@ -237,9 +234,23 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         buttonPlay.setOnClickListener(this);
         buttonVibrator = (Button) findViewById(R.id.buttonvibrator);
         buttonVibrator.setOnClickListener(this);
+        Intent intent = getIntent();
+        Log.v("intent",intent.getIntExtra("vibration",20)+" ");
+        Log.v("intent",intent.getIntExtra("musique",20)+" ");
+        if(intent.getIntExtra("vibration",20)==1)
+        {
+            etat_v=1;
 
 
-        /*fin khedmet sdiri*/
+        }
+
+        if(intent.getIntExtra("musique",20)==1)
+        {
+            stateMusique=0;
+            editMusic();
+        }
+
+
 
         lanchQuestionFragment();
 
@@ -415,17 +426,52 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
     }
 
+    public void lostSong()
+    {
+        mpLost = MediaPlayer.create(this, R.raw.wrong);
+        mpLost.start();
+        mpLost.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mpLost) {
+                mpLost.release();
+
+
+            }
+        });
+    }
+    public void winSong()
+    {
+        mpWin = MediaPlayer.create(this, R.raw.win);
+        mpWin.start();
+        mpWin.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mpWin) {
+                mpWin.release();
+
+
+            }
+        });
+    }
+
     @Override
     public void onClickButtonChoiceRepance(Boolean reponce) {
         if (reponce == true) {
+
+            if(stateMusique ==1)
+            {
+                winSong();
+            }
             addScore();
             arrayCompatButton.get(indexQuestion).setBackgroundDrawable(getResources().getDrawable(R.drawable.cercle_question_green));
 
         } else {
+            if(stateMusique ==1)
+            {
+                lostSong();
+            }
             arrayCompatButton.get(indexQuestion).setBackgroundDrawable(getResources().getDrawable(R.drawable.cercle_question_red));
-            if (switchoff == 0 && switchon == 1) {
-                Log.i("off", "switchoff if=0  " + switchoff);
-                Log.i("off", "switchoff if=1  " + switchon);
+            if (etat_v==1) {
+
 
                 playsetVibrator(500);
             }
@@ -488,7 +534,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
     @Override
     public void onClick(View v) {
-        btnVolumePressed++;
+
         switch (v.getId()) {
             case (R.id.langue):
                 changeLangue();
@@ -511,13 +557,15 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
     public void editMusic() {
 
-        if (btnVolumePressed % 2 == 0) {
+        if (stateMusique == 1) {
 
+            stateMusique=0;
             buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_up));
-            if (mp!=null) {
-                mp.stop();
-            }
+
+            mp.stop();
+
         } else {
+            stateMusique=1;
             Log.i("TAG", "volume_off");
             buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_off));
 
@@ -527,8 +575,8 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     mp.release();
-                    mp = null;
-                  //  buttonPlay.setEnabled(false);
+
+
                 }
             });
         }
@@ -538,6 +586,8 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         finish();
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("musique",stateMusique);
+        intent.putExtra("vibration",etat_v);
         startActivity(intent);
     }
 
