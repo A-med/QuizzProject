@@ -16,7 +16,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/me"
+        android:src="@mipmap/profilf"
         app:civ_border_color="@color/colorWhite"
         app:civ_border_width="2dp"/>
 

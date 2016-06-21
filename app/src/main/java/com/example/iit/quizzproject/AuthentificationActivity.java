@@ -264,8 +264,8 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        Profil.nameValue = user.getUsername();
-
+                        Profil.nameValue = user.get("fname").toString();
+                        Profil.lastNameValue = user.get("lname").toString();
                         progressDialog.dismiss();
                         startActivity(intent);
                         finish();
