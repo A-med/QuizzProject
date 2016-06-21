@@ -49,6 +49,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
     private static final long RIPPLE_DURATION = 250;
     ProfileFragment fragment;
@@ -58,13 +59,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Fragment themeFragment;
     private Toolbar toolbar;
     String theme;
+
+    int musique=0;
+    int vibration=0;
+
+
     int randQuestionId;
+
     public static ArrayList<Question> questionList = new ArrayList<>();
 
     public ArrayList<Question> getQuestionList() {
         return questionList;
     }
-    public static  int connectWithFb;
+    public static  int connectWithFb=0;
     public void setQuestionList(ArrayList<Question> questionList) {
         this.questionList = questionList;
     }
@@ -84,15 +91,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             launchProfile();
         }
+
+        if(intent.getIntExtra("musique",20)==1)
+        {
+            musique=1;
+        }else
+            musique=0;
+        if(intent.getIntExtra("vibration",20)==1)
+        {
+            vibration=1;
+        }else
+            vibration=0;
+
         if((isOnline(getBaseContext())))
         {
-        try {
-            verifSqliteParseSize();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }}
-        checkDataBase();
-        selectAllLangage();
+            try {
+                verifSqliteParseSize();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }}
+
+        //selectAllLangage();
+
 
         if(connectWithFb==1) {
             Bundle inBundle = getIntent().getExtras();
@@ -121,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return false;
     }
+
 
     private boolean checkDataBase() {
         SQLiteDatabase checkDB = null;
@@ -270,6 +291,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
 
             deleteTableSqlLite();
+            checkDataBase();
             getAllParseLanguage();
 
             return 1;
@@ -325,14 +347,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setCustomAnimations(R.animator.card_float_left_in,
                         R.animator.card_float_left_out,
                         R.animator.card_float_left_in,
-                        R.animator.card_float_left_out).replace(R.id.content, Settings.newInstance(this)).commit();
+                        R.animator.card_float_left_out).replace(R.id.content, Settings.newInstance(this,musique,vibration)).commit();
 
 
     }
 
     private void launchProfile() {
 
-       // readJson();
+        // readJson();
 
 
         getFragmentManager().beginTransaction()
@@ -395,10 +417,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void playFromProfil() {
+        launchPlay();
+    }
+
+    @Override
     public void onFinishClickButtonSettings() {
 
         launchToolbar("settings");
 
+
+    }
+
+    @Override
+    public void changeStateMusique(boolean b) {
+        if(b==true)
+            musique=1;
+        else
+            musique=0;
+    }
+
+    @Override
+    public void changeStateVibration(boolean b) {
+        if(b==true)
+            vibration=1;
+        else
+            vibration=0;
 
     }
 
@@ -505,80 +549,82 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-   /* public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("questionJson");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
+    /* public String loadJSONFromAsset() {
+         String json = null;
+         try {
+             InputStream is = getAssets().open("questionJson");
+             int size = is.available();
+             byte[] buffer = new byte[size];
+             is.read(buffer);
+             is.close();
+             json = new String(buffer, "UTF-8");
+         } catch (IOException ex) {
+             ex.printStackTrace();
+             return null;
+         }
+         return json;
+     }
 
-    void readJson() {
+     void readJson() {
 
-        try {
+         try {
 
-            JSONObject obj = new JSONObject(loadJSONFromAsset());
+             JSONObject obj = new JSONObject(loadJSONFromAsset());
 
-            JSONArray m_jArry = obj.getJSONArray("question");
+             JSONArray m_jArry = obj.getJSONArray("question");
 
-            ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> m_li;
-
-
-            for (int i = 0; i < m_jArry.length(); i++) {
-                JSONObject jo_inside = m_jArry.getJSONObject(i);
-                Question question = new Question();
-                Log.d("Details-->", jo_inside.getString("proposition1"));
-                String quest = jo_inside.getString("text_question");
+             ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
+             HashMap<String, String> m_li;
 
 
-                String prop_1 = jo_inside.getString("proposition1");
-                String prop_2 = jo_inside.getString("proposition2");
-                String prop_3 = jo_inside.getString("proposition3");
-                String answer = jo_inside.getString("answer");
-
-                question.setText_question(quest);
-                question.setProposition1(prop_1);
-                question.setProposition2(prop_2);
-                question.setProposition3(prop_3);
-                question.setAnswer(answer);
-
-                questionList.add(question);
-
-                //Add your values in your `ArrayList` as below:
-                m_li = new HashMap<String, String>();
-                m_li.put("text_question", quest);
-                m_li.put("proposition1", prop_1);
-                m_li.put("proposition2", prop_2);
-                m_li.put("proposition3", prop_3);
-                m_li.put("answer", answer);
-
-                formList.add(m_li);
-            }
-            for (int i = 0; i < formList.size(); i++) {
-
-                Log.v("Json Question ", formList.get(i).toString());
-            }
+             for (int i = 0; i < m_jArry.length(); i++) {
+                 JSONObject jo_inside = m_jArry.getJSONObject(i);
+                 Question question = new Question();
+                 Log.d("Details-->", jo_inside.getString("proposition1"));
+                 String quest = jo_inside.getString("text_question");
 
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                 String prop_1 = jo_inside.getString("proposition1");
+                 String prop_2 = jo_inside.getString("proposition2");
+                 String prop_3 = jo_inside.getString("proposition3");
+                 String answer = jo_inside.getString("answer");
+
+                 question.setText_question(quest);
+                 question.setProposition1(prop_1);
+                 question.setProposition2(prop_2);
+                 question.setProposition3(prop_3);
+                 question.setAnswer(answer);
+
+                 questionList.add(question);
+
+                 //Add your values in your `ArrayList` as below:
+                 m_li = new HashMap<String, String>();
+                 m_li.put("text_question", quest);
+                 m_li.put("proposition1", prop_1);
+                 m_li.put("proposition2", prop_2);
+                 m_li.put("proposition3", prop_3);
+                 m_li.put("answer", answer);
+
+                 formList.add(m_li);
+             }
+             for (int i = 0; i < formList.size(); i++) {
+
+                 Log.v("Json Question ", formList.get(i).toString());
+             }
 
 
-    }*/
+         } catch (JSONException e) {
+             e.printStackTrace();
+         }
+
+
+     }*/
     public void startQuestionActivity(String comp)
     {
         Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
         intent.putExtra(EXTRA_MESSAGE, comp);
+        intent.putExtra("vibration", vibration);
+        intent.putExtra("musique", musique);
         startActivity(intent);
         finish();
     }

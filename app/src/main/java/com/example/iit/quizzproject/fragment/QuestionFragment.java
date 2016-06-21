@@ -101,33 +101,15 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     @TargetApi(Build.VERSION_CODES.M)
     public void validateAnswer(Button b1, Button b2, Button b3) {
 
-       if (mQuestion.getAnswerFr().equals(b1.getText())) {
+        if (mQuestion.getAnswerFr().equals(b1.getText())) {
             b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_true));
-           mClickButtonLisner.onClickButtonChoiceRepance(true);
-           mp = MediaPlayer.create(getActivity(), R.raw.win);
-           mp.start();
-           mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-               @Override
-               public void onCompletion(MediaPlayer mp) {
-                   mp.release();
-                   mp = null;
+            mClickButtonLisner.onClickButtonChoiceRepance(true);
 
-               }
-           });
 
         } else {
             b1.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_false));
-           mClickButtonLisner.onClickButtonChoiceRepance(false);
-           mp = MediaPlayer.create(getActivity(), R.raw.wrong);
-           mp.start();
-           mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-               @Override
-               public void onCompletion(MediaPlayer mp) {
-                   mp.release();
-                   mp = null;
+            mClickButtonLisner.onClickButtonChoiceRepance(false);
 
-               }
-           });
 
             if (mQuestion.getAnswerFr().equals(b2.getText())) {
                 b2.setBackgroundDrawable(getResources().getDrawable(R.drawable.circle_button_true));

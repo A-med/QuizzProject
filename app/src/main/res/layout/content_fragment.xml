@@ -114,7 +114,7 @@
 
 
     <Button
-        android:id="@+id/play"
+        android:id="@+id/play_g"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
