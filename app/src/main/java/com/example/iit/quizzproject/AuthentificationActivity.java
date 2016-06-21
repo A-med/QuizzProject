@@ -288,9 +288,7 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         switch (v.getId()) {
             case R.id.btnSingIn: //Pour authentifier via parse back for app
                 login();
-                /* MainActivity.connectWithFb=0;
-                i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);*/
+
                 break;
             case R.id.btnSignUp:
                 i = new Intent(getApplicationContext(), SignUpActivity.class);
