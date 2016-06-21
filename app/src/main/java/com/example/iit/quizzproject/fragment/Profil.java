@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.iit.quizzproject.CircleImageView;
 import com.example.iit.quizzproject.DownloadImageFacebook;
 import com.example.iit.quizzproject.R;
+import com.example.iit.quizzproject.activity.MainActivity;
 import com.example.iit.quizzproject.core.Person;
 import com.example.iit.quizzproject.ui.PersonAdapter;
 
@@ -77,8 +78,9 @@ public class Profil extends Fragment implements View.OnClickListener {
         name.setText(nameValue);
         lastName.setText(lastNameValue);
 
-        new DownloadImageFacebook((ImageView) view.findViewById(R.id.circle)).execute(imageValue);
-
+        if(MainActivity.connectWithFb==1) {
+            new DownloadImageFacebook((ImageView) view.findViewById(R.id.circle)).execute(imageValue);
+        }
 
         return view ;
     }

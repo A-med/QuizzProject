@@ -9,10 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.iit.quizzproject.fragment.Profil;
 import com.facebook.AccessToken;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
+import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.Arrays;
 
@@ -65,15 +68,18 @@ public class SignUpActivity extends Activity implements View.OnClickListener {
         Log.v("fnameee+++++",login);
         Log.v("fnameee+++++",email);
 
+
         ParseUser pu = new ParseUser();
         pu.put("fname", fname);
+
         pu.put("lname",lname);
+
         pu.put("password", pwd);
         pu.put("username", login);
         pu.put("email", email);
 
-        pu.saveInBackground();
-
+        pu.signUpInBackground();
+        pu.pinInBackground();
     }
 
     private void backToSignIn(){

@@ -18,14 +18,14 @@ public class App extends Application {
         initTypeface();
 
 
-        Parse.enableLocalDatastore(this);
+        Parse.enableLocalDatastore(this.getBaseContext());
 
 
         // Add your initialization code here
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("HSRrDlyK6Z2oki4bfNCfZiWxOfC1rL9HQMUpSZlL")
                 .clientKey("rK89iYwjw6dp2mY2JNLPEi4Dd8E86XH3NHE4GzRD")
-                .server("https://parseapi.back4app.com").build());
+                .server("https://parseapi.back4app.com").enableLocalDataStore().build());
 
 
         //ParseUser.enableAutomaticUser();

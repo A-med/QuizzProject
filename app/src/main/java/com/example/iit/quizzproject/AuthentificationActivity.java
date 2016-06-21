@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.example.iit.quizzproject.activity.MainActivity;
 import com.example.iit.quizzproject.core.Person;
+import com.example.iit.quizzproject.fragment.Profil;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -262,6 +263,7 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Profil.nameValue=user.getUsername();
 
                     progressDialog.dismiss();
                     startActivity(intent);
