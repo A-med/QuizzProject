@@ -30,7 +30,8 @@
             android:id="@+id/center_box"
             android:layout_width="160dp"
             android:layout_height="180dp"
-            android:background="@drawable/shape"
+            android:src="@mipmap/quizz"
+
             android:layout_marginTop="90dp"
             android:layout_marginLeft="90dp"
 

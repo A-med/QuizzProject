@@ -6,6 +6,12 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 
+import com.facebook.AccessToken;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+
+import java.util.Arrays;
+
 public class SignUpActivity extends Activity implements View.OnClickListener {
 
     private Button mBack;
@@ -28,6 +34,8 @@ public class SignUpActivity extends Activity implements View.OnClickListener {
 
 
     }
+
+
     private void backToSignIn(){
         Intent i= new Intent(getApplicationContext(),AuthentificationActivity.class);
         startActivity(i);
