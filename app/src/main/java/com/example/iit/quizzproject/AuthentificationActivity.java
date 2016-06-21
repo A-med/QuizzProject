@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,8 +25,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.iit.quizzproject.activity.*;
+import com.example.iit.quizzproject.activity.MainActivity;
+import com.example.iit.quizzproject.core.Person;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import java.util.HashMap;
 
@@ -52,8 +65,6 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
     private AnimatorSet mAnimatorSet;
 
 
-
-
     private boolean mSecondPageSelected;
     private HashMap<ImageView, Float> mOriginalXValuesMap = new HashMap<>();
     private int mSelectedPosition = -1;
@@ -76,15 +87,100 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     private Button btnSignUp;
     private Button btnSignIn;
+    private CallbackManager callbackManager;
+    private AccessTokenTracker accessTokenTracker;
+    private ProfileTracker profileTracker;
+
+    private LoginButton logInfb;
+
+
+    /* face*/ private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            Profile profile = Profile.getCurrentProfile();
+            Log.v("name", profile.getFirstName());
+            Log.v("surname", profile.getLastName());
+            nextActivity(profile);
+            Log.v("name", profile.getFirstName());
+
+        }
+
+        @Override
+        public void onCancel() {
+
+        }
+
+        @Override
+        public void onError(FacebookException e) {
+
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FacebookSdk.sdkInitialize(getApplicationContext());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
+                   /*face*/
+        callbackManager = CallbackManager.Factory.create();
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
+            }
+        };
+
+        profileTracker = new ProfileTracker() {
+
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile newProfile) {
+
+                nextActivity(newProfile);
+            }
+        };
+        accessTokenTracker.startTracking();
+        profileTracker.startTracking();
+        callback = new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                AccessToken accessToken = loginResult.getAccessToken();
+                Profile profile = Profile.getCurrentProfile();
+
+                nextActivity(profile);
+                Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
+
+
+            }
+
+
+            @Override
+            public void onCancel() {
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+                Log.v("error facebook", e.getMessage());
+            }
+
+        };
         setUpViews();
 
 
+    }
+
+    private void nextActivity(Profile profile) {
+
+        if (profile != null) {
+
+
+            Intent main = new Intent(getApplicationContext(), MainActivity.class);
+            main.putExtra("name", profile.getFirstName());
+            main.putExtra("surname", profile.getLastName());
+            main.putExtra("imageUrl", profile.getProfilePictureUri(200, 200).toString());
+            MainActivity.connectWithFb=1;
+            startActivity(main);
+        }
     }
 
 
@@ -93,13 +189,16 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         Intent i = null;
         switch (v.getId()) {
             case R.id.btnSingIn: //Pour authentifier via parse back for app
-             i = new Intent(getApplicationContext(),MainActivity.class);
-             startActivity(i);
-               break;
+                MainActivity.connectWithFb=0;
+                i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+                break;
             case R.id.btnSignUp:
                 i = new Intent(getApplicationContext(), SignUpActivity.class);
                 startActivity(i);
                 break;
+
+
         }
 
 
@@ -370,7 +469,6 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         }
 
 
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -407,6 +505,8 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
             } else if (position == 1) {
 
                 id = R.layout.second_screen;
+
+
             } else if (position == 2) {
 
                 id = R.layout.third_screen;
@@ -415,6 +515,12 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         }
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private void initFirstScreenViews(View rootView, final Bundle savedInstanceState) {
@@ -521,6 +627,8 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     }
 
+    private Button b;
+
     private void initSecondScreenViews(View rootView, Bundle savedInstanceState) {
 
         final RelativeLayout secondScreenRoot = (RelativeLayout) rootView.findViewById(R.id.root);
@@ -532,16 +640,20 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         btnSignIn.setOnClickListener(this);
 
 
+        logInfb = (LoginButton) rootView.findViewById(R.id.login_button_fb);
+        logInfb.setReadPermissions("user_friends");
+        logInfb.registerCallback(callbackManager, callback);
+
     }
 
 
     private void initThirdScreenViews(View rootView, Bundle savedInstanceState) {
 
         mRoundView = (ThirdScreenView) rootView.findViewById(R.id.round_view);
-        mLetsGoButton = (Button) rootView.findViewById(R.id.letsgo);
+        //    mLetsGoButton = (Button) rootView.findViewById(R.id.login_button);
 
-        mLetsGoButton.setOnClickListener(clickListener);
-        mRoundView.setContext(this);
+//        mLetsGoButton.setOnClickListener(clickListener);
+        //      mRoundView.setContext(this);
 
     }
 
@@ -551,11 +663,11 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
             switch (v.getId()) {
 
-                case R.id.letsgo:
+                //  case R.id.login_button:
 
-                    mRoundView.startNextScreen();
+                //   mRoundView.startNextScreen();
 
-                    break;
+                //   break;
 
             }
 
