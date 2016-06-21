@@ -17,7 +17,7 @@ public class QuestionSqlite  {
     private String proposition3An;
     private String answerFr;
     private String answerAn;
-
+    private int theme;
     public QuestionSqlite() {
     }
 
@@ -99,6 +99,14 @@ public class QuestionSqlite  {
 
     public void setAnswerAn(String answerAn) {
         this.answerAn = answerAn;
+    }
+
+    public int getTheme() {
+        return theme;
+    }
+
+    public void setTheme(int theme) {
+        this.theme = theme;
     }
 }
 

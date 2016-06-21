@@ -2,10 +2,12 @@ package com.example.iit.quizzproject.activity;
 
 import android.app.Fragment;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -82,11 +84,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             launchProfile();
         }
+        if((isOnline(getBaseContext())))
+        {
         try {
             verifSqliteParseSize();
         } catch (ParseException e) {
             e.printStackTrace();
-        }
+        }}
         checkDataBase();
         selectAllLangage();
 
@@ -97,7 +101,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Uri uri=getContentResolver().insert(  cprovider.tableuri, contentValues);
     }
-
+    public boolean isOnline(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
+        if (networkinfo != null && networkinfo.isConnected()) {
+            return true;
+        }
+        return false;
+    }
 
     private boolean checkDataBase() {
         SQLiteDatabase checkDB = null;

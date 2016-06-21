@@ -58,7 +58,7 @@
             android:background="@drawable/shape"
             android:layout_gravity="center"
             android:layout_marginLeft="5sp"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
 
             android:textStyle="bold"
@@ -76,7 +76,7 @@
             android:background="@drawable/shape"
             android:layout_marginLeft="5sp"
             android:layout_gravity="center"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
 
             android:textStyle="bold"
@@ -92,7 +92,7 @@
             android:textSize="13sp"
             android:layout_marginLeft="10sp"
             android:background="@drawable/shape"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
             android:layout_gravity="center"
 
@@ -109,7 +109,7 @@
             android:text="REFLECTION"
             android:textSize="13sp"
             android:background="@drawable/shape"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
             android:layout_gravity="center"
 
@@ -126,7 +126,7 @@
             android:layout_marginLeft="5sp"
             android:textSize="13sp"
             android:background="@drawable/shape"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
             android:layout_gravity="center"
             android:textStyle="bold"
@@ -142,7 +142,7 @@
             android:textSize="13sp"
             android:layout_marginLeft="10sp"
             android:background="@drawable/shape"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
             android:layout_gravity="center"
 
@@ -158,7 +158,7 @@
             android:text="GENERAL CULTURE"
             android:textSize="13sp"
             android:background="@drawable/shape"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
             android:layout_gravity="center"
             android:textStyle="bold"
@@ -171,7 +171,7 @@
             android:layout_width="110sp"
             android:layout_height="110sp"
             android:text="HEALTH"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
             android:layout_marginLeft="5sp"
             android:textSize="13sp"
             android:background="@drawable/shape"
@@ -191,7 +191,7 @@
             android:textSize="13sp"
             android:layout_marginLeft="10sp"
             android:background="@drawable/shape"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
             android:layout_gravity="center"
 
@@ -206,7 +206,7 @@
             android:text="POLICY"
             android:textSize="13sp"
             android:background="@drawable/shape"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="15sp"
 
             android:layout_gravity="center"
 
