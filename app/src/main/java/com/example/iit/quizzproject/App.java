@@ -4,7 +4,7 @@ import android.app.Application;
 import android.graphics.Typeface;
 
 
-
+import com.facebook.FacebookSdk;
 import com.parse.Parse;
 import com.parse.ParseACL;
 
@@ -33,6 +33,7 @@ public class App extends Application {
         // Optionally enable public read access.
         defaultACL.setPublicReadAccess(true);
         ParseACL.setDefaultACL(defaultACL, true);
+
     }
 
     private void initTypeface() {

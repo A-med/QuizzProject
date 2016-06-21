@@ -21,6 +21,11 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="rK89iYwjw6dp2mY2JNLPEi4Dd8E86XH3NHE4GzRD" />
         <activity android:name=".AuthentificationActivity">
+
+        </activity>
+
+
+        <activity android:name=".activity.RedirectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

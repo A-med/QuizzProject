@@ -3,6 +3,7 @@ package com.example.iit.quizzproject;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -39,6 +41,8 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.parse.LogInCallback;
+import com.parse.ParseUser;
 
 import java.util.HashMap;
 
@@ -64,7 +68,7 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     private AnimatorSet mAnimatorSet;
 
-
+    ProgressDialog progressDialog;
     private boolean mSecondPageSelected;
     private HashMap<ImageView, Float> mOriginalXValuesMap = new HashMap<>();
     private int mSelectedPosition = -1;
@@ -87,10 +91,12 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
 
     private Button btnSignUp;
     private Button btnSignIn;
+
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
-
+    private EditText txtLogin;
+    private EditText txtPwd;
     private LoginButton logInfb;
 
 
@@ -130,6 +136,9 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
             protected void onCurrentAccessTokenChanged(AccessToken oldToken, AccessToken newToken) {
             }
         };
+
+
+
 
         profileTracker = new ProfileTracker() {
 
@@ -183,20 +192,109 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         }
     }
 
+    public void login() {
+
+
+        if (!validate()) {
+            onLoginFailed();
+            return;
+        }
+
+        btnSignIn.setEnabled(false);
+
+        progressDialog = new ProgressDialog(AuthentificationActivity.this);
+        progressDialog.setIndeterminate(true);
+
+        progressDialog.setMessage("Execute...");
+        progressDialog.show();
+
+        String ref = txtLogin.getText().toString();
+        String pass = txtPwd.getText().toString();
+
+        try {
+            onLoginSuccess(ref, pass);
+        } catch (com.parse.ParseException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    public void onLoginFailed() {
+        Toast.makeText(getBaseContext(), "Invalide Authentification", Toast.LENGTH_LONG).show();
+
+        btnSignIn.setEnabled(true);
+    }
+
+    public boolean validate() {
+        boolean valid = true;
+
+        String ref = txtLogin.getText().toString();
+        String pass = txtPwd.getText().toString();
+
+        if (ref.isEmpty()) {
+            txtLogin.setError("Invalid Reference");
+            valid = false;
+        } else {
+            txtPwd.setError(null);
+        }
+
+        if (pass.isEmpty()) {
+            txtPwd.setError("Invalide Password");
+            valid = false;
+        } else {
+            txtLogin.setError(null);
+        }
+
+        return valid;
+    }
+
+    public void onLoginSuccess(String login, String pwd) throws com.parse.ParseException {
+
+        btnSignIn.setEnabled(true);
+        ParseUser.logInInBackground(login, pwd, new LogInCallback() {
+            @Override
+            public void done(ParseUser user, com.parse.ParseException e) {
+
+
+                if (e == null && user != null) {
+
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                    progressDialog.dismiss();
+                    startActivity(intent);
+                    finish();
+
+                } else if (user == null) {
+                    Toast.makeText(AuthentificationActivity.this, "Reference or Password invalide", Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                }
+
+
+            }
+
+        });
+
+
+    }
 
     @Override
     public void onClick(View v) {
         Intent i = null;
         switch (v.getId()) {
             case R.id.btnSingIn: //Pour authentifier via parse back for app
-                MainActivity.connectWithFb=0;
+                login();
+                /* MainActivity.connectWithFb=0;
                 i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
+                startActivity(i);*/
                 break;
             case R.id.btnSignUp:
                 i = new Intent(getApplicationContext(), SignUpActivity.class);
                 startActivity(i);
                 break;
+
 
 
         }
@@ -636,8 +734,17 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         btnSignUp = (Button) rootView.findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(this);
 
-        btnSignIn = (Button) rootView.findViewById(R.id.btnSingIn);
+        btnSignIn = (Button)rootView.findViewById(R.id.btnSingIn);
         btnSignIn.setOnClickListener(this);
+
+
+        txtLogin = (EditText)rootView.findViewById(R.id.input_email);
+        txtPwd = (EditText) rootView.findViewById(R.id.input_password);
+
+
+
+       // btnSignIn = (Button) rootView.findViewById(R.id.btnSingIn);
+      //  btnSignIn.setOnClickListener(this);
 
 
         logInfb = (LoginButton) rootView.findViewById(R.id.login_button_fb);
