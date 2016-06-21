@@ -235,14 +235,14 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
         String pass = txtPwd.getText().toString();
 
         if (ref.isEmpty()) {
-            txtLogin.setError("Invalid Reference");
+           // txtLogin.setError("Invalid Reference");
             valid = false;
         } else {
             txtPwd.setError(null);
         }
 
         if (pass.isEmpty()) {
-            txtPwd.setError("Invalide Password");
+          //  txtPwd.setError("Invalide Password");
             valid = false;
         } else {
             txtLogin.setError(null);
@@ -254,30 +254,31 @@ public class AuthentificationActivity extends AppCompatActivity implements View.
     public void onLoginSuccess(String login, String pwd) throws com.parse.ParseException {
 
         btnSignIn.setEnabled(true);
-        ParseUser.logInInBackground(login, pwd, new LogInCallback() {
-            @Override
-            public void done(ParseUser user, com.parse.ParseException e) {
+
+            ParseUser.logInInBackground(login, pwd, new LogInCallback() {
+                @Override
+                public void done(ParseUser user, com.parse.ParseException e) {
 
 
-                if (e == null && user != null) {
+                    if (e == null && user != null) {
 
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    Profil.nameValue=user.getUsername();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Profil.nameValue = user.getUsername();
 
-                    progressDialog.dismiss();
-                    startActivity(intent);
-                    finish();
+                        progressDialog.dismiss();
+                        startActivity(intent);
+                        finish();
 
-                } else if (user == null) {
-                    Toast.makeText(AuthentificationActivity.this, "Reference or Password invalide", Toast.LENGTH_LONG).show();
-                    progressDialog.dismiss();
+                    } else if (user == null) {
+                        Toast.makeText(AuthentificationActivity.this, "Reference or Password invalide", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
+                    }
+
+
                 }
 
-
-            }
-
-        });
+            });
 
 
     }
