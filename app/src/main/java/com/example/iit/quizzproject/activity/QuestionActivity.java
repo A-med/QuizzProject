@@ -192,7 +192,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
             public void onAnimationEnd(Animator animation) {
 
 
-
+                buttonLangue.setVisibility(View.INVISIBLE);
                 launchScoreFragment(false);
                 verifLanchingScore = true;
                 if (mp!=null)
@@ -284,10 +284,11 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
             while ((line = r.readLine()) != null) {
 
-                contentValues.put(QuestionLangage.ANGLAIS, line);
+                contentValues.put(QuestionLangage.FRANCAIS, line);
                 line = r.readLine();
 
-                contentValues.put(QuestionLangage.FRANCAIS, line);
+
+                contentValues.put(QuestionLangage.ANGLAIS, line);
                 uri = getContentResolver().insert(
                         TestContentProvider.RECORDS_CONTENT_URI_LANGAGE,
                         contentValues);
@@ -513,7 +514,9 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         if (btnVolumePressed % 2 == 0) {
 
             buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_up));
-            mp.stop();
+            if (mp!=null) {
+                mp.stop();
+            }
         } else {
             Log.i("TAG", "volume_off");
             buttonPlay.setBackground(getResources().getDrawable(R.drawable.volume_off));
@@ -533,6 +536,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
     public void gameClosed() {
         finish();
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     }
