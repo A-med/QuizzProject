@@ -68,6 +68,22 @@ public class TestContentProvider extends ContentProvider {
                 rowsDeleted = sqlDB.delete(QuestionListSqlite.TABLE_QUESTIONS, selection,
                         selectionArgs);
                 break;
+            case LANGAGE_ALL:
+                rowsDeleted = sqlDB.delete(QuestionLangage.TABLE_QUESTIONS, selection,
+                        selectionArgs);
+                break;
+            case LANGAGE_ID:
+                //retrieve the record id to delete
+                id = uri.getLastPathSegment();
+                if (TextUtils.isEmpty(selection)) {
+                    rowsDeleted = sqlDB.delete(QuestionLangage.TABLE_QUESTIONS,
+                            QuestionList._ID + "=" + id, null);
+                } else {
+                    rowsDeleted = sqlDB.delete(QuestionLangage.TABLE_QUESTIONS,
+                            QuestionList._ID + "=" + id + " and " + selection,
+                            selectionArgs);
+                }
+                break;
             case RECORD_ID:
                 //retrieve the record id to delete
                 id = uri.getLastPathSegment();

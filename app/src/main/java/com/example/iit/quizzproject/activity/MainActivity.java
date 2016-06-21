@@ -1,13 +1,23 @@
 package com.example.iit.quizzproject.activity;
 
 import android.app.Fragment;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.example.iit.quizzproject.core.QuestionInsert;
+import com.example.iit.quizzproject.core.QuestionLang;
+import com.example.iit.quizzproject.database.TestContentProvider;
+import com.example.iit.quizzproject.database.tables.QuestionLangage;
+import com.example.iit.quizzproject.database.tables.QuestionListSqlite;
 import com.example.iit.quizzproject.fragment.Profil;
 import com.example.iit.quizzproject.fragment.SelectComplexity;
 import com.example.iit.quizzproject.fragment.SelectTheme;
@@ -21,6 +31,10 @@ import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.Person;
 
 import com.example.iit.quizzproject.core.Question;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 
 import java.util.ArrayList;
@@ -30,6 +44,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, guillotine.ClickButtonGuillotineLisner, SelectTheme.ClickButtonThemeLisner, Profil.ClickButtonLisner, Settings.ClickButtonLisner, SelectComplexity.ClickButtonComplexityLisner, SelectTypeGame.ClickButtonTypeGameLisner {
@@ -41,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Fragment themeFragment;
     private Toolbar toolbar;
     String theme;
-
+    int randQuestionId;
     public static ArrayList<Question> questionList = new ArrayList<>();
 
     public ArrayList<Question> getQuestionList() {
@@ -67,7 +82,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             launchProfile();
         }
-
+        try {
+            verifSqliteParseSize();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        checkDataBase();
+        selectAllLangage();
 
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setOnClickListener(this);
@@ -78,8 +99,160 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    private boolean checkDataBase() {
+        SQLiteDatabase checkDB = null;
+        try {
+
+            checkDB = SQLiteDatabase.openDatabase("/data/data/com.example.iit.quizzproject/databases/quizz.db", null, SQLiteDatabase.OPEN_READWRITE);
+            // Log.v("Base de donnee  ","TAble name"+SQLiteDatabase.findEditTable("questions"));
+            Log.v("Base de donnee", "Base created Path=" + checkDB.getPath() + "   Version = " + checkDB.getVersion());
 
 
+            checkDB.close();
+        } catch (SQLiteException e) {
+            // base de données n'existe pas.
+            ;
+            //  Log.v("Record URI",TestContentProvider.RECORDS_CONTENT_URI.toString());
+        }
+        return checkDB != null ? true : false;
+    }
+    public void selectAllLangage(){
+        Cursor mCursor = getContentResolver().query(TestContentProvider.RECORDS_CONTENT_URI_Question, QuestionListSqlite.PROJECTION_ALL, null, null, null);
+
+        while(mCursor.moveToNext()){
+            Log.v("select sql",mCursor.getString(1) );
+
+        }
+    }
+    public void getAllParseQuestions()
+    {
+
+        ParseQuery<ParseObject> query1 = ParseQuery.getQuery("questions");
+        query1.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for(int i=0;i<objects.size();i++)
+                {
+                    QuestionInsert qi = new QuestionInsert();
+                    qi.setId((Integer) objects.get(i).get("id_o"));
+                    qi.setIdP1((Integer) objects.get(i).get("id_p1"));
+                    qi.setIdP2((Integer) objects.get(i).get("id_p2"));
+                    qi.setIdP3((Integer) objects.get(i).get("id_p3"));
+                    qi.setIdQ((Integer) objects.get(i).get("id_q"));
+                    qi.setIdRep((Integer) objects.get(i).get("id_rep"));
+                    insertDBQuestion(qi);
+
+
+                }
+            }
+        });
+
+
+    }
+
+
+    public void insertDBQuestion(com.example.iit.quizzproject.core.QuestionInsert q) {
+        String line;
+        ContentValues contentValues = new ContentValues();
+        Uri uri;
+        try {
+
+            contentValues.put(QuestionListSqlite.id_QUESTION, q.getIdQ());
+
+            contentValues.put(QuestionListSqlite.id_PROPOSITION1, q.getIdP1());
+
+            contentValues.put(QuestionListSqlite.id_PROPOSITION2, q.getIdP2());
+
+            contentValues.put(QuestionListSqlite.id_PROPOSITION3, q.getIdP3());
+
+
+            contentValues.put(QuestionListSqlite.id_ANSWER, q.getIdRep());
+            uri = getContentResolver().insert(
+                    TestContentProvider.RECORDS_CONTENT_URI_Question,
+                    contentValues);
+            contentValues.clear();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void getAllParseLanguage()
+    {
+
+        ParseQuery<ParseObject> query1 = ParseQuery.getQuery("langage");
+        query1.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for(int i=0;i<objects.size();i++)
+                {
+                    QuestionLang ql = new QuestionLang();
+                    ql.setEn((String)objects.get(i).get("en"));
+                    ql.setFr((String)objects.get(i).get("fr"));
+                    ql.setId((Integer) objects.get(i).get("id_o"));
+                    insertDBLangage(ql);
+
+                }
+                getAllParseQuestions();
+            }
+        });
+
+
+    }
+    public void insertDBLangage(QuestionLang q ) {
+
+        ContentValues contentValues = new ContentValues();
+        Uri uri;
+        try
+        {
+            contentValues.put(QuestionLangage.FRANCAIS, q.getFr());
+
+            contentValues.put(QuestionLangage.ANGLAIS, q.getEn());
+            uri = getContentResolver().insert(
+                    TestContentProvider.RECORDS_CONTENT_URI_LANGAGE,
+                    contentValues);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    public int parseQuestionsSize() throws ParseException {
+        ParseQuery<ParseObject> query1 = ParseQuery.getQuery("questions");
+        List<ParseObject> pos = query1.find();
+        return  pos.size();
+    }
+
+    public int selectSumQuestionSqlite()
+    {
+        int comp=0;
+        Cursor mCursor = getContentResolver().query(TestContentProvider.RECORDS_CONTENT_URI_Question, QuestionListSqlite.PROJECTION_ALL, null, null, null);
+        while (mCursor.moveToNext()) {
+            comp++;
+        }
+        return comp;
+    }
+    public void deleteTableSqlLite()
+    {
+        int uriQuestion=  getContentResolver().delete(TestContentProvider.RECORDS_CONTENT_URI_Question,null,null);
+        int uriLangage=  getContentResolver().delete(TestContentProvider.RECORDS_CONTENT_URI_LANGAGE,null,null);
+    }
+    public int verifSqliteParseSize() throws ParseException {
+        if(parseQuestionsSize()>selectSumQuestionSqlite() )
+        {
+
+            deleteTableSqlLite();
+            getAllParseLanguage();
+
+            return 1;
+        }
+        return 0;
+    }
 
     @Override
     public void onClick(View v) {

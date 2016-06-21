@@ -44,6 +44,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         QuestionLangage.onCreate(db);
         QuestionListSqlite.onCreate(db);
 

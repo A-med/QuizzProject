@@ -26,11 +26,11 @@ public class QuestionListSqlite implements BaseColumns {
             + TABLE_QUESTIONS
             + " ("
             + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + id_QUESTION + " INTEGER   " + "REFERENCES "+ QuestionLangage.TABLE_QUESTIONS +" ( "+QuestionLangage._ID + " ) ,"
-            +  id_PROPOSITION1 + " INTEGER " + "REFERENCES "+ QuestionLangage.TABLE_QUESTIONS +" ( "+QuestionLangage._ID + " ) ,"
-            +  id_PROPOSITION2 + " INTEGER " + "REFERENCES "+ QuestionLangage.TABLE_QUESTIONS +" ( "+QuestionLangage._ID + " ) ,"
-            +  id_PROPOSITION3 + " INTEGER " + "REFERENCES "+ QuestionLangage.TABLE_QUESTIONS +" ( "+QuestionLangage._ID + " ) ,"
-            +  id_ANSWER + " INTEGER " + "REFERENCES "+ QuestionLangage.TABLE_QUESTIONS +" ( "+QuestionLangage._ID + " ) );";
+            + id_QUESTION + " INTEGER   ,"
+            +  id_PROPOSITION1 + " INTEGER ,"
+            +  id_PROPOSITION2 + " INTEGER  ,"
+            +  id_PROPOSITION3 + " INTEGER  ,"
+            +  id_ANSWER + " INTEGER  );";
 
 
     // info for content provider
