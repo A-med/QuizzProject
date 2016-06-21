@@ -543,6 +543,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
 
     @Override
     public void closeGame() {
+        MainActivity.connectWithFb=0;
         gameClosed();
 
 
@@ -553,6 +554,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionFragm
         finish();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("replay", "replay");
+        MainActivity.connectWithFb=0;
         startActivity(intent);
 
     }

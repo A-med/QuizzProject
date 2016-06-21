@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.iit.quizzproject.CircleImageView;
+import com.example.iit.quizzproject.DownloadImageFacebook;
 import com.example.iit.quizzproject.R;
 import com.example.iit.quizzproject.core.Person;
 import com.example.iit.quizzproject.ui.PersonAdapter;
@@ -32,6 +34,13 @@ public class Profil extends Fragment implements View.OnClickListener {
     private PersonAdapter mPersonAdapter;
     private TextView textAnim ;
 
+    private TextView name;
+    private TextView lastName;
+    private CircleImageView image;
+
+    public static String nameValue;
+    public static String lastNameValue;
+    public static String imageValue;
 
     private static ClickButtonLisner mClickButtonLisner;
     public Profil() {
@@ -61,6 +70,15 @@ public class Profil extends Fragment implements View.OnClickListener {
         mPersonAdapter = new PersonAdapter(getActivity().getApplicationContext(), mPersonsList);
         fillAdapter();
         mListView.setAdapter(mPersonAdapter);
+
+        name = (TextView)view.findViewById(R.id.name_text);
+        lastName=(TextView)view.findViewById(R.id.last_name_text);
+
+        name.setText(nameValue);
+        lastName.setText(lastNameValue);
+
+        new DownloadImageFacebook((ImageView) view.findViewById(R.id.circle)).execute(imageValue);
+
 
         return view ;
     }

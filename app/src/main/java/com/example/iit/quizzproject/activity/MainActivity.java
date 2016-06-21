@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public ArrayList<Question> getQuestionList() {
         return questionList;
     }
-
+    public static  int connectWithFb;
     public void setQuestionList(ArrayList<Question> questionList) {
         this.questionList = questionList;
     }
@@ -90,6 +90,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         checkDataBase();
         selectAllLangage();
 
+        if(connectWithFb==1) {
+            Bundle inBundle = getIntent().getExtras();
+            String name = inBundle.get("name").toString();
+            String surname = inBundle.get("surname").toString();
+            String imageUrl = inBundle.get("imageUrl").toString();
+
+            Log.v("name et lastname image", "" + name + " " + surname + " " + imageUrl);
+
+            Profil.nameValue = name;
+            Profil.lastNameValue = surname;
+            Profil.imageValue = imageUrl;
+        }
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setOnClickListener(this);
 
